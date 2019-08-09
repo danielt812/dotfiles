@@ -1,7 +1,6 @@
 " Plugins will be downloaded under the specified directory.
 call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
-Plug 'codehearts/mascara-vim'
 Plug 'mattn/emmet-vim'
 Plug 'gko/vim-coloresque'
 Plug 'Chiel92/vim-autoformat'

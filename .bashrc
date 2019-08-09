@@ -41,7 +41,7 @@ alias bd='brew deps --tree --installed'
 alias bcs='brew cask search'
 alias about='archey'
 
-# Git
+# Dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
@@ -54,7 +54,8 @@ alias pip='pip3'
 
 # Bash
 alias profile='vim ~/.bash_profile'
-alias aliases='vim ~/.aliases'
+alias bashrc='vim ~/.bashrc'
+alias vimrc='vim ~/.vimrc'
 
 # Git
 alias g="git status"
