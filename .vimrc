@@ -43,5 +43,14 @@ syntax on
 " Color Scheme Panda Sytnax
 colorscheme panda
 
+" Highlight search
+set hls
+
+" Show partial matches for search
+set is
+
+" Ignore case
+set ic
+
 set term=xterm-256color
 
