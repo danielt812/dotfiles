@@ -2,8 +2,6 @@
 export PATH="$HOME/bin:$PATH";
 # Make vim the default editor.
 export EDITOR='vim';
-# Export terminal
-export TERM='xterm-256color'
 
 
 # Aliases
