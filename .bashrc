@@ -84,8 +84,8 @@ alias gs="git status"
 alias gd="diff --color --color-words --abbrev"
 alias gdc="git diff --cached"
 alias gbl="git blame"
-alias gps="git push"
-alias gpl="git pull"
+alias gpush="git push"
+alias gpull="git pull"
 alias gb="git branch"
 alias gc="git commit"
 alias gd="git diff"
@@ -184,12 +184,12 @@ ritm="\e[23m"                  # Italic
 
 # Bash Auto-completion
 if [ -f ~/.git-completion.bash ]; then
-  . ~/.git-completion.bash
+	. ~/.git-completion.bash
 fi
 
 # Git branch in prompt.
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
 # Set the terminal title and prompt.
