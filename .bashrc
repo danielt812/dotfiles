@@ -33,9 +33,11 @@ alias path='echo -e ${PATH//:/\\n}'
 alias brewup='brew outdated; brew update; brew upgrade; brew cleanup; brew doctor'
 alias caskup='brew cask outdated; brew cask upgrade'
 alias bl='brew list'
+alias bi='brew install'
 alias bs='brew search'
 alias bu='brew uninstall'
 alias bd='brew deps --tree --installed'
+alias bci='brew cask install'
 alias bcs='brew cask search'
 alias about='archey'
 
@@ -99,6 +101,7 @@ export PATH="/usr/local/sbin:$PATH"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 export PATH="${PATH}:/usr/local/mysql/bin"
 export PATH="$(yarn global bin):$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Profile
 # --------------------------------------------------------------------------------------------
@@ -179,6 +182,11 @@ On_IWhite='\033[0;107m\]'   # White
 sitm="\e[3m"                   # Italic Start
 ritm="\e[23m"                  # Italic
 
+# Bash Auto-completion
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
 # Git branch in prompt.
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -186,10 +194,10 @@ parse_git_branch() {
 
 # Set the terminal title and prompt.
 PS1=""
-PS1+="${IYellow}> "                                        # Prompt
-PS1+="${IPurple}${sitm}\w${ritm}"                          # Working Directory
-PS1+="${IWhite}\$(parse_git_branch)"                       # Branch
-PS1+="${IGreen} "
+PS1+="\[${IYellow}\]> "                                       # Prompt
+PS1+="\[${IPurple}\]\[${sitm}\]\w\[${ritm}\]"                 # Working Directory
+PS1+="\[${IWhite}\]\[\$(parse_git_branch)\]"                   # Branch
+PS1+="\[${IGreen}\] "
 export PS1
 
 # Directory Colors

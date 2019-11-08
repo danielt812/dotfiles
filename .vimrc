@@ -10,6 +10,8 @@ Plug 'jbgutierrez/vim-better-comments'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'pangloss/vim-javascript'
+Plug 'tomasr/molokai'
+Plug 'terryma/vim-multiple-cursors'
 " List ends here. Plugins become visible to Vim after this call.
 call plug#end()
 
@@ -37,6 +39,12 @@ let g:panda_igui_italic = 1
 syntax on
 colorscheme panda
 
+" Fix to slow scroll
+set regexpengine=1
+
+" Remove trailing space on save
+autocmd BufWritePre *.py :%s/\s\+$//e
+
 " Highlight search
 set hls
 
@@ -45,3 +53,7 @@ set is
 
 " Ignore case
 set ic
+
+" Turn off end of line
+set binary
+set noeol
