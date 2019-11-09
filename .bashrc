@@ -29,7 +29,9 @@ alias mv='mv -iv'
 # Applications
 alias designer='/Applications/Affinity\ Designer.app/Contents/MacOS/Affinity\ Designer'
 alias photo='/Applications/Affinity\ Photo.app/Contents/MacOS/Affinity\ Photo'
+alias brave='/Applications/Brave Browser.app/Contents/MacOS/Brave\ Browser'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias firefox='/Applications/Firefox.app/Contents/MacOS/Firefox'
 alias index='open -a "Google Chrome" index.html'
 
 # Show dot files
