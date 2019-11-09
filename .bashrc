@@ -22,6 +22,9 @@ alias doc="cd ~/Documents"
 alias sbp='source ~/.bash_profile'
 alias c='clear'
 alias lsa='ls -a'
+alias ls1='ls -l1F'
+alias cp='cp -iv'
+alias mv='mv -iv'
 
 # Applications
 alias designer='/Applications/Affinity\ Designer.app/Contents/MacOS/Affinity\ Designer'
@@ -39,6 +42,9 @@ alias quitFinderOff='defaults write com.apple.finder QuitMenuItem -bool false; k
 
 # Put computer into sleep
 alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+
+# Flush dns cache
+alias flushDNS='dscacheutil -flushcache'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
