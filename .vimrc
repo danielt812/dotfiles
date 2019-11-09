@@ -17,6 +17,9 @@ call plug#end()
 
 set encoding=UTF-8
 
+" Fzf
+set rtp+=/user/local/opt/fzf
+
 " NerdTree config
 nmap <S-tab> :NERDTreeToggle<CR>
 

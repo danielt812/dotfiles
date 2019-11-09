@@ -12,6 +12,12 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
+alias prj="cd ~/Projects"
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias db="cd ~/Dropbox"
+alias doc="cd ~/Documents"
+
 # Unix
 alias sbp='source ~/.bash_profile'
 alias c='clear'
@@ -24,8 +30,15 @@ alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
 alias index='open -a "Google Chrome" index.html'
 
 # Show dot files
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+alias showDotFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideDotFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+# Add quit option to finder
+alias quitFinderOn='defaults write com.apple.finder QuitMenuItem -bool true; killall Finder'
+alias quitFinderOff='defaults write com.apple.finder QuitMenuItem -bool false; killall Finder'
+
+# Put computer into sleep
+alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
