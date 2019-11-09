@@ -21,6 +21,7 @@ alias lsa='ls -a'
 alias designer='/Applications/Affinity\ Designer.app/Contents/MacOS/Affinity\ Designer'
 alias photo='/Applications/Affinity\ Photo.app/Contents/MacOS/Affinity\ Photo'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias index='open -a "Google Chrome" index.html'
 
 # Show dot files
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
@@ -217,3 +218,5 @@ LSCOLORS+="ad" # Directory writable to others, without sticky bit
 
 export LSCOLORS
 export CLICOLOR=1 # Set CLICOLOR to true
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
