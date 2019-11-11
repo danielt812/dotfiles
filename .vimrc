@@ -49,7 +49,9 @@ set regexpengine=1
 autocmd BufWritePre *.py :%s/\s\+$//e
 
 " Highlight search
-set hls
+set hlsearch!
+
+nnoremap <F3> :set hlsearch!<CR>
 
 " Show partial matches for search
 set is
