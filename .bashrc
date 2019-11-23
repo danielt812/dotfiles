@@ -217,9 +217,10 @@ parse_git_branch() {
 
 # Set the terminal title and prompt.
 PS1=""
+PS1+="\[${IBlue}\]\T "                                        # Timestamp
 PS1+="\[${IYellow}\]> "                                       # Prompt
 PS1+="\[${IPurple}\]\[${sitm}\]\w\[${ritm}\]"                 # Working Directory
-PS1+="\[${IWhite}\]\[\$(parse_git_branch)\]"                   # Branch
+PS1+="\[${IWhite}\]\[\$(parse_git_branch)\]"                  # Branch
 PS1+="\[${IGreen}\] "
 export PS1
 
