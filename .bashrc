@@ -60,7 +60,6 @@ alias bs="brew search"
 alias bu="brew uninstall"
 alias bd="brew deps --tree --installed"
 alias bci="brew cask install"
-alias bcs="brew cask search"
 alias about="archey"
 
 # Dotfiles
@@ -80,7 +79,7 @@ alias bashrc="vim ~/.bashrc"
 alias vimrc="vim ~/.vimrc"
 
 # Git
-alias g="git status"
+alias gs="git status"
 alias ga="git add"
 alias gaa="git add ."
 alias gaaa="git add -A"
@@ -129,7 +128,7 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # Profile
 # --------------------------------------------------------------------------------------------
 # Reset
-Reset="\033[0m\]"       # Text Reset
+Reset="\033[0m\]"           # Text Reset
 
 # Regular Colors
 Black="\033[0;30m\]"        # Black
