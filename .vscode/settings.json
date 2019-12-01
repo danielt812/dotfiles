@@ -1,4 +1,8 @@
 {
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.executorMap": {
+    "python": "python3"
+  },
   "color-highlight.markerType": "dot-before",
   "editor.cursorStyle": "line-thin",
   "editor.fontSize": 14,
@@ -109,7 +113,9 @@
   "files.associations": {
     "*.sass": "scss"
   },
-  "prettier.disableLanguages": ["html"],
+  "prettier.disableLanguages": [
+    "html"
+  ],
   "prettier.jsxBracketSameLine": true,
   "prettier.jsxSingleQuote": true,
   "prettier.singleQuote": true,
@@ -128,6 +134,7 @@
   "vim.cursorStylePerMode.visual": "line-thin",
   "vim.cursorStylePerMode.visualblock": "line-thin",
   "vim.cursorStylePerMode.visualline": "line-thin",
-  "vim.disableExtension": false,
-  "workbench.colorTheme": "Panda Syntax"
+  "vim.disableExtension": true,
+  "workbench.colorTheme": "Panda Syntax",
+  "code-runner.saveFileBeforeRun": true
 }

@@ -3,7 +3,6 @@ export PATH="$HOME/bin:$PATH";
 # Make vim the default editor.
 export EDITOR="vim";
 
-
 # Aliases
 # -------------------------------------------------------------------------------------
 # Navigation
@@ -25,6 +24,7 @@ alias lsa="ls -a"
 alias ls1="ls -l1F"
 alias cp="cp -iv"
 alias mv="mv -iv"
+alias shutdown="sudo shutdown"
 
 # Applications
 alias designer="/Applications/Affinity\ Designer.app/Contents/MacOS/Affinity\ Designer"
@@ -90,6 +90,7 @@ alias gbr="git branch -r"
 alias gbd="git branch -d"
 alias gco="git checkout"
 alias gcob="git checkout -b"
+alias gclone="git clone"
 alias gst="git stash"
 alias gsta="git stash apply"
 alias gstp="git stash pop"
