@@ -243,3 +243,4 @@ export LSCOLORS
 export CLICOLOR=1 # Set CLICOLOR to true
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if [ -f $(brew --prefix)/etc/bash_completion ]; then source $(brew --prefix)/etc/bash_completion; fi
