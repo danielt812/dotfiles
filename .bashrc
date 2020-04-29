@@ -60,7 +60,10 @@ alias bs="brew search"
 alias bu="brew uninstall"
 alias bd="brew deps --tree --installed"
 alias bci="brew cask install"
+
+# MacOS
 alias about="archey"
+alias systemup="softwareupdate --all --install --force"
 
 # Dotfiles
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
