@@ -63,6 +63,7 @@ alias bci="brew cask install"
 
 # MacOS
 alias about="archey"
+alias wifi="wifi-password"
 alias systemup="softwareupdate --all --install --force"
 
 # Dotfiles
