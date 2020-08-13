@@ -66,6 +66,9 @@ alias about="archey"
 alias wifi="wifi-password"
 alias systemup="softwareupdate --all --install --force"
 
+# Weather
+alias weather="curl wttr.in"
+
 # Dotfiles
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
@@ -129,6 +132,7 @@ export PATH="${PATH}:/usr/local/mysql/bin"
 export PATH="$(yarn global bin):$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export TERM="xterm-256color-italic"
 
 # Profile
 # --------------------------------------------------------------------------------------------
