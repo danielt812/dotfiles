@@ -26,6 +26,9 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 alias shutdown="sudo shutdown"
 
+# Term mySQL
+alias mysql="mysql -u root -p"
+
 # Applications
 alias designer="/Applications/Affinity\ Designer.app/Contents/MacOS/Affinity\ Designer"
 alias photo="/Applications/Affinity\ Photo.app/Contents/MacOS/Affinity\ Photo"
@@ -129,7 +132,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/usr/local/sbin:$PATH"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 export PATH="${PATH}:/usr/local/mysql/bin"
-export PATH="$(yarn global bin):$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export TERM="xterm-256color-italic"

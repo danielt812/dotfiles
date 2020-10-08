@@ -113,11 +113,11 @@
   "files.associations": {
     "*.sass": "scss"
   },
-  "prettier.disableLanguages": [
-    "html"
-  ],
+  "prettier.disableLanguages": ["html"],
   "prettier.jsxBracketSameLine": true,
   "prettier.jsxSingleQuote": true,
+  "prettier.trailingComma": "none",
+  "prettier.useTabs": true,
   "prettier.singleQuote": true,
   "window.zoomLevel": 0,
   "workbench.colorCustomizations": {
@@ -136,5 +136,6 @@
   "vim.cursorStylePerMode.visualline": "line-thin",
   "vim.disableExtension": true,
   "workbench.colorTheme": "Panda Syntax",
-  "code-runner.saveFileBeforeRun": true
+  "code-runner.saveFileBeforeRun": true,
+  "explorer.confirmDelete": false
 }
