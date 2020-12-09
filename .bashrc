@@ -83,6 +83,9 @@ alias python="python3"
 alias py="python3"
 alias pip="pip3"
 
+# MongoDB
+alias mongod="sudo mongod --dbpath /System/Volumes/Data/data/db"
+
 # Bash
 alias profile="vim ~/.bash_profile"
 alias bashrc="vim ~/.bashrc"
