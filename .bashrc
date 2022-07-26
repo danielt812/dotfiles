@@ -1,7 +1,7 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 # Make vim the default editor.
-export EDITOR="vim";
+export EDITOR="code";
 
 # Aliases
 # -------------------------------------------------------------------------------------
@@ -87,9 +87,9 @@ alias pip="pip3"
 alias mongod="sudo mongod --dbpath /System/Volumes/Data/data/db"
 
 # Bash
-alias profile="vim ~/.bash_profile"
-alias bashrc="vim ~/.bashrc"
-alias vimrc="vim ~/.vimrc"
+alias profile="code ~/.bash_profile"
+alias bashrc="code ~/.bashrc"
+alias vimrc="code ~/.vimrc"
 
 # Git
 alias gs="git status"

@@ -8,7 +8,8 @@
 	"editor.fontSize": 14,
 	"editor.formatOnSave": true,
 	"[html]": {
-		"editor.formatOnSave": true
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": null
 	},
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.colorDecorators": false,
@@ -109,12 +110,16 @@
 	"editor.smoothScrolling": true,
 	"editor.tabSize": 2,
 	"editor.wordWrap": "on",
+	"editor.quickSuggestions": true,
 	"emmet.triggerExpansionOnTab": true,
+	"emmet.includeLanguages": {
+		"cfml": "html"
+	},
 	"files.autoGuessEncoding": true,
 	"files.associations": {
-		"*.sass": "scss"
+		"*.sass": "scss",
+		"*.inc": "cfml"
 	},
-	"prettier.disableLanguages": ["html"],
 	"prettier.jsxBracketSameLine": false,
 	"prettier.jsxSingleQuote": true,
 	"prettier.trailingComma": "none",
@@ -136,8 +141,14 @@
 	"vim.cursorStylePerMode.visualblock": "line-thin",
 	"vim.cursorStylePerMode.visualline": "line-thin",
 	"vim.disableExtension": true,
-	"workbench.colorTheme": "Daybreak",
+	"workbench.colorTheme": "Panda Syntax",
 	"code-runner.saveFileBeforeRun": true,
 	"explorer.confirmDelete": false,
-	"explorer.confirmDragAndDrop": false
+	"explorer.confirmDragAndDrop": false,
+	"python.pythonPath": "/usr/local/bin/python3",
+	"code-runner.runInTerminal": true,
+	"python.terminal.executeInFileDir": true,
+	"python.defaultInterpreterPath": "/usr/local/bin/python3",
+	"editor.minimap.enabled": false,
+	"bracketPairColorizer.depreciation-notice": false
 }
