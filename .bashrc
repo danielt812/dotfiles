@@ -1,21 +1,20 @@
-# Add `~/bin` to the `$PATH`
-export PATH="$HOME/bin:$PATH";
-# Make vim the default editor.
-export EDITOR="code";
+# Make vscode the default editor.
+export EDITOR="vim";
 
 # Aliases
-# -------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------
 # Navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias prj="cd ~/Projects"
-alias dl="cd ~/Downloads"
-alias dt="cd ~/Desktop"
+alias projects="cd ~/Projects"
+alias downloads="cd ~/Downloads"
+alias desktop="cd ~/Desktop"
 alias db="cd ~/Dropbox"
-alias doc="cd ~/Documents"
+alias documents="cd ~/Documents"
+alias screenshots="cd ~/Screenshots"
 
 # Unix
 alias sbp="source ~/.bash_profile"
@@ -28,14 +27,6 @@ alias shutdown="sudo shutdown"
 
 # Term mySQL
 alias mysql="mysql -u root -p"
-
-# Applications
-alias designer="/Applications/Affinity\ Designer.app/Contents/MacOS/Affinity\ Designer"
-alias photo="/Applications/Affinity\ Photo.app/Contents/MacOS/Affinity\ Photo"
-alias brave="/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser"
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-alias firefox="/Applications/Firefox.app/Contents/MacOS/Firefox"
-alias index="open -a 'Google Chrome' index.html"
 
 # Show dot files
 alias showDotFiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
@@ -51,9 +42,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Flush dns cache
 alias flushDNS="dscacheutil -flushcache"
 
-# Print each PATH entry on a separate line
-alias path="echo -e ${PATH//:/\\n}"
-
 # Homebrew
 alias brewup="brew outdated; brew update; brew upgrade; brew cleanup; brew doctor"
 alias caskup="brew cask outdated; brew cask upgrade"
@@ -62,7 +50,6 @@ alias bi="brew install"
 alias bs="brew search"
 alias bu="brew uninstall"
 alias bd="brew deps --tree --installed"
-alias bci="brew cask install"
 
 # MacOS
 alias about="archey"
@@ -72,19 +59,27 @@ alias systemup="softwareupdate --all --install --force"
 # Weather
 alias weather="curl wttr.in"
 
+# Yarn
+alias yi="yarn install"
+alias ya="yarn add"
+alias yr="yarn remove"
+alias yga="yarn global add"
+alias ygr="yarn global remove"
+alias ygl="yarn global list"
+
 # Dotfiles
 alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update="sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup"
 
+alias cra="create-react-app"
+alias vite="vite create"
+
 # Python
 alias python="python3"
 alias py="python3"
 alias pip="pip3"
-
-# MongoDB
-alias mongod="sudo mongod --dbpath /System/Volumes/Data/data/db"
 
 # Bash
 alias profile="code ~/.bash_profile"
@@ -125,17 +120,14 @@ alias gb="git branch"
 alias gc="git commit"
 alias gd="git diff"
 alias gco="git checkout"
-alias gcom="git checkout master"
+alias gcom="git checkout main"
 
 # Paths
 # --------------------------------------------------------------------------------------------
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="/usr/local/sbin:$PATH"
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-export PATH="${PATH}:/usr/local/mysql/bin"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/mysql/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export TERM="xterm-256color-italic"
 
@@ -254,6 +246,3 @@ LSCOLORS+="ad" # Directory writable to others, without sticky bit
 
 export LSCOLORS
 export CLICOLOR=1 # Set CLICOLOR to true
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-if [ -f $(brew --prefix)/etc/bash_completion ]; then source $(brew --prefix)/etc/bash_completion; fi
