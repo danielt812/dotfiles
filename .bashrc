@@ -14,7 +14,6 @@ alias downloads="cd ~/Downloads"
 alias desktop="cd ~/Desktop"
 alias db="cd ~/Dropbox"
 alias documents="cd ~/Documents"
-alias screenshots="cd ~/Screenshots"
 
 # Unix
 alias sbp="source ~/.bash_profile"
@@ -36,9 +35,6 @@ alias hideDotFiles="defaults write com.apple.finder AppleShowAllFiles NO; killal
 alias quitFinderOn="defaults write com.apple.finder QuitMenuItem -bool true; killall Finder"
 alias quitFinderOff="defaults write com.apple.finder QuitMenuItem -bool false; killall Finder"
 
-# Put computer into sleep
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
 # Flush dns cache
 alias flushDNS="dscacheutil -flushcache"
 
@@ -51,10 +47,14 @@ alias bs="brew search"
 alias bu="brew uninstall"
 alias bd="brew deps --tree --installed"
 
+# Formulae
+alias rm="trash" # brew install trash
+alias wifi="wifi-password" # brew install wifi-password
+cowsay $(fortune) # brew install cowsay fortune
+
 # MacOS
-alias about="archey"
-alias wifi="wifi-password"
 alias systemup="softwareupdate --all --install --force"
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Weather
 alias weather="curl wttr.in"

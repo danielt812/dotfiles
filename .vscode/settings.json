@@ -38,5 +38,9 @@
 		"terminal.foreground": "#00FD61"
 	},
 	"workbench.colorTheme": "Panda Syntax",
-	"workbench.iconTheme": "material-icon-theme"
+	"workbench.iconTheme": "material-icon-theme",
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.autopep8"
+	},
+	"python.formatting.provider": "none"
 }
