@@ -1,12 +1,11 @@
 #!/bin/zsh
 
-if [[ -d $HOME/dotfiles ]]; then
+if [[ -d "$HOME/dotfiles" ]]; then
   # Rename contents to $HOME/.dotfiles
-  cd "$HOME"
-  mv "dotfiles/" ".dotfiles/"
+  mv "$HOME/dotfiles/" "$HOME/.dotfiles/"
   echo "Renamed 'dotfiles' directory to '.dotfiles'"
-else
-  echo "not found"
+elif [[ -d "$HOME/.dotfiles" ]]
+  echo "Dotfiles in $HOME/.dotfiles"
 fi
 
 # Run the Homebrew Script
