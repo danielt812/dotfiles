@@ -23,18 +23,14 @@ else
 	echo "Installing casks..."
 
 	# Array of casks to install
-	casks=("1password" "alfred" "appcleaner" "bartender" "brave-browser" "discord" "iterm2" "itsycal" "keka" "maccy" "night-owl" "numi" "pika" "postman" "shottr" "spotify" "spotmenu" "studio-3t" "visual-studio-code")
+	casks=("1password" "alfred" "appcleaner" "bartender" "brave-browser" "discord" "iterm2" "itsycal" "keka" "maccy" "night-owl" "numi" "pika" "postman" "shottr" "spotify" "studio-3t" "visual-studio-code")
 
 	# Iterate through formulae and install if not already installed
 	for cask in "${casks[@]}"; do
 		if ! brew list "$cask" &> /dev/null; then
-			brew install "$cask --cask"
+			brew install "$cask"
 		else
 			echo "$cask is already installed."
 		fi
 	done
-fi
-
-if [[ -d $ZSH_CUSTOM/themes/zap ]]; then
-	echo "zap-zsh is already installed."
 fi
