@@ -1,6 +1,9 @@
 #!/bin/zsh
 
+# Load Zap
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+# Load NVM
+[ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" --no-use
 
 # History
 HISTFILE="$HOME/.zsh_history"
