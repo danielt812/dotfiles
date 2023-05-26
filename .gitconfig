@@ -1,0 +1,10 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Daniel Tolan
+	email = danieltolan@gmail.com
+[branch]
+	remote = origin
+[core]
+	editor = vim
+[push]
+	default = simple
