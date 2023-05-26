@@ -45,3 +45,5 @@ LSCOLORS+="ad" # Directory writable to others, without sticky bit
 export LSCOLORS
 
 export CLICOLOR=1
+
+echo 'Test'
