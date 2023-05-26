@@ -2,7 +2,8 @@
 
 if [[ -d $HOME/dotfiles ]]; then
   # Rename contents to $HOME/.dotfiles
-  mv "$HOME/dotfiles" "$HOME/.dotfiles"
+  cd "$HOME"
+  mv "dotfiles/" ".dotfiles/"
   echo "Renamed 'dotfiles' directory to '.dotfiles'"
 else
   echo "not found"
