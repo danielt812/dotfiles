@@ -8,3 +8,31 @@
 	editor = vim
 [push]
 	default = simple
+[alias]
+  gs = status
+  ga = add
+  gaa = add .
+  gaaa = add -A
+  gc = commit
+  gcm = commit -m
+  gb = branch
+  gbr = branch -r
+  gbd = branch -d
+  gco = checkout
+  gcob = checkout -b
+  gclone = clone
+  gst = stash
+  gsta = stash apply
+  gstp = stash pop
+  gstl = stash list
+  gm = merge
+  gr = reset
+  grb = rebase
+  gl = log --oneline --decorate --graph
+  glog = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+  glga = log --graph --oneline --all --decorate
+  gd = diff --color --color-words --abbrev
+  gdc = diff --cached
+  gbl = blame
+  gpush = push
+  gpull = pull

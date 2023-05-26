@@ -5,15 +5,15 @@
 # History
 HISTFILE="$HOME/.zsh_history"
 
-# Source
-plug "$HOME/.config/zsh/aliases.zsh"
-plug "$HOME/.config/zsh/exports.zsh"
-plug "$HOME/.config/zsh/prompt.zsh"
-
 # Plugins
 plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
+
+# Source
+plug "$HOME/.zsh/aliases.zsh"
+plug "$HOME/.zsh/exports.zsh"
+plug "$HOME/.zsh/prompt.zsh"
 
 # autoload -Uz compinit
 # compinit

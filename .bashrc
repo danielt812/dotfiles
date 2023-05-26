@@ -1,5 +1,4 @@
-# Make vscode the default editor.
-export EDITOR="vim";
+#!/bin/bash
 
 # Aliases
 #----------------------------------------------------------------------------------
@@ -22,7 +21,6 @@ alias lsa="ls -a"
 alias ls1="ls -l1F"
 alias cp="cp -iv"
 alias mv="mv -iv"
-alias shutdown="sudo shutdown"
 
 # Term mySQL
 alias mysql="mysql -u root -p"
@@ -48,13 +46,14 @@ alias bu="brew uninstall"
 alias bd="brew deps --tree --installed"
 
 # Formulae
-alias rm="trash" # brew install trash
-alias wifi="wifi-password" # brew install wifi-password
-cowsay $(fortune) # brew install cowsay fortune
+alias rm="trash"
+alias wifi="wifi-password"
+# cowsay $(fortune)
 
 # MacOS
 alias systemup="softwareupdate --all --install --force"
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias usebash="chsh -s (which bash)"
+alias usezsh="chsh -s (which zsh)"
 
 # Weather
 alias weather="curl wttr.in"
@@ -73,9 +72,6 @@ alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 # Get macOS Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
 alias update="sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup"
 
-alias cra="create-react-app"
-alias vite="vite create"
-
 # Python
 alias python="python3"
 alias py="python3"
@@ -86,48 +82,11 @@ alias profile="code ~/.bash_profile"
 alias bashrc="code ~/.bashrc"
 alias vimrc="code ~/.vimrc"
 
-# Git
-alias gs="git status"
-alias ga="git add"
-alias gaa="git add ."
-alias gaaa="git add -A"
-alias gc="git commit"
-alias gcm="git commit -m"
-alias gb="git branch"
-alias gbr="git branch -r"
-alias gbd="git branch -d"
-alias gco="git checkout"
-alias gcob="git checkout -b"
-alias gclone="git clone"
-alias gst="git stash"
-alias gsta="git stash apply"
-alias gstp="git stash pop"
-alias gstl="git stash list"
-alias gm="git merge"
-alias gr="git reset"
-alias grb="git rebase"
-alias gl="git log --oneline --decorate --graph"
-alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
-alias glga="git log --graph --oneline --all --decorate"
-alias gb="git branch"
-alias gs="git status"
-alias gd="diff --color --color-words --abbrev"
-alias gdc="git diff --cached"
-alias gbl="git blame"
-alias gpush="git push"
-alias gpull="git pull"
-alias gb="git branch"
-alias gc="git commit"
-alias gd="git diff"
-alias gco="git checkout"
-alias gcom="git checkout main"
-
 # Paths
 # --------------------------------------------------------------------------------------------
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-export PATH="/usr/local/mysql/bin:$PATH"
+export PATH="$HOME/.nvm/versions/node/v20.2.0/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="/usr/local/mysql/bin:$PATH"
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export TERM="xterm-256color-italic"
 
@@ -210,11 +169,6 @@ On_IWhite="\033[0;107m\]"   # White
 sitm="\e[3m"                   # Italic Start
 ritm="\e[23m"                  # Italic
 
-# Bash Auto-completion
-if [ -f ~/.git-completion.bash ]; then
-	. ~/.git-completion.bash
-fi
-
 # Git branch in prompt.
 parse_git_branch() {
 	git branch 2> /dev/null | sed -e "/^[^*]/d" -e "s/* \(.*\)/ (\1)/"
@@ -246,3 +200,4 @@ LSCOLORS+="ad" # Directory writable to others, without sticky bit
 
 export LSCOLORS
 export CLICOLOR=1 # Set CLICOLOR to true
+export EDITOR="vim";
