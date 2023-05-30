@@ -1,18 +1,20 @@
+#!/usr/local/bin/zsh
+
 # Git branch in prompt.
-parse_git_branch() {
-  git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/(\1)/p'
+function parse_git_branch() {
+	git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/(\1)/p'
 }
 
-# https://upload.wikimedia.org/wikipedia/commons/9/95/Xterm_color_chart.png -> Color Codes
-NEW_LINE=$'\n'
-COLOR_DEF=$'%F{46}'
+# https://upload.wikimedia.org/wikipedia/commons/9/95/Xterm_color_chart.png
 COLOR_TIME=$'%F{14}'
-COLOR_PWD=$'%F{198}'
-COLOR_GIT=$'%F{15}'
-COLOR_PROMPT=$'%F{202}'
 DATE_12_HR=$'%D{%I:%M:%S}'
+COLOR_PWD=$'%F{198}'
 ITALIC_START=$'\e[3m'
 ITALIC_END=$'\e[23m'
+COLOR_GIT=$'%F{15}'
+NEW_LINE=$'\n'
+COLOR_PROMPT=$'%F{202}'
+COLOR_DEF=$'%F{46}'
 
 setopt PROMPT_SUBST
 
@@ -28,20 +30,3 @@ PROMPT+='${NEW_LINE}'
 PROMPT+='${COLOR_PROMPT}> '
 PROMPT+='${COLOR_DEF}'
 export PROMPT
-
-# Directory Colors
-LSCOLORS=""
-LSCOLORS+="Ex" # Directory
-LSCOLORS+="Fx" # Symbolic link
-LSCOLORS+="Bx" # Socket
-LSCOLORS+="Dx" # Pipe
-LSCOLORS+="Cx" # Executable
-LSCOLORS+="eg" # Block special
-LSCOLORS+="ed" # Character special
-LSCOLORS+="ab" # Executable with setuid bit set
-LSCOLORS+="ag" # Executable with setgid bit set
-LSCOLORS+="ac" # Directory writable to others, with sticky bit
-LSCOLORS+="ad" # Directory writable to others, without sticky bit
-export LSCOLORS
-
-export CLICOLOR=1
