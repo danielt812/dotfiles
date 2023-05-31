@@ -4,6 +4,13 @@
 export PATH="$HOME/.nvm/versions/node/v20.2.0/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="/usr/local/mysql/bin:$PATH"
+export ORACLE_HOME=$HOME/instantclient_19_8
+export OCI_LIB_DIR=$HOME/instantclient_19_8
+export OCI_DIR=$ORACLE_HOME
+export OCI_INC_DIR=$HOME/instantclient_19_8/sdk/include
+export DYLD_LIBRARY_PATH=$HOME/instantclient_19_8
+export LD_LIBRARY_PATH=${ORACLE_HOME}/lib
+export TNS_ADMIN=$ORACLE_HOME/NETWORK/ADMIN
 
 # Env
 export TERM="xterm-256color-italic"
