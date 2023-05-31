@@ -10,23 +10,23 @@ fi
 
 # Change permissions to execute the scripts below...
 chmod +x brew.sh
-chmod +x zap.sh
 
 # Run the Homebrew Script
-./brew.sh
-
-# Run the Zap Script
-./zap.sh
+# ./brew.sh
 
 DOTFILES="$HOME/.dotfiles"
 
 cd "$DOTFILES"
 
 for file in .*; do
-  if [ -e "$file" ] && [ "$file" != ".git" ] && [ "$file" != ".gitignore" ]; then
-    echo "Creating symlink from $DOTFILES/$file to $HOME/$file in home directory."
+  if [ -f "$file" ] && [ "$file" != ".gitignore" ]; then
+    # echo "Creating symlink from $DOTFILES/$file to $HOME/$file in home directory."
     # Use force flag to overwrite files
-    # echo "$file" "$HOME/$file"
-    ln -sf "$DOTFILES/$file" "$HOME/$file"
+    # ln -sf "$DOTFILES/$file" "$HOME/$file"
+  fi
+
+  # TODO handle dirs
+  if [ -d "$file" ] && [ "$file" != ".git" ]; then
+    echo "$file"
   fi
 done

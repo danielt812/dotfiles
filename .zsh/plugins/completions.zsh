@@ -46,23 +46,6 @@ zstyle ':completion:*:*:*:*:warnings' format ' %F{9}-- no matches found --%f'
 zstyle ':completion:*' rehash true
 
 # Colors for files and directory
-# $custom
-# https://linuxhint.com/ls_colors_bash/
-# Set to 256 color
-TERM="xterm-256color-italic"
-# Directory Colors Linux
-LS_COLORS=''
-LS_COLORS+='di=1;34:' # Directory
-LS_COLORS+='ln=1;35:' # Symbolic link
-LS_COLORS+='so=1;33:' # Socket
-LS_COLORS+='pi=1;33:' # Pipe
-LS_COLORS+='ex=1;31:' # Executable
-LS_COLORS+='bd=1;33:' # Block special
-LS_COLORS+='cd=1;33:' # Character special
-LS_COLORS+='su=1;33:' # Executable with setuid bit set
-LS_COLORS+='sg=1;33:' # Executable with setgid bit set
-LS_COLORS+='tw=1;33:' # Directory writable to others, with sticky bit
-LS_COLORS+='ow=1;33:' # Directory writable to others, without sticky bit
 zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # Only display some tags for the command cd

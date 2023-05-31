@@ -5,22 +5,22 @@
 
 # History
 HISTFILE="$HOME/.zsh_history"
-
-# Plugins
-source "$HOME/.zsh/plugins/completions.zsh"
-source "$HOME/.zsh/plugins/vim.zsh"
-source "$HOME/.zsh/plugins/autosuggestions.zsh"
-source "$HOME/.zsh/plugins/history-substring-search.zsh"
-# TODO see which syntax highlighting I like better
-source "$HOME/.zsh/plugins/fast-syntax-highlighting.zsh"
-# source "$HOME/.zsh/plugins/syntax-highlighting.zsh"
-source "$HOME/.zsh/plugins/sudo.zsh"
-source "$HOME/.zsh/plugins/you-should-use.zsh"
-# TODO Look into this one
-# https://github.com/Aloxaf/fzf-tab/tree/master
-# source "$HOME/.zsh/plugins/fzf.zsh"
+DOTFILES="$HOME/.dotfiles"
 
 # Source
-source "$HOME/.zsh/aliases.zsh"
-source "$HOME/.zsh/exports.zsh"
-source "$HOME/.zsh/prompt.zsh"
+source "$DOTFILES/.zsh/exports.zsh"
+source "$DOTFILES/.zsh/aliases.zsh"
+source "$DOTFILES/.zsh/prompt.zsh"
+
+# Plugins
+source "$DOTFILES/.zsh/plugins/completions.zsh"
+source "$DOTFILES/.zsh/plugins/vim.zsh"
+source "$DOTFILES/.zsh/plugins/autosuggestions.zsh"
+source "$DOTFILES/.zsh/plugins/history-substring-search.zsh"
+source "$DOTFILES/.zsh/plugins/fast-syntax-highlighting.zsh"
+source "$DOTFILES/.zsh/plugins/sudo.zsh"
+source "$DOTFILES/.zsh/plugins/you-should-use.zsh"
+# TODO Look into this one
+# https://github.com/Aloxaf/fzf-tab/tree/master
+# source "$DOTFILES/.zsh/plugins/fzf.zsh"
+

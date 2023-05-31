@@ -6,22 +6,14 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-alias projects="cd $HOME/Projects"
-alias downloads="cd $HOME/Downloads"
-alias desktop="cd $HOME/Desktop"
-alias documents="cd $HOME/Documents"
-alias dropbox="cd $HOME/Dropbox"
-alias caskroom="cd $LOCAL/Caskroom"
-alias cellar="cd $LOCAL/Cellar"
-
 # Unix
 alias c="clear"
-alias md="mkdir"
-alias mdcd='() { md $1 && cd $_ }' # Make Directory and cd into it
 
-alias lsa="ls -a"     # Show hidden files
-alias lsl="ls -l1F"   # Show on new line
-alias ll="ls -lh"     # Show symbolic links and permissions
+alias ls="lsd"
+alias lst="ls --tree"     # Recurse into directories and present the result as a tree.
+alias lsa="ls -A"         # Show hidden files
+alias lsla="ls -lA"       # Show hidden files with permissions
+alias lsl="ls -l"         # Show on new line
 
 alias cp="cp -iv"
 alias mv="mv -iv"
@@ -67,7 +59,6 @@ alias gr="git reset"
 alias grb="git rebase"
 alias gl="git log --oneline --decorate --graph"
 alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
-alias glga="git log --graph --oneline --all --decorate"
 alias gb="git branch"
 alias gs="git status"
 alias gd="diff --color --color-words --abbrev"
@@ -126,9 +117,6 @@ alias quitFinderOff="defaults write com.apple.finder QuitMenuItem -bool false; k
 
 # Flush dns cache
 alias flushDNS="dscacheutil -flushcache"
-
-# Dotfiles
-alias dot="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # Weather
 alias weather="curl wttr.in"

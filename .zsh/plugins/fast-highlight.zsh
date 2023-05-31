@@ -38,14 +38,14 @@ typeset -gA FAST_HIGHLIGHT_STYLES
 : ${FAST_HIGHLIGHT_STYLES[precommand]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[commandseparator]:=none}
 : ${FAST_HIGHLIGHT_STYLES[hashed-command]:=fg=green}
-: ${FAST_HIGHLIGHT_STYLES[path]:=fg=magenta}
+: ${FAST_HIGHLIGHT_STYLES[path]:=fg=198}
 : ${FAST_HIGHLIGHT_STYLES[path-to-dir]:=fg=198,underline} # ~/Desktop
 : ${FAST_HIGHLIGHT_STYLES[path_pathseparator]:=}
 : ${FAST_HIGHLIGHT_STYLES[globbing]:=fg=blue,bold}
 : ${FAST_HIGHLIGHT_STYLES[globbing-ext]:=fg=13}
 : ${FAST_HIGHLIGHT_STYLES[history-expansion]:=fg=blue,bold}
-: ${FAST_HIGHLIGHT_STYLES[single-hyphen-option]:=fg=cyan}
-: ${FAST_HIGHLIGHT_STYLES[double-hyphen-option]:=fg=cyan}
+: ${FAST_HIGHLIGHT_STYLES[single-hyphen-option]:=fg=14} # -h
+: ${FAST_HIGHLIGHT_STYLES[double-hyphen-option]:=fg=14} # --help
 : ${FAST_HIGHLIGHT_STYLES[back-quoted-argument]:=none}
 : ${FAST_HIGHLIGHT_STYLES[single-quoted-argument]:=fg=11} # '$HOME'
 : ${FAST_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=11} # "$HOME"
