@@ -1,6 +1,6 @@
 #!/usr/local/bin/zsh
 
-# cowthink $(fortune)
+cowthink $(fortune)
 
 # Git branch in prompt.
 function parse_git_branch() {
