@@ -9,7 +9,7 @@ alias .....="cd ../../../.."
 # Unix
 alias c="clear"
 
-alias ls="lsd"
+alias ls="lsd --group-directories-first"
 alias lst="ls --tree"     # Recurse into directories and present the result as a tree.
 alias lsa="ls -A"         # Show hidden files
 alias lsla="ls -lA"       # Show hidden files with permissions
@@ -64,11 +64,13 @@ alias gpull="git pull"
 # Formulae
 alias rm="trash"
 alias wifi="wifi-password"
-alias diff='colordiff'
+alias diff="colordiff"
+alias cowsay="cowsay -f kitty"
+alias cowthink="cowthink -f kitty"
 
 # Python
-alias python="python3"
-alias py="python3"
+alias python="python3.11"
+alias py="python3.11"
 alias pip="pip3"
 
 # Ruby
@@ -80,7 +82,7 @@ alias usebash="chsh -s $(which bash)"
 alias usezsh="chsh -s $(which zsh)"
 
 # Vim
-alias vimrc="vim $HOME/.vimrc"
+alias vimrc="$EDITOR $HOME/.config/nvim"
 
 # Zsh
 alias zshrc="$EDITOR ~/.zsh/.zshrc"

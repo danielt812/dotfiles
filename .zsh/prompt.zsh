@@ -1,5 +1,7 @@
 #!/usr/local/bin/zsh
 
+# cowthink $(fortune)
+
 # Git branch in prompt.
 function parse_git_branch() {
 	git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/(\1)/p'

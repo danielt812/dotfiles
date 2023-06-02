@@ -7,7 +7,7 @@ export PATH="/usr/local/mysql/bin:$PATH"
 
 # Env
 export TERM="xterm-256color-italic"
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 export LOCAL="/usr/local"
 export CONFIG="$HOME/.config"
