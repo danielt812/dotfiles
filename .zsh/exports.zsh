@@ -11,6 +11,7 @@ export EDITOR="nvim"
 export BROWSER="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 export LOCAL="/usr/local"
 export CONFIG="$HOME/.config"
+export DOTFILES="$HOME/.dotfiles"
 export MANPAGER="less -R --use-color -Ddg -Du+y"
 
 # XDG
