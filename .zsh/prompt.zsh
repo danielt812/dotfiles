@@ -8,15 +8,15 @@ function parse_git_branch() {
 }
 
 # https://upload.wikimedia.org/wikipedia/commons/9/95/Xterm_color_chart.png
-COLOR_TIME=$'%F{14}'
+COLOR_TIME=$'%F{6}'
 DATE_12_HR=$'%D{%I:%M:%S}'
-COLOR_PWD=$'%F{198}'
+COLOR_PWD=$'%F{5}'
 ITALIC_START=$'\e[3m'
 ITALIC_END=$'\e[23m'
-COLOR_GIT=$'%F{15}'
+COLOR_GIT=$'%F{7}'
 NEW_LINE=$'\n'
-COLOR_PROMPT=$'%F{202}'
-COLOR_DEF=$'%F{46}'
+COLOR_PROMPT=$'%F{3}'
+COLOR_DEF=$'%F{2}'
 
 setopt PROMPT_SUBST
 
