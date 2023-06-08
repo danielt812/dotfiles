@@ -3,6 +3,9 @@
 # Load NVM
 [ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" --no-use
 
+# Enable Zoxide
+eval "$(zoxide init zsh)"
+
 # History
 ZDOTDIR="$HOME/.dotfiles/.zsh"
 HISTFILE="$ZDOTDIR/.zsh_history"

@@ -12,7 +12,8 @@ export BROWSER="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 export LOCAL="/usr/local"
 export CONFIG="$HOME/.config"
 export DOTFILES="$HOME/.dotfiles"
-export MANPAGER="less -R --use-color -Ddg -Du+y"
+# export MANPAGER="less -R --use-color -Ddg -Du+y"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # XDG
 export XDG_CONFIG_HOME=$HOME/.config
