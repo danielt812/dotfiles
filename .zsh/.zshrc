@@ -8,7 +8,7 @@ eval "$(zoxide init zsh)"
 
 # History
 ZDOTDIR="$HOME/.dotfiles/.zsh"
-HISTFILE="$ZDOTDIR/.zsh_history"
+HISTFILE="$HOME/.zsh_history"
 
 # Source
 source "$ZDOTDIR/exports.zsh"
