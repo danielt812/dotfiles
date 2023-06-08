@@ -1,3 +1,7 @@
 .DS_Store
 .zcompdump
+<<<<<<< HEAD
 .zsh/.zsh_history
+=======
+.zsh_history
+>>>>>>> 3a67c6a (tmux config work)
