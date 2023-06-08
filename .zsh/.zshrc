@@ -3,24 +3,23 @@
 # Load NVM
 [ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" --no-use
 
+# Enable Zoxide
+eval "$(zoxide init zsh)"
+
 # History
-HISTFILE="$HOME/.zsh_history"
-DOTFILES="$HOME/.dotfiles"
+ZDOTDIR="$HOME/.dotfiles/.zsh"
+HISTFILE="$ZDOTDIR/.zsh_history"
 
 # Source
-source "$DOTFILES/.zsh/exports.zsh"
-source "$DOTFILES/.zsh/aliases.zsh"
-source "$DOTFILES/.zsh/prompt.zsh"
+source "$ZDOTDIR/exports.zsh"
+source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/functions.zsh"
+source "$ZDOTDIR/prompt.zsh"
 
 # Plugins
-source "$DOTFILES/.zsh/plugins/completions.zsh"
-source "$DOTFILES/.zsh/plugins/vim.zsh"
-source "$DOTFILES/.zsh/plugins/autosuggestions.zsh"
-source "$DOTFILES/.zsh/plugins/history-substring-search.zsh"
-source "$DOTFILES/.zsh/plugins/fast-syntax-highlighting.zsh"
-source "$DOTFILES/.zsh/plugins/sudo.zsh"
-source "$DOTFILES/.zsh/plugins/you-should-use.zsh"
-# TODO Look into this one
-# https://github.com/Aloxaf/fzf-tab/tree/master
-# source "$DOTFILES/.zsh/plugins/fzf.zsh"
-
+source "$ZDOTDIR/plugins/completions.zsh"
+source "$ZDOTDIR/plugins/vim.zsh"
+source "$ZDOTDIR/plugins/autosuggestions.zsh"
+source "$ZDOTDIR/plugins/history-substring-search.zsh"
+source "$ZDOTDIR/plugins/fast-syntax-highlighting.zsh"
+source "$ZDOTDIR/plugins/you-should-use.zsh"

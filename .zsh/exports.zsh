@@ -14,10 +14,18 @@ export TNS_ADMIN=$ORACLE_HOME/NETWORK/ADMIN
 
 # Env
 export TERM="xterm-256color-italic"
-export EDITOR="vim"
+export EDITOR="nvim"
 export BROWSER="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 export LOCAL="/usr/local"
 export CONFIG="$HOME/.config"
+export DOTFILES="$HOME/.dotfiles"
+# export MANPAGER="less -R --use-color -Ddg -Du+y"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# XDG
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
 
 # https://linuxhint.com/ls_colors_bash/
 # Directory Colors Linux

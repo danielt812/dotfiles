@@ -26,39 +26,39 @@ FAST_WORK_DIR=${~FAST_WORK_DIR}
 # $custom
 typeset -gA FAST_HIGHLIGHT_STYLES
 : ${FAST_HIGHLIGHT_STYLES[default]:=none}
-: ${FAST_HIGHLIGHT_STYLES[unknown-token]:=fg=9} # unknown ex: asdf
+: ${FAST_HIGHLIGHT_STYLES[unknown-token]:=fg=red}
 : ${FAST_HIGHLIGHT_STYLES[reserved-word]:=fg=yellow}
 : ${FAST_HIGHLIGHT_STYLES[subcommand]:=fg=yellow}
-: ${FAST_HIGHLIGHT_STYLES[alias]:=fg=10} # alias ex: brewup
+: ${FAST_HIGHLIGHT_STYLES[alias]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[suffix-alias]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[global-alias]:=bg=blue}
-: ${FAST_HIGHLIGHT_STYLES[builtin]:=fg=10} # bash commands ex: echo
-: ${FAST_HIGHLIGHT_STYLES[function]:=fg=10} # parse_git_branch
-: ${FAST_HIGHLIGHT_STYLES[command]:=fg=10} # touch
+: ${FAST_HIGHLIGHT_STYLES[builtin]:=fg=green}
+: ${FAST_HIGHLIGHT_STYLES[function]:=fg=green}
+: ${FAST_HIGHLIGHT_STYLES[command]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[precommand]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[commandseparator]:=none}
 : ${FAST_HIGHLIGHT_STYLES[hashed-command]:=fg=green}
-: ${FAST_HIGHLIGHT_STYLES[path]:=fg=198}
-: ${FAST_HIGHLIGHT_STYLES[path-to-dir]:=fg=198,underline} # ~/Desktop
+: ${FAST_HIGHLIGHT_STYLES[path]:=fg=magenta}
+: ${FAST_HIGHLIGHT_STYLES[path-to-dir]:=fg=magenta,underline,bold}
 : ${FAST_HIGHLIGHT_STYLES[path_pathseparator]:=}
 : ${FAST_HIGHLIGHT_STYLES[globbing]:=fg=blue,bold}
 : ${FAST_HIGHLIGHT_STYLES[globbing-ext]:=fg=13}
 : ${FAST_HIGHLIGHT_STYLES[history-expansion]:=fg=blue,bold}
-: ${FAST_HIGHLIGHT_STYLES[single-hyphen-option]:=fg=14} # -h
-: ${FAST_HIGHLIGHT_STYLES[double-hyphen-option]:=fg=14} # --help
+: ${FAST_HIGHLIGHT_STYLES[single-hyphen-option]:=fg=cyan}
+: ${FAST_HIGHLIGHT_STYLES[double-hyphen-option]:=fg=cyan}
 : ${FAST_HIGHLIGHT_STYLES[back-quoted-argument]:=none}
-: ${FAST_HIGHLIGHT_STYLES[single-quoted-argument]:=fg=11} # '$HOME'
-: ${FAST_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=11} # "$HOME"
-: ${FAST_HIGHLIGHT_STYLES[dollar-quoted-argument]:=fg=11} # $'HOME'
+: ${FAST_HIGHLIGHT_STYLES[single-quoted-argument]:=fg=yellow}
+: ${FAST_HIGHLIGHT_STYLES[double-quoted-argument]:=fg=yellow}
+: ${FAST_HIGHLIGHT_STYLES[dollar-quoted-argument]:=fg=yellow}
 : ${FAST_HIGHLIGHT_STYLES[back-or-dollar-double-quoted-argument]:=fg=cyan}
 : ${FAST_HIGHLIGHT_STYLES[back-dollar-quoted-argument]:=fg=cyan}
 : ${FAST_HIGHLIGHT_STYLES[assign]:=none}
 : ${FAST_HIGHLIGHT_STYLES[redirection]:=none}
 : ${FAST_HIGHLIGHT_STYLES[comment]:=fg=black,bold}
-: ${FAST_HIGHLIGHT_STYLES[variable]:=fg=15} # ex: $HOME
+: ${FAST_HIGHLIGHT_STYLES[variable]:=fg=113}
 : ${FAST_HIGHLIGHT_STYLES[mathvar]:=fg=blue,bold}
 : ${FAST_HIGHLIGHT_STYLES[mathnum]:=fg=magenta}
-: ${FAST_HIGHLIGHT_STYLES[matherr]:=fg=9}
+: ${FAST_HIGHLIGHT_STYLES[matherr]:=fg=red}
 : ${FAST_HIGHLIGHT_STYLES[assign-array-bracket]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[for-loop-variable]:=none}
 : ${FAST_HIGHLIGHT_STYLES[for-loop-operator]:=fg=yellow}
@@ -67,7 +67,7 @@ typeset -gA FAST_HIGHLIGHT_STYLES
 : ${FAST_HIGHLIGHT_STYLES[here-string-tri]:=fg=yellow}
 : ${FAST_HIGHLIGHT_STYLES[here-string-text]:=bg=18}
 : ${FAST_HIGHLIGHT_STYLES[here-string-var]:=fg=cyan,bg=18}
-: ${FAST_HIGHLIGHT_STYLES[case-input]:=fg=blue}
+: ${FAST_HIGHLIGHT_STYLES[case-input]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[case-parentheses]:=fg=yellow}
 : ${FAST_HIGHLIGHT_STYLES[case-condition]:=bg=blue}
 : ${FAST_HIGHLIGHT_STYLES[paired-bracket]:=bg=blue}
@@ -78,7 +78,7 @@ typeset -gA FAST_HIGHLIGHT_STYLES
 : ${FAST_HIGHLIGHT_STYLES[double-sq-bracket]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[double-paren]:=fg=yellow}
 : ${FAST_HIGHLIGHT_STYLES[correct-subtle]:=fg=12}
-: ${FAST_HIGHLIGHT_STYLES[incorrect-subtle]:=fg=9}
+: ${FAST_HIGHLIGHT_STYLES[incorrect-subtle]:=fg=red}
 : ${FAST_HIGHLIGHT_STYLES[subtle-separator]:=fg=green}
 : ${FAST_HIGHLIGHT_STYLES[subtle-bg]:=bg=18}
 : ${FAST_HIGHLIGHT_STYLES[secondary]:=free}
