@@ -6,5 +6,8 @@
 	remote = origin
 [core]
 	editor = vim
+	pager = less -r
 [push]
 	default = simple
+[color]
+	ui = true
