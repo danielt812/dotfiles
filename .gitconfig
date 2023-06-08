@@ -5,7 +5,7 @@
 [branch]
 	remote = origin
 [core]
-	editor = vim
+	editor = nvim
 	pager = less -r
 [push]
 	default = simple
