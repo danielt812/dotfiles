@@ -1,10 +1,13 @@
 #!/usr/local/bin/zsh
 
-# cowthink -f kitty $(fortune)
+# $(cowthink -f kitty $(fortune))
 
 # Git branch in prompt.
 function parse_git_branch() {
-	git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/(\1)/p'
+	local branch=$(git branch --show-current 2> /dev/null)
+	if [[ -n $branch ]]; then
+		echo "($branch)"
+	fi
 }
 
 # https://upload.wikimedia.org/wikipedia/commons/9/95/Xterm_color_chart.png
@@ -16,7 +19,7 @@ ITALIC_END=$'\e[23m'
 COLOR_GIT=$'%F{7}'
 NEW_LINE=$'\n'
 COLOR_PROMPT=$'%F{3}'
-COLOR_DEF=$'%F{46}'
+COLOR_DEF=$'%F{2}'
 
 setopt PROMPT_SUBST
 

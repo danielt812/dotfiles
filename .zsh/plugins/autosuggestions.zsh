@@ -813,4 +813,3 @@ add-zsh-hook precmd _zsh_autosuggest_start
 # $custom
 setopt AUTO_CD
 setopt GLOB_DOTS
-setopt APPEND_HISTORY

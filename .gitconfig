@@ -5,9 +5,111 @@
 [branch]
 	remote = origin
 [core]
-	editor = nvim
-	pager = less -r
+	editor = vim
+  pager = delta
+  mergeoptions = --no-edit
 [push]
-	default = simple
+	default = upstream
+  autoSetupRemote = true
 [color]
-	ui = true
+  ui = always
+[color "branch"]
+  current = white
+  local = blue
+  remote = red
+[color "diff"]
+  meta = magenta
+  frag = cyan
+  old = red
+  new = green
+[color "status"]
+  added = green
+  changed = red
+  untracked = yellow
+[color "interactive"]
+  prompt = blue
+  header = yellow
+  help = yellow
+  error = red
+  promptchoice = cyan
+  # selected = default
+  # cursor = default
+[alias]
+  # Show all git aliases
+  alias = "!git config -l | grep alias | cut -c 7-"
+# ADD https://git-scm.com/docs/git-add
+  a = add
+  aa = add .
+  aaa = add --all
+  ap = add --patch
+# COMMIT https://git-scm.com/docs/git-commit
+  c = commit --verbose
+  ca = commit --amend --verbose
+# DIFF https://git-scm.com/docs/git-diff
+  d = diff
+  ds = diff --stat
+# CHECKOUT https://git-scm.com/docs/git-checkout
+  co = checkout
+  cob = checkout -b
+# RESET https://git-scm.com/docs/git-reset
+  res = reset HEAD~1
+  ress = reset HEAD~1 --soft
+  resh = reset HEAD~1 --hard
+# REVERT https://git-scm.com/docs/git-revert
+  rev = revert
+  revh = revert HEAD
+# STASH https://git-scm.com/docs/git-stash
+  st = stash save -m
+  sts = stash show
+  sta = stash apply
+  stl = stash list
+  stp = stash pop
+  stc = stash clear
+# MERGE https://git-scm.com/docs/git-merge
+  m = merge --no-edit
+# LOG https://git-scm.com/docs/git-log
+  l = log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' --decorate --date=relative --abbrev-commit --no-merges
+  lg = log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' --decorate --date=relative --abbrev-commit --graph
+# STATUS https://git-scm.com/docs/git-status
+  s = status --short
+  sl = status --long
+# PULL https://git-scm.com/docs/git-pull
+  pullr = pull --rebase
+# PUSH https://git-scm.com/docs/git-push
+  pushu = push -u origin HEAD
+# CHERRY PICK https://git-scm.com/docs/git-cherry-pick
+  cp = cherry-pick
+  cpc = cherry-pick --continue
+  cpa = cherry-pick --abort
+  cpm = cherry-pick master
+# INIT https://git-scm.com/docs/git-init
+  initb = init --bare
+# DELTA CONFIG https://github.com/dandavison/delta
+[interactive]
+  diffFilter = delta --color-only
+# [delta]
+#   true-color = always
+#   navigate = true    # use n and N to move between diff sections
+#   light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+# [merge]
+#   conflictstyle = diff3
+[diff]
+  # colorMoved = default
+  # minus-style = red bold ul "#ffeeee"
+[delta]
+  # paging=always
+  line-numbers = true
+  syntax-theme = Monokai Extended
+  side-by-side = true
+  # width = 1
+  # minus-style = syntax "#450a15"
+  # minus-emph-style = syntax "#600818"
+  # plus-style = syntax "#0b4820"
+  # plus-emph-style = syntax "#175c2e"
+  # hunk-header-style = syntax bold
+  # hunk-header-decoration-style = omit
+  # file-style = yellow italic
+  # file-decoration-style = yellow ul
+  # line-numbers-zero-style = "#4b5263"
+  # line-numbers-left-format = "{nm:^4} "
+  # line-numbers-right-format = "{np:^4} "
