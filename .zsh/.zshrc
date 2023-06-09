@@ -6,11 +6,10 @@
 # Enable Zoxide
 eval "$(zoxide init zsh)"
 
-# History
 ZDOTDIR="$HOME/.dotfiles/.zsh"
-HISTFILE="$HOME/.zsh_history"
 
 # Source
+source "$ZDOTDIR/history.zsh"
 source "$ZDOTDIR/exports.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/functions.zsh"

@@ -7,8 +7,11 @@ export HISTSIZE=10000
 # How many commands history will save on file.
 export SAVEHIST=10000
 
-# History won't save duplicates.
+# man zshoptions /History
+setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_ALL_DUPS
-
-# History won't show duplicates on search.
 setopt HIST_FIND_NO_DUPS
+# setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_LEX_WORDS
+setopt HIST_REDUCE_BLANKS

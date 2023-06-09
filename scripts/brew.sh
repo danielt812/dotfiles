@@ -9,7 +9,7 @@ else
 	echo "Installing formulae..."
 
 	# Array of formulae to install
-	formulae=("cowsay" "fortune" "fzf" "python@3.11" "speedtest-cli" "trash" "lsd" "wifi-password" "git" "wget" "tmux" "youtube-dl" "mas" "htop" "nvm" "yarn" "zsh")
+	formulae=("bat" "black" "cowsay" "csview" "fortune" "fzf" "git" "python@3.11" "speedtest-cli" "lsd" "mas" "htop" "neofetch" "neovim" "node" "nvm" "prettier" "ripgrep" "sass/sass/sass" "tmux" "trash" "wget" "wifi-password" "yarn" "youtube-dl" "zoxide" "zsh")
 
 	# Iterate through formulae and install if not already installed
 	for formula in "${formulae[@]}"; do

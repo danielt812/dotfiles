@@ -36,6 +36,7 @@ alias bu="brew uninstall"
 alias bd="brew deps --tree --installed"
 
 # Git
+alias g="git"
 alias gs="git status"
 alias ga="git add"
 alias gaa="ga ."
@@ -45,14 +46,15 @@ alias gco="git checkout"
 alias gst="git stash"
 alias gsta="gst apply"
 alias gm="git merge"
-alias glog="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+alias glog="git log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' --decorate --date=relative --abbrev-commit --no-merges"
 alias gd="git diff"
 alias gpush="git push"
 alias gpull="git pull"
+alias gcom="gco master && gpull"
+alias gcos="gco staging && gpull"
 
 # Formulae
 alias rm="trash"
-alias diff="colordiff"
 alias fortunecookie='echo "$(cowthink -f kitty $(fortune))"'
 
 # Python
@@ -69,7 +71,8 @@ alias usebash="chsh -s $(which bash)"
 alias usezsh="chsh -s $(which zsh)"
 
 # Vim
-alias vimrc="$EDITOR $HOME/.config/nvim"
+alias vim="vim"
+alias vimrc="vim $HOME/.vimrc"
 
 # Zsh
 alias zshrc="$EDITOR ~/.dotfiles/.zsh/"
@@ -128,11 +131,10 @@ alias redisrestart="brew services restart redis"
 alias azlogin='az login && az aks get-credentials -g apps01-prod-eastus-aks-rg -n apps01-prod-eastus-aks && az acr login --name mcisemi001'
 # Room logic commands
 alias rl="cd ~/mcisemi/roomlogic/roomlogic-site-resources/sites && nvm use 7.10.1 && gpull"
-alias gci="gulp copy-images"
 alias gp="gulp azpublish"
 # Alameda
 alias alameda="cd ~/mcisemi/alameda/www.mcisemi.com && gpull"
-alias libs="cd ~/mcisemi/alameda/www.mcisemi.com/libs"
+alias alamedalibs="cd ~/mcisemi/alameda/www.mcisemi.com/libs"
 # Metric
 alias metric="cd ~/mcisemi/metric && gpull"
 # local cfdev environment
