@@ -19,7 +19,7 @@ alias cp="cp -iv"
 alias mv="mv -iv"
 
 alias path='echo -e ${PATH//:/\\n}'     # Show path on new line
-alias cpwd="pwd | pbcopy"  # Copy pwd to clipboard
+alias cpwd="pwd | pbcopy"               # Copy pwd to clipboard
 
 alias grep="grep --color=auto"
 
@@ -28,7 +28,6 @@ alias mysql="mysql -u root -p"
 
 # Homebrew
 alias brewup="brew outdated; brew update; brew upgrade; brew cleanup --prune=all; brew doctor"
-alias caskup="brew cask outdated; brew cask upgrade"
 alias bl="brew list"
 alias bi="brew install"
 alias bs="brew search"
@@ -113,7 +112,6 @@ alias deletecronjob="kubectl -n mci-cronies-prod delete cronjob XXX"
 # Reg5
 alias reg="cd ~/mcisemi/reg5 && nvm use 10.16.2"
 alias reg5="cd ~/mcisemi/reg5 && nvm use 10.16.2 && gpull"
-alias reg52="cd ~/mcisemi/reg5two && nvm use 10.16.2 && gpull"
 alias reg2="cd ~/mcisemi/reg5two && nvm use 10.16.2 && gpull"
 alias whippets="cd ~/mcisemi/code-whippets && gpull"
 alias init="reg && npm run initial-setup"
@@ -133,7 +131,7 @@ alias azlogin='az login && az aks get-credentials -g apps01-prod-eastus-aks-rg -
 alias rl="cd ~/mcisemi/roomlogic/roomlogic-site-resources/sites && nvm use 7.10.1 && gpull"
 alias gp="gulp azpublish"
 # Alameda
-alias alameda="cd ~/mcisemi/alameda/www.mcisemi.com && gpull"
+alias alameda="cd ~/mcisemi/alameda/www.mcisemi.com && gpull && nvm use 18.16.1"
 alias alamedalibs="cd ~/mcisemi/alameda/www.mcisemi.com/libs"
 # Metric
 alias metric="cd ~/mcisemi/metric && gpull"
