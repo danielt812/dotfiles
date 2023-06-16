@@ -6,8 +6,16 @@
 function parse_git_branch() {
 	local branch=$(git branch --show-current 2> /dev/null)
 	if [[ -n $branch ]]; then
-		echo "($branch)"
+		echo "($branch ) "
 	fi
+}
+
+function node_version() {
+  local version=$(node --version 2> /dev/null)
+  if [[ -n $version ]]; then
+    echo "${version}  "
+    # echo "${version%%.*} "   # Extract the major version
+  fi
 }
 
 # https://upload.wikimedia.org/wikipedia/commons/9/95/Xterm_color_chart.png
@@ -18,6 +26,7 @@ ITALIC_START=$'\e[3m'
 ITALIC_END=$'\e[23m'
 COLOR_GIT=$'%F{7}'
 NEW_LINE=$'\n'
+COLOR_NODE=$'%F{28}'
 COLOR_PROMPT=$'%F{3}'
 COLOR_DEF=$'%F{2}'
 
@@ -30,7 +39,10 @@ PROMPT+='${COLOR_TIME}${DATE_12_HR} '
 PROMPT+='${COLOR_PWD}${ITALIC_START}%~${ITALIC_END} '
 # Git
 PROMPT+='${COLOR_GIT}$(parse_git_branch)'
+# Node version
+PROMPT+='${COLOR_NODE}$(node_version)'
 PROMPT+='${NEW_LINE}'
+
 # Prompt
 PROMPT+='${COLOR_PROMPT}> '
 PROMPT+='${COLOR_DEF}'
