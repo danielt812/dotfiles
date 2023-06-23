@@ -1,9 +1,9 @@
 #!/usr/local/bin/zsh
 
-# $(cowthink -f kitty $(fortune))
+# cowthink -f kitty $(fortune)
 
 # Git branch in prompt.
-function parse_git_branch() {
+function git_branch() {
 	local branch=$(git branch --show-current 2> /dev/null)
 	if [[ -n $branch ]]; then
 		echo "($branch ) "
@@ -11,10 +11,12 @@ function parse_git_branch() {
 }
 
 function node_version() {
-  local version=$(node --version 2> /dev/null)
-  if [[ -n $version ]]; then
-    echo "${version}  "
-    # echo "${version%%.*} "   # Extract the major version
+  if [[ -n $(find . -name "*.js" -o -name "*.vue" -o -name "*.json" -print -quit) ]]; then
+    local version=$(node --version 2> /dev/null)
+    if [[ -n $version ]]; then
+      echo "${version}  "
+      # echo "${version%%.*} "   # Extract the major version
+    fi
   fi
 }
 
@@ -38,7 +40,7 @@ PROMPT+='${COLOR_TIME}${DATE_12_HR} '
 # PWD
 PROMPT+='${COLOR_PWD}${ITALIC_START}%~${ITALIC_END} '
 # Git
-PROMPT+='${COLOR_GIT}$(parse_git_branch)'
+PROMPT+='${COLOR_GIT}$(git_branch)'
 # Node version
 PROMPT+='${COLOR_NODE}$(node_version)'
 PROMPT+='${NEW_LINE}'

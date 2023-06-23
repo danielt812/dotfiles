@@ -1,7 +1,7 @@
 #!/usr/local/bin/zsh
 
 # Path
-export PATH="$HOME/.nvm/versions/node/v20.2.0/bin:$PATH"
+export PATH="$HOME/.nvm/versions/node/v20.3.1/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="/usr/local/mysql/bin:$PATH"
 export ORACLE_HOME=$HOME/instantclient_19_8
