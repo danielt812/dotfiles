@@ -57,12 +57,8 @@ nnoremap <F3> :set hlsearch!<CR>
 " Show partial matches for search
 set is
 
-	" Ignore case
-	set ic
-
-" Turn off end of line
-set binary
-set noeol
+" Ignore case
+set ic
 
 " vim hardcodes background color erase even if the terminfo file does
 " not contain bce (not to mention that libvte based terminals
