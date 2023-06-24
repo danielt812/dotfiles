@@ -12,6 +12,7 @@ export DYLD_LIBRARY_PATH=$HOME/instantclient_19_8
 export LD_LIBRARY_PATH=${ORACLE_HOME}/lib
 export TNS_ADMIN=$ORACLE_HOME/NETWORK/ADMIN
 export PYTHON=/usr/local/bin/python3.11
+export PATH="/Users/danieltolan/.cargo/bin:$PATH"
 
 # Env
 export TERM="xterm-256color-italic"
@@ -25,8 +26,8 @@ export BAT_PAGER="less -RF"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Fzf
-export FZF_DEFAULT_COMMAND='fd --type f --color=never --hidden'
-export FZF_DEFAULT_OPTS='--no-height --color=bg+:#1c1d1e,fg+:#ff005f,gutter:-1,pointer:#ff5f00,info:#0dbc79,hl:#0dbc79,hl+:#23d18b,prompt:#ff5f00'
+export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"
+export FZF_DEFAULT_OPTS="--no-height --color=bg+:#1c1d1e,fg+:#ff005f,gutter:-1,pointer:#ff5f00,info:#0dbc79,hl:#0dbc79,hl+:#23d18b,prompt:#ff5f00"
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS=" --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
@@ -37,6 +38,9 @@ export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap -
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+
+export STARSHIP_CONFIG=$CONFIG/starship/starship.toml
+export STARSHIP_CACHE=$CONFIG/starship/cache
 
 # https://linuxhint.com/ls_colors_bash/
 # Directory Colors Linux

@@ -9,11 +9,13 @@ alias .....="cd ../../../.."
 # Unix
 alias c="clear"
 
+# Ls Deluxe
 alias ls="lsd"
-alias lsa="ls -A"         # Show hidden files
-alias lsl="ls -l"         # Show on new line
-alias lsla="ls -lA"       # Show hidden files with permissions
-alias lst="ls --tree"     # Recurse into directories and present the result as a tree.
+alias lsa="ls -A"
+alias lsl="ls -l"
+alias lsla="ls -lA"
+alias lst="ls --tree"
+alias lsat="ls -A --tree"
 
 alias cp="cp -iv"
 alias mv="mv -iv"
@@ -56,18 +58,14 @@ alias gcos="gco staging && gpull"
 
 # Formulae
 alias rm="trash"
-alias fortunecookie='echo "$(cowthink -f kitty $(fortune))"'
 
 # Python
 alias python="python3.11"
 alias py="python3.11"
 alias pip="pip3"
 
-# Ruby
-alias gemup="sudo gem update --system; sudo gem update; sudo gem cleanup"
-
 # MacOS
-alias systemup="softwareupdate --all --install --force"
+alias sysup="softwareupdate --all --install --force"
 alias usebash="chsh -s $(which bash)"
 alias usezsh="chsh -s $(which zsh)"
 

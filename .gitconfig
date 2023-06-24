@@ -43,7 +43,6 @@
 # ADD https://git-scm.com/docs/git-add
   a = add
   aa = add .
-  aaa = add --all
   ap = add --patch
 # COMMIT https://git-scm.com/docs/git-commit
   c = commit --verbose
