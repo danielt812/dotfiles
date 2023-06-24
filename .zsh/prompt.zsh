@@ -1,6 +1,6 @@
 #!/usr/local/bin/zsh
 
-# cowthink -f kitty $(fortune)
+# cowthink -f kitty $(fortune) | lolcat && echo ""
 
 # Git branch in prompt.
 function git_branch() {
