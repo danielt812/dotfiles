@@ -2,9 +2,11 @@
 
 # Load NVM
 [ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" --no-use
+# Load Fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Enable Zoxide
 eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
 
 ZDOTDIR="$HOME/.dotfiles/.zsh"
 
@@ -13,7 +15,6 @@ source "$ZDOTDIR/history.zsh"
 source "$ZDOTDIR/exports.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/functions.zsh"
-source "$ZDOTDIR/prompt.zsh"
 
 # Plugins
 source "$ZDOTDIR/plugins/completions.zsh"
