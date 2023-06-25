@@ -46,7 +46,9 @@ zstyle ':completion:*:*:*:*:warnings' format ' %F{9}-- no matches found --%f'
 zstyle ':completion:*' rehash true
 
 # Colors for files and directory
-zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+# $CUSTOM
+# zstyle ':completion:*:*:*:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ":completion:*:default" list-colors ${(s.:.)LS_COLORS} "ma=48;5;5;5"
 
 # Only display some tags for the command cd
 zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
