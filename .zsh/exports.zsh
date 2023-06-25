@@ -12,7 +12,7 @@ export DYLD_LIBRARY_PATH=$HOME/instantclient_19_8
 export LD_LIBRARY_PATH=${ORACLE_HOME}/lib
 export TNS_ADMIN=$ORACLE_HOME/NETWORK/ADMIN
 export PYTHON=/usr/local/bin/python3.11
-export PATH="/Users/danieltolan/.cargo/bin:$PATH"
+# export PATH="/Users/danieltolan/.cargo/bin:$PATH"
 
 # Env
 export TERM="xterm-256color-italic"

@@ -56,6 +56,12 @@ alias gpull="git pull"
 alias gcom="gco master && gpull"
 alias gcos="gco staging && gpull"
 
+# Kubernetes
+alias k="kubectl"
+
+# Docker
+alias d="docker"
+
 # Formulae
 alias rm="trash"
 
@@ -108,10 +114,8 @@ alias cronies="cd ~/mcisemi/cloud-cronies && gpull && nvm use 10.16.2"
 alias getcronjobsactive="cronies && kubectl -n mci-cronies-prod get cronjobs"
 alias getcronjobpods="cronies && kubectl -n mci-cronies-prod get pods"
 alias getcronjobs="cronies && kubectl -n mci-cronies-prod get cronjobs"
-alias deletecronjob="kubectl -n mci-cronies-prod delete cronjob XXX"
 # Reg5
 alias reg="cd ~/mcisemi/reg5 && nvm use 10.16.2"
-alias reg5="cd ~/mcisemi/reg5 && nvm use 10.16.2 && gpull"
 alias reg2="cd ~/mcisemi/reg5two && nvm use 10.16.2 && gpull"
 alias whippets="cd ~/mcisemi/code-whippets && gpull"
 alias init="reg && npm run initial-setup"
@@ -126,12 +130,12 @@ alias clean="reg && npm run clean-all"
 alias redisstart="brew services start redis"
 alias redisstop="brew services stop redis"
 alias redisrestart="brew services restart redis"
-alias azlogin='az login && az aks get-credentials -g apps01-prod-eastus-aks-rg -n apps01-prod-eastus-aks && az acr login --name mcisemi001'
+alias azlogin="az login && az aks get-credentials -g apps01-prod-eastus-aks-rg -n apps01-prod-eastus-aks && az acr login --name mcisemi001"
 # Room logic commands
 alias rl="cd ~/mcisemi/roomlogic/roomlogic-site-resources/sites && nvm use 7.10.1 && gpull"
 alias gp="gulp azpublish"
 # Alameda
-alias alameda="cd ~/mcisemi/alameda/www.mcisemi.com && gpull && nvm use 18.16.1"
+alias alameda="cd ~/mcisemi/alameda/www.mcisemi.com && gpull && nvm use 10.16.2"
 alias alamedalibs="cd ~/mcisemi/alameda/www.mcisemi.com/libs"
 # Metric
 alias metric="cd ~/mcisemi/metric && gpull"

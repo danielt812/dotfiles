@@ -23,3 +23,7 @@ source "$ZDOTDIR/plugins/autosuggestions.zsh"
 source "$ZDOTDIR/plugins/history-substring-search.zsh"
 source "$ZDOTDIR/plugins/fast-syntax-highlighting.zsh"
 source "$ZDOTDIR/plugins/you-should-use.zsh"
+
+# Completions
+# source <(ng completion script) # Load Angular CLI autocompletion.
+source <(kubectl completion zsh) # Load KubeCtl CLI autocompletion.

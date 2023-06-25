@@ -40,3 +40,17 @@ function alameda_path() {
 batdiff() {
   git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
+
+delete_cron_job() {
+  kubectl -n mci-cronies-prod delete cronjob $1
+}
+
+cover_letter() {
+  cd $HOME/Documents/resume
+  sed "s/\[Company Name\]/$1/g" Cover_letter_template.txt > "$1_Cover_Letter.txt" | cat | pbcopy
+  cat "$1_Cover_Letter.txt"
+}
+
+diffmci() {
+  difft /Users/danieltolan/mcisemi/group-portal/web/$1 /Users/danieltolan/mcisemi/group-portal2/web/$2
+}
