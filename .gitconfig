@@ -67,6 +67,8 @@
   stl = stash list
   stp = stash pop
   stc = stash clear
+# SHOW https://git-scm.com/docs/git-show
+  sh = show --format=oneline
 # MERGE https://git-scm.com/docs/git-merge
   m = merge --no-edit
 # LOG https://git-scm.com/docs/git-log
