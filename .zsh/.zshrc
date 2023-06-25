@@ -1,6 +1,6 @@
 #!/usr/local/bin/zsh
 
-# Load NVM
+# Load Nvm
 [ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" --no-use
 # Load Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
