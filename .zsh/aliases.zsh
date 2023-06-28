@@ -50,7 +50,7 @@ alias gco="git checkout"
 alias gst="git stash"
 alias gsta="gst apply"
 alias gm="git merge"
-alias glog="git log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' --decorate --date=relative --abbrev-commit --no-merges"
+alias glog="git log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' --decorate --date=local --abbrev-commit --no-merges"
 alias gd="git diff"
 alias gpush="git push"
 alias gpull="git pull"
@@ -71,7 +71,6 @@ alias usebash="chsh -s $(which bash)"
 alias usezsh="chsh -s $(which zsh)"
 
 # Vim
-alias vim="vim"
 alias vimrc="vim $HOME/.vimrc"
 
 # Zsh
