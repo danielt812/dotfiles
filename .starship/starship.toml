@@ -2,8 +2,8 @@
 
 # $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$bun$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$guix_shell$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$os$shell$character
 "$schema" = "https://starship.rs/config-schema.json"
-format = "$username$hostname$localip$shlvl$singularity$kubernetes$time$directory$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$bun$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$guix_shell$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$env_var$crystal$custom$sudo$line_break$jobs$status$container$os$shell$character"
-right_format = "$cmd_duration$battery"
+format = "$username$hostname$localip$shlvl$singularity$kubernetes$time$directory$vcsh$fossil_branch$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$bun$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$vlang$vagrant$zig$buf$guix_shell$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$env_var$crystal$custom$sudo$battery$cmd_duration$line_break$jobs$status$container$os$shell$character"
+right_format = ""
 continuation_prompt = "[∙](bright-black) "
 scan_timeout = 30
 command_timeout = 500
@@ -46,13 +46,11 @@ format = "[$symbol$percentage]($style) "
 threshold = 20
 style = "red bold"
 [[battery.display]]
-threshold = 80
+threshold = 50
 style = "fg:11 bold"
-[[battery.display]]
-threshold = 100
-style = "green bold"
-
-
+# [[battery.display]]
+# threshold = 100
+# style = "green bold"
 
 [buf]
 format = "with [$symbol($version )]($style)"
@@ -221,8 +219,8 @@ detect_files = [
 detect_folders = []
 
 [directory]
-truncation_length = 3
-truncate_to_repo = true
+# truncation_length = 3
+truncate_to_repo = false
 fish_style_pwd_dir_length = 0
 use_logical_path = true
 format = "[$path]($style)[$read_only]($read_only_style) "
@@ -238,7 +236,8 @@ use_os_path_sep = true
 [directory.substitutions]
 
 [docker_context]
-symbol = "🐳 "
+symbol = "󰡨 "
+# symbol = "🐳 "
 style = "blue bold"
 format = "[$symbol$context]($style) "
 only_with_files = true
@@ -514,7 +513,7 @@ disabled = false
 format = "[$symbol($version )]($style)"
 version_format = "v${raw}"
 style = "red dimmed"
-symbol = "☕ "
+symbol = "󰬷 "
 detect_extensions = [
     "java",
     "class",
@@ -841,15 +840,16 @@ style = "fg:227"
 symbol = "󰌠 "
 disabled = false
 detect_extensions = ["py"]
-detect_files = [
-    "requirements.txt",
-    ".python-version",
-    "pyproject.toml",
-    "Pipfile",
-    "tox.ini",
-    "setup.py",
-    "__init__.py",
-]
+detect_files = []
+# detect_files = [
+#     "requirements.txt",
+#     ".python-version",
+#     "pyproject.toml",
+#     "Pipfile",
+#     "tox.ini",
+#     "setup.py",
+#     "__init__.py",
+# ]
 detect_folders = []
 
 [raku]
@@ -1095,4 +1095,3 @@ detect_files = []
 detect_folders = []
 
 [custom]
-
