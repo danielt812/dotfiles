@@ -16,18 +16,21 @@ pc() {
       echo '-m "continuum.tmux"'
       echo '-y "yank.tmux"'
       echo '-c "copycat.tmux"'
+      echo '-g "conf"'
     elif [[ $flag == '-p' ]]; then
-      bat $CONFIG/tmux/plugins/tmux-pain-control/pain_control.tmux
+      bat --style=plain $CONFIG/tmux/plugins/tmux-pain-control/pain_control.tmux
     elif [[ $flag == '-s' ]]; then
-      bat $CONFIG/tmux/plugins/tmux-sensible/sensible.tmux
+      bat --style=plain $CONFIG/tmux/plugins/tmux-sensible/sensible.tmux
     elif [[ $flag == '-r' ]]; then
-      bat $CONFIG/tmux/plugins/tmux-resurrect/resurrect.tmux
+      bat --style=plain $CONFIG/tmux/plugins/tmux-resurrect/resurrect.tmux
     elif [[ $flag == '-m' ]]; then
-      bat $CONFIG/tmux/plugins/tmux-continuum/continuum.tmux
+      bat --style=plain $CONFIG/tmux/plugins/tmux-continuum/continuum.tmux
     elif [[ $flag == '-y' ]]; then
-      bat $CONFIG/tmux/plugins/tmux-yank/yank.tmux
+      bat --style=plain $CONFIG/tmux/plugins/tmux-yank/yank.tmux
     elif [[ $flag == '-c' ]]; then
-      bat $CONFIG/tmux/plugins/tmux-copycat/copycat.tmux
+      bat --style=plain $CONFIG/tmux/plugins/tmux-copycat/copycat.tmux
+    elif [[ $flag == '-g' ]]; then
+      bat --style=plain $CONFIG/tmux/tmux.conf
     fi
   elif [[ $arg == 'lvim' ]]; then
     if [[ $flag == '' ]]; then

@@ -5,9 +5,6 @@
 # Load Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
-
 ZDOTDIR="$HOME/.dotfiles/.zsh"
 
 # Source
@@ -23,3 +20,7 @@ source "$ZDOTDIR/plugins/autosuggestions.zsh"
 source "$ZDOTDIR/plugins/history-substring-search.zsh"
 source "$ZDOTDIR/plugins/fast-syntax-highlighting.zsh"
 source "$ZDOTDIR/plugins/you-should-use.zsh"
+
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
+

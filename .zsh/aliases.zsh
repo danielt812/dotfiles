@@ -23,10 +23,6 @@ alias mv="mv -iv"
 alias path='echo -e ${PATH//:/\\n}'     # Show path on new line
 alias cpwd="pwd | pbcopy"               # Copy pwd to clipboard
 
-# Grep
-alias grep="grep --color=auto"
-alias rgrep="rg"
-
 # Term mySQL
 alias mysql="mysql -u root -p"
 
@@ -74,8 +70,9 @@ alias usezsh="chsh -s $(which zsh)"
 alias vimrc="vim $HOME/.vimrc"
 
 # Zsh
-alias zshrc="$EDITOR ~/.dotfiles/.zsh/"
 alias src="source $HOME/.zshrc"
+
+alias dotfiles="$EDITOR $DOTFILES"
 
 # Show dot files in finder
 alias showfiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
