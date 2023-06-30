@@ -6,7 +6,7 @@ format = "$username$hostname$localip$shlvl$singularity$kubernetes$time$directory
 right_format = ""
 continuation_prompt = "[∙](bright-black) "
 scan_timeout = 30
-command_timeout = 500
+command_timeout = 2000
 add_newline = false
 
 [palettes]
