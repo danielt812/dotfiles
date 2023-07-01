@@ -2,7 +2,7 @@
 
 # Env
 export TERM="xterm-256color-italic"
-export EDITOR="nvim"
+export EDITOR="lvim"
 export BROWSER="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 export LOCAL="/usr/local"
 export CONFIG="$HOME/.config"
