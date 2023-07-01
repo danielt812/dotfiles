@@ -1,11 +1,5 @@
 #!/usr/local/bin/zsh
 
-# Path
-export PATH="$HOME/.nvm/versions/node/v20.3.1/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="/usr/local/mysql/bin:$PATH"
-export PATH="/Users/danieltolan/.cargo/bin:$PATH"
-
 # Env
 export TERM="xterm-256color-italic"
 export EDITOR="nvim"
@@ -16,6 +10,12 @@ export DOTFILES="$HOME/.dotfiles"
 export PAGER="less"
 export BAT_PAGER="less -RF"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# Path
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.nvm/versions/node/v20.3.1/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$LOCAL/usr/local/mysql/bin:$PATH"
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"
