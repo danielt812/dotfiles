@@ -23,4 +23,3 @@ source "$ZDOTDIR/plugins/you-should-use.zsh"
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
-
