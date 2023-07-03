@@ -1,18 +1,18 @@
 #!/usr/local/bin/zsh
 
 # Path
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.nvm/versions/node/v20.3.1/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="/usr/local/mysql/bin:$PATH"
-export ORACLE_HOME=$HOME/instantclient_19_8
-export OCI_LIB_DIR=$HOME/instantclient_19_8
-export OCI_DIR=$ORACLE_HOME
-export OCI_INC_DIR=$HOME/instantclient_19_8/sdk/include
+export PATH="$LOCAL/mysql/bin:$PATH"
 export DYLD_LIBRARY_PATH=$HOME/instantclient_19_8
 export LD_LIBRARY_PATH=${ORACLE_HOME}/lib
+export OCI_DIR=$ORACLE_HOME
+export OCI_INC_DIR=$HOME/instantclient_19_8/sdk/include
+export OCI_LIB_DIR=$HOME/instantclient_19_8
+export ORACLE_HOME=$HOME/instantclient_19_8
+export PYTHON=$LOCAL/bin/python3.11
 export TNS_ADMIN=$ORACLE_HOME/NETWORK/ADMIN
-export PYTHON=/usr/local/bin/python3.11
-# export PATH="/Users/danieltolan/.cargo/bin:$PATH"
 
 # Env
 export TERM="xterm-256color-italic"

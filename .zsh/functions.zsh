@@ -43,12 +43,12 @@ pc() {
       bat $HOME/.local/share/lunarvim/lvim/lua/lvim/config/settings.lua
     fi
   else
-    echo 'Command not found try help'
+    echo 'Command not found type pc help for usage.'
   fi
 }
 
 # Automate git merges/pushes to master and staging branch
-function alameda_push() {
+alameda_push() {
   local branch=$(git branch --show-current 2> /dev/null)
   local flag=$1
 
@@ -73,7 +73,7 @@ function alameda_push() {
   fi
 }
 
-function alameda_path() {
+alameda_path() {
   cd $HOME/mcisemi/alameda/www.mcisemi.com
   git checkout master
   git pull
@@ -100,6 +100,3 @@ cover_letter() {
   cat "$1_Cover_Letter.txt"
 }
 
-diffmci() {
-  difft /Users/danieltolan/mcisemi/group-portal/web/$1 /Users/danieltolan/mcisemi/group-portal2/web/$2
-}

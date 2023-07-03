@@ -36,21 +36,23 @@ alias bd="brew deps --tree --installed"
 
 # Git
 alias g="git"
-alias gs="git status"
-alias ga="git add"
+alias ga="g add"
 alias gaa="ga ."
-alias gc="git commit"
-alias gb="git branch"
-alias gco="git checkout"
-alias gst="git stash"
-alias gsta="gst apply"
-alias gm="git merge"
-alias glog="git log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' --decorate --date=local --abbrev-commit --no-merges"
-alias gd="git diff"
-alias gpush="git push"
-alias gpull="git pull"
+alias gb="g branch"
+alias gc="g commit"
+alias gco="g checkout"
 alias gcom="gco master && gpull"
 alias gcos="gco staging && gpull"
+alias gd="g diff"
+alias glog="g log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' --decorate --date=local --abbrev-commit --no-merges"
+alias gm="g merge"
+alias gpull="g pull"
+alias gpush="g push"
+alias gr="g restore"
+alias gs="g status"
+alias gst="g stash"
+alias gsta="gst apply"
+alias gstp="gst pop"
 
 # Kubernetes
 alias k="kubectl"
@@ -62,9 +64,9 @@ alias d="docker"
 alias rm="trash"
 
 # Python
-alias python="python3.11"
-alias py="python3.11"
 alias pip="pip3"
+alias py="python3.11"
+alias python="python3.11"
 
 # MacOS
 alias sysup="softwareupdate --all --install --force"
@@ -97,19 +99,21 @@ alias weather="curl wttr.in"
 alias mci="cd ~/mcisemi"
 alias sshadd="ssh-add ~/.ssh/id_rsa"
 alias hotel="cd ~/javatools && java -jar HotelImageSetup.jar"
-alias bdg='cd ~/javatools && open badge-utility-1.0.jar'
-alias badge='cd ~/javatools && open badge-utility-1.0.jar'
-alias emc='cd ~/javatools && open emcit-2.0.jar'
-alias mut='cd ~/javatools && java -jar memberupload-1.0.jar'
+alias bdg="cd ~/javatools && open badge-utility-1.0.jar"
+alias badge="cd ~/javatools && open badge-utility-1.0.jar"
+alias emc="cd ~/javatools && open emcit-2.0.jar"
+alias mut="cd ~/javatools && java -jar memberupload-1.0.jar"
 # Group Portal
-alias groupportal="cd ~/mcisemi/group-portal && gpull && nvm use 18.16.0"
+alias groupportal="cd ~/mcisemi/group-portal && gpull && nvm use 20.3.1"
 # Member Lookup
-alias memberlookup="cd ~/mcisemi/memberlookup && gpull && nvm use 18.16.0"
+alias memberlookup="cd ~/mcisemi/memberlookup && gpull && nvm use 20.3.1"
+# Code Snippet Server
+alias css="cd ~/mcisemi/code-snippet-server && gpull && nvm use 20.3.1"
 # Cronies
 alias cronies="cd ~/mcisemi/cloud-cronies && gpull && nvm use 10.16.2"
-alias getcronjobsactive="cronies && kubectl -n mci-cronies-prod get cronjobs"
-alias getcronjobpods="cronies && kubectl -n mci-cronies-prod get pods"
-alias getcronjobs="cronies && kubectl -n mci-cronies-prod get cronjobs"
+alias getcronjobpods="k -n mci-cronies-prod get pods"
+alias getcronjobs="k -n mci-cronies-prod get cronjobs"
+alias deletecronjob="k -n mci-cronies-prod delete cronjob"
 # Reg5
 alias reg="cd ~/mcisemi/reg5 && nvm use 10.16.2"
 alias reg2="cd ~/mcisemi/reg5two && nvm use 10.16.2 && gpull"
@@ -119,22 +123,14 @@ alias const="reg && npm run generate-consts-production"
 alias consts="reg && npm run generate-consts-production"
 alias constants="reg && npm run generate-consts-production"
 alias dev="reg && npm run dev-staging"
-alias dev-stg="reg && npm run dev-staging"
-alias dev-staging="reg && npm run dev-staging"
 alias build-dev="reg && npm run build-dev"
-alias clean="reg && npm run clean-all"
-alias redisstart="brew services start redis"
-alias redisstop="brew services stop redis"
-alias redisrestart="brew services restart redis"
 alias azlogin="az login && az aks get-credentials -g apps01-prod-eastus-aks-rg -n apps01-prod-eastus-aks && az acr login --name mcisemi001"
 # Room logic commands
 alias rl="cd ~/mcisemi/roomlogic/roomlogic-site-resources/sites && nvm use 7.10.1 && gpull"
 alias gp="gulp azpublish"
 # Alameda
-alias alameda="cd ~/mcisemi/alameda/www.mcisemi.com && gpull && nvm use 10.16.2"
+alias alameda="cd ~/mcisemi/alameda/www.mcisemi.com"
 alias alamedalibs="cd ~/mcisemi/alameda/www.mcisemi.com/libs"
-# Metric
-alias metric="cd ~/mcisemi/metric && gpull"
 # local cfdev environment
 alias cfstart="cd ~/mcisemi/docker-stacks/cfdev && docker-compose down && docker-compose up -d && docker-compose start"
 alias cfstop="cd ~/mcisemi/docker-stacks/cfdev && docker-compose down && docker-compose stop"
