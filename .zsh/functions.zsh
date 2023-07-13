@@ -94,9 +94,13 @@ delete_cron_job() {
   kubectl -n mci-cronies-prod delete cronjob $1
 }
 
-cover_letter() {
-  cd $HOME/Documents/resume
-  sed "s/\[Company Name\]/$1/g" Cover_letter_template.txt > "$1_Cover_Letter.txt" | cat | pbcopy
-  cat "$1_Cover_Letter.txt"
+coverletter() {
+  cd "$HOME/Documents/resume"
+  sed "s/\[Company Name\]/$*/g" Cover_letter_template.txt | cat
+  sed "s/\[Company Name\]/$*/g" Cover_letter_template.txt | pbcopy
 }
 
+summary() {
+  echo 'Full Stack Web Developer with 5+ years of expertise known for driving solutions, proven success, and maximizing your organizational growth. I consistently stay up to date with the latest industry trends and technologies to create engaging and user-friendly experiences. Proficient in the MERN Stack (MongoDB | Express | React | Node). I also possess advanced knowledge of JavaScript and have hands-on virtuosity with various libraries and frameworks. In my spare time, I like surfing, playing guitar, spending time with my cat, and expanding knowledge to be a command line power user' | pbcopy
+  echo 'Full Stack Web Developer with 5+ years of expertise known for driving solutions, proven success, and maximizing your organizational growth. I consistently stay up to date with the latest industry trends and technologies to create engaging and user-friendly experiences. Proficient in the MERN Stack (MongoDB | Express | React | Node). I also possess advanced knowledge of JavaScript and have hands-on virtuosity with various libraries and frameworks. In my spare time, I like surfing, playing guitar, spending time with my cat, and expanding knowledge to be a command line power user' | cat
+}
