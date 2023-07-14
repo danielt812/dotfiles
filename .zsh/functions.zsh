@@ -1,5 +1,5 @@
-# Print Config Func
-pc() {
+# Shortcuts to read markdown files 
+md() {
   local arg=$1
   local flag=$2
   if [[ $arg == 'help' ]]; then
@@ -18,19 +18,19 @@ pc() {
       echo '-c "copycat.tmux"'
       echo '-g "conf"'
     elif [[ $flag == '-p' ]]; then
-      bat --style=plain $CONFIG/tmux/plugins/tmux-pain-control/pain_control.tmux
+      glow -p $CONFIG/tmux/plugins/tmux-pain-control/README.md
     elif [[ $flag == '-s' ]]; then
-      bat --style=plain $CONFIG/tmux/plugins/tmux-sensible/sensible.tmux
+      glow -p $CONFIG/tmux/plugins/tmux-sensible/README.md
     elif [[ $flag == '-r' ]]; then
-      bat --style=plain $CONFIG/tmux/plugins/tmux-resurrect/resurrect.tmux
+      glow -p $CONFIG/tmux/plugins/tmux-resurrect/README.md
     elif [[ $flag == '-m' ]]; then
-      bat --style=plain $CONFIG/tmux/plugins/tmux-continuum/continuum.tmux
+      glow -p $CONFIG/tmux/plugins/tmux-continuum/README.md
     elif [[ $flag == '-y' ]]; then
-      bat --style=plain $CONFIG/tmux/plugins/tmux-yank/yank.tmux
+      glow -p $CONFIG/tmux/plugins/tmux-yank/README.md
     elif [[ $flag == '-c' ]]; then
-      bat --style=plain $CONFIG/tmux/plugins/tmux-copycat/copycat.tmux
+      glow -p $CONFIG/tmux/plugins/tmux-copycat/README.md
     elif [[ $flag == '-g' ]]; then
-      bat --style=plain $CONFIG/tmux/tmux.conf
+      bat --style=plain $CONFIG/tmux/tmux.conf 
     fi
   elif [[ $arg == 'lvim' ]]; then
     if [[ $flag == '' ]]; then
