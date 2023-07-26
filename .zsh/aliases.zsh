@@ -54,6 +54,12 @@ alias gstp="gst pop"
 alias gcom="gco master && gpull"
 alias gcos="gco staging && gpull"
 
+# Tmux
+alias tm="tmux"
+
+# Lazygit
+alias lg="lazygit"
+
 # Kubernetes
 alias k="kubectl"
 
@@ -75,6 +81,9 @@ alias usezsh="chsh -s $(which zsh)"
 
 # Vim
 alias vimrc="vim $HOME/.vimrc"
+
+# Nvim
+alias nv="nvim"
 
 # Zsh
 alias src="source $HOME/.zshrc"
