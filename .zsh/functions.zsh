@@ -1,4 +1,4 @@
-# Shortcuts to read markdown files 
+# Shortcuts to read markdown files
 md() {
   local arg=$1
   local flag=$2
@@ -30,7 +30,7 @@ md() {
     elif [[ $flag == '-c' ]]; then
       glow -p $CONFIG/tmux/plugins/tmux-copycat/README.md
     elif [[ $flag == '-g' ]]; then
-      bat --style=plain $CONFIG/tmux/tmux.conf 
+      bat --style=plain $CONFIG/tmux/tmux.conf
     fi
   elif [[ $arg == 'lvim' ]]; then
     if [[ $flag == '' ]]; then
