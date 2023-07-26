@@ -8,6 +8,8 @@
   editor = vim
   mergeoptions = --no-edit
   pager = delta --diff-so-fancy
+[init]
+  defaultBranch = main
 [delta]
   line-numbers = true
   side-by-side = true

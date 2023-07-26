@@ -16,7 +16,7 @@ export TNS_ADMIN=$ORACLE_HOME/NETWORK/ADMIN
 
 # Env
 export TERM="xterm-256color-italic"
-export EDITOR="lvim"
+export EDITOR="nvim"
 export BROWSER="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 export LOCAL="/usr/local"
 export CONFIG="$HOME/.config"
