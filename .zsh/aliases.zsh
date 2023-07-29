@@ -69,6 +69,12 @@ alias usezsh="chsh -s $(which zsh)"
 # Vim
 alias vimrc="vim $HOME/.vimrc"
 
+# Nvim
+alias nv="nvim"
+
+# Tmux
+alias tm="tmux"
+
 # Zsh
 alias src="source $HOME/.zshrc"
 
