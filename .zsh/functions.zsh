@@ -47,6 +47,12 @@ md() {
   fi
 }
 
+cl() {
+  cd $HOME/Documents
+  sed "s/\[COMPANY\]/$*/g" Cover_letter_template.txt | cat
+  sed "s/\[COMPANY\]/$*/g" Cover_letter_template.txt | pbcopy
+}
+
 batdiff() {
   git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
