@@ -8,6 +8,7 @@ alias .....="cd ../../../.."
 
 # Unix
 alias c="clear"
+alias grep="grep --color=auto"
 
 # Ls Deluxe
 alias ls="lsd"
@@ -47,6 +48,7 @@ alias gm="g merge"
 alias gpull="g pull"
 alias gpush="g push"
 alias gr="g restore"
+alias gr="g restore --staged"
 alias gs="g status"
 alias gst="g stash"
 alias gsta="gst apply"
