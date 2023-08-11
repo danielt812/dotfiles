@@ -5,14 +5,14 @@
 [branch]
   remote = origin
 [core]
-  editor = vim
+  editor = nvim
   mergeoptions = --no-edit
-  pager = delta --diff-so-fancy
+  pager = delta --diff-so-fancy --color-only
 [init]
   defaultBranch = main
 [delta]
-  line-numbers = true
-  side-by-side = true
+  # line-numbers = true
+  # side-by-side = true
   syntax-theme = Monokai Extended
   tabs = 2
 [push]
