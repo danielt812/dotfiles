@@ -7,7 +7,7 @@
 [core]
   editor = nvim
   mergeoptions = --no-edit
-  pager = delta --diff-so-fancy --color-only
+  pager = delta --diff-so-fancy
 [init]
   defaultBranch = main
 [delta]
@@ -19,7 +19,7 @@
   default = upstream
   autoSetupRemote = true
 [color]
-  ui = always
+  ui = auto
 [color "branch"]
   current = white
   local = blue
