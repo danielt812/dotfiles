@@ -1,7 +1,7 @@
 #!/usr/local/bin/zsh
 
 # Env
-export TERM="xterm-256color-italic"
+export TERM="tmux-256color"
 export EDITOR="nvim"
 export BROWSER="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 export LOCAL="/usr/local"
