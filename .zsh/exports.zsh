@@ -1,7 +1,8 @@
 #!/usr/local/bin/zsh
 
 # Env
-export TERM="tmux-256color"
+# export TERM="tmux-256color"
+export COLORTERM="truecolor"
 export EDITOR="nvim"
 export BROWSER="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 export LOCAL="/usr/local"
