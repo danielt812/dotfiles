@@ -12,6 +12,8 @@
   defaultBranch = main
 [delta]
   syntax-theme = Monokai Extended
+[interactive]
+  diffFilter = delta --diff-so-fancy --color-only
 [push]
   default = upstream
   autoSetupRemote = true
