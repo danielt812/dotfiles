@@ -23,11 +23,6 @@
   current = white
   local = blue
   remote = red
-[color "diff"]
-  meta = magenta
-  frag = cyan
-  old = red
-  new = green
 [color "status"]
   added = green
   changed = red
