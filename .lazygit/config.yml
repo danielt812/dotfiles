@@ -52,7 +52,7 @@ gui:
 git:
   paging:
     colorArg: always
-    pager: delta --dark --paging=never --diff-so-fancy
+    pager: delta --paging=never --diff-so-fancy --line-numbers
   commit:
     signOff: false
   merging:
