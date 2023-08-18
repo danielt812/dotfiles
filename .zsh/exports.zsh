@@ -15,7 +15,8 @@ export PYTHON=$LOCAL/bin/python3.11
 export TNS_ADMIN=$ORACLE_HOME/NETWORK/ADMIN
 
 # Env
-export TERM="tmux-256color"
+# export TERM="tmux-256color"
+export COLORTERM="truecolor"
 export EDITOR="nvim"
 export BROWSER="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 export LOCAL="/usr/local"
