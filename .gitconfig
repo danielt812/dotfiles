@@ -7,14 +7,11 @@
 [core]
   editor = nvim
   mergeoptions = --no-edit
-  pager = delta --diff-so-fancy
+  pager = delta --diff-so-fancy --side-by-side --line-numbers
 [init]
   defaultBranch = main
 [delta]
-  # line-numbers = true
-  # side-by-side = true
   syntax-theme = Monokai Extended
-  tabs = 2
 [push]
   default = upstream
   autoSetupRemote = true
