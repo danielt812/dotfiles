@@ -47,10 +47,22 @@ md() {
   fi
 }
 
+summary() {
+  cd $HOME/Documents
+  cat summary_template.txt
+  cat summary_template.txt | pbcopy
+}
+
+li() {
+  cd $HOME/Documents
+  gsed "s/\[NAME\]/$1/g; s/\[POSITION\]/$2/g; s/\[PLATFORM\]/$3/g" linkedin_message_template.txt | cat
+  gsed "s/\[NAME\]/$1/g; s/\[POSITION\]/$2/g; s/\[PLATFORM\]/$3/g" linkedin_message_template.txt | pbcopy
+}
+
 cl() {
   cd $HOME/Documents
-  sed "s/\[COMPANY\]/$*/g" Cover_letter_template.txt | cat
-  sed "s/\[COMPANY\]/$*/g" Cover_letter_template.txt | pbcopy
+  gsed "s/\[COMPANY\]/$1/g; s/\[POSITION\]/$2/g" cover_letter_template.txt | cat
+  gsed "s/\[COMPANY\]/$1/g; s/\[POSITION\]/$2/g" cover_letter_template.txt | pbcopy
 }
 
 summary() {
