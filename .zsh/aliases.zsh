@@ -117,8 +117,9 @@ alias mut="cd ~/javatools && java -jar memberupload-1.0.jar"
 alias groupportal="cd ~/mcisemi/group-portal && gpull && nvm use 20.5.0"
 # Member Lookup
 alias memberlookup="cd ~/mcisemi/memberlookup && gpull && nvm use 20.5.0"
-# Code Snippet Server
+# Cvent Snippets
 alias css="cd ~/mcisemi/code-snippet-server && gpull && nvm use 20.5.0"
+alias whippets="cd ~/mcisemi/code-whippets && gpull"
 # Cronies
 alias cronies="cd ~/mcisemi/cloud-cronies && gpull && nvm use 20.5.0"
 alias getcronjobpods="k -n mci-cronies-prod get pods"
@@ -127,11 +128,7 @@ alias deletecronjob="k -n mci-cronies-prod delete cronjob"
 # Reg5
 alias reg="cd ~/mcisemi/reg5 && nvm use 10.16.2"
 alias reg2="cd ~/mcisemi/reg5two && nvm use 10.16.2 && gpull"
-alias whippets="cd ~/mcisemi/code-whippets && gpull"
 alias init="reg && npm run initial-setup"
-alias const="reg && npm run generate-consts-production"
-alias consts="reg && npm run generate-consts-production"
-alias constants="reg && npm run generate-consts-production"
 alias dev="reg && npm run dev-staging"
 alias build-dev="reg && npm run build-dev"
 alias azlogin="az login && az aks get-credentials -g apps01-prod-eastus-aks-rg -n apps01-prod-eastus-aks && az acr login --name mcisemi001"
