@@ -12,7 +12,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-signify'
 Plug 'mhinz/vim-startify'
-Plug 'morhetz/gruvbox'
+Plug 'sainnhe/everforest'
 Plug 'vim-syntastic/syntastic'
 Plug 'preservim/nerdtree'
 call plug#end()
@@ -110,7 +110,7 @@ set background=dark
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
-colorscheme gruvbox
+colorscheme everforest
 set termguicolors
 set term=tmux-256color
 " Don't try to be vi compatible
