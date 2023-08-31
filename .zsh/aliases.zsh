@@ -136,8 +136,8 @@ alias azlogin="az login && az aks get-credentials -g apps01-prod-eastus-aks-rg -
 alias rl="cd ~/mcisemi/roomlogic/roomlogic-site-resources/sites && nvm use 7.10.1 && gpull"
 alias gp="gulp azpublish"
 # Alameda
-alias alameda="cd ~/mcisemi/alameda/www.mcisemi.com"
-alias alamedalibs="cd ~/mcisemi/alameda/www.mcisemi.com/libs"
+alias mcisemi="cd ~/mcisemi/alameda/www.mcisemi.com"
+alias mcievents="cd ~/mcisemi/alameda/www.mcievents.com"
 # local cfdev environment
 alias cfstart="cd ~/mcisemi/docker-stacks/cfdev && docker-compose down && docker-compose up -d && docker-compose start"
 alias cfstop="cd ~/mcisemi/docker-stacks/cfdev && docker-compose down && docker-compose stop"
