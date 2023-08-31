@@ -52,8 +52,10 @@ coverletter() {
 }
 
 summary() {
-  echo 'Full Stack Web Developer with 5+ years of expertise known for driving solutions, proven success, and maximizing your organizational growth. I consistently stay up to date with the latest industry trends and technologies to create engaging and user-friendly experiences. Proficient in the MERN Stack (MongoDB | Express | React | Node). I also possess advanced knowledge of JavaScript and have hands-on virtuosity with various libraries and frameworks. In my spare time, I like surfing, playing guitar, spending time with my cat, and expanding knowledge to be a command line power user' | pbcopy
-  echo 'Full Stack Web Developer with 5+ years of expertise known for driving solutions, proven success, and maximizing your organizational growth. I consistently stay up to date with the latest industry trends and technologies to create engaging and user-friendly experiences. Proficient in the MERN Stack (MongoDB | Express | React | Node). I also possess advanced knowledge of JavaScript and have hands-on virtuosity with various libraries and frameworks. In my spare time, I like surfing, playing guitar, spending time with my cat, and expanding knowledge to be a command line power user' | cat
+  local text='Full Stack Web Developer with 5+ years of expertise known for driving solutions, proven success, and maximizing your organizational growth. I consistently stay up to date with the latest industry trends and technologies to create engaging and user-friendly experiences. Proficient in the MERN Stack (MongoDB | Express | React | Node). I also possess advanced knowledge of JavaScript and have hands-on virtuosity with various libraries and frameworks. In my spare time, I like surfing, playing guitar, spending time with my cat, and expanding knowledge to be a command line power user'
+  
+  echo "$text" | pbcopy
+  echo "$text" | cat
 }
 
 # Markdown
@@ -124,10 +126,14 @@ kp() {
 
 # Alias FZF
 af() {
-  local selected_alias
-  selected_alias=$(alias | fzf | cut -d '=' -f 1)
-  if [[ -n $selected_alias ]]; then
-    eval "$selected_alias"
-    print -s !$
+  local flag=$1
+  if [[ $flag == -p ]];then
+    alias | fzf | cut -d '=' -f 1 | pbcopy
+  else
+    local selected_alias=$(alias | fzf | cut -d '=' -f 1)
+    if [[ -n $selected_alias ]]; then
+      eval "$selected_alias"
+      print -s !$
+    fi
   fi
 }
