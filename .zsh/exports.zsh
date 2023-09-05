@@ -2,7 +2,7 @@
 
 # Path
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.nvm/versions/node/v20.5.0/bin:$PATH"
+export PATH="$HOME/.nvm/versions/node/v20.6.0/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$LOCAL/mysql/bin:$PATH"
 export DYLD_LIBRARY_PATH=$HOME/instantclient_19_8
