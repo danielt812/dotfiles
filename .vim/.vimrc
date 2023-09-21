@@ -15,6 +15,7 @@ Plug 'mhinz/vim-startify'
 Plug 'sainnhe/everforest'
 Plug 'vim-syntastic/syntastic'
 Plug 'preservim/nerdtree'
+Plug 'ernstvanderlinden/vim-coldfusion'
 call plug#end()
 
 " Turn on syntax highlighting
@@ -118,3 +119,5 @@ set nocompatible
 set t_ut=
 
 nnoremap <C-e> :NERDTreeToggle<CR>
+
+au BufNewFile,BufRead *.cfm,*.cfc   setf cfml
