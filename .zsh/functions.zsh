@@ -86,13 +86,16 @@ kp() {
 # Alias FZF
 af() {
   local flag=$1
-  if [[ $flag == -p ]];then
-    alias | fzf | cut -d '=' -f 1 | pbcopy
-  else
+  if [[ $flag == -e ]]; then
     local selected_alias=$(alias | fzf | cut -d '=' -f 1)
     if [[ -n $selected_alias ]]; then
       eval "$selected_alias"
       print -s !$
+    fi
+  else
+    local selected_alias=$(alias | fzf | cut -d '=' -f 1 | tr -d '\n')
+    if [[ -n $selected_alias ]]; then
+      echo -n "$selected_alias" | pbcopy
     fi
   fi
 }
