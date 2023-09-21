@@ -15,6 +15,8 @@
 [push]
   default = upstream
   autoSetupRemote = true
+[pull]
+	rebase = true
 [color]
   ui = auto
 [color "branch"]
