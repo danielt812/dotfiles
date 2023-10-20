@@ -7,11 +7,11 @@ alameda_push() {
     echo 'Already on master or staging branch'
   else
     if [[ $flag == '-a' ]]; then
-      gpush && gcom && gm $branch --no-edit && gpush && gcos && gm $branch --no-edit && gpush && gco $branch
+      gpull --rebase && gpush && gcom && gm $branch --no-edit && gpush && gcos && gm $branch --no-edit && gpush && gco $branch
     elif [[ $flag == '-m' ]]; then
-      gpush && gcom && gm $branch --no-edit && gpush && gco $branch
+      gpull --rebase && gpush && gcom && gm $branch --no-edit && gpush && gco $branch
     elif [[ $flag == '-s' ]]; then
-      gpush && gcos && gm $branch --no-edit && gpush && gco $branch
+      gpull --rebase && gpush && gcos && gm $branch --no-edit && gpush && gco $branch
     elif [[ $flag == '-h' ]]; then
       echo 'Usage:'
       echo '-a: Push/Merge to master and staging'

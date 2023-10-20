@@ -138,7 +138,9 @@ alias gp="gulp azpublish"
 # Alameda
 alias mcisemi="cd ~/mcisemi/alameda/www.mcisemi.com"
 alias mcievents="cd ~/mcisemi/alameda/www.mcievents.com"
-# local cfdev environment
+# Port redirection
+alias mciportredirect="sudo -b socat TCP4-LISTEN:80,reuseaddr,fork,su=nobody TCP4:localhost:8585"
+# Local cfdev environment
 alias cfstart="cd ~/mcisemi/docker-stacks/cfdev && docker-compose down && docker-compose up -d && docker-compose start"
 alias cfstop="cd ~/mcisemi/docker-stacks/cfdev && docker-compose down && docker-compose stop"
 # Confirmation Tool
