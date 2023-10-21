@@ -15,7 +15,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # Path
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.nvm/versions/node/v20.5.0/bin:$PATH"
+export PATH="$HOME/.nvm/versions/node/v21.0.0/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$LOCAL/usr/local/mysql/bin:$PATH"
 
