@@ -114,14 +114,14 @@ alias badge="cd ~/javatools && open badge-utility-1.0.jar"
 alias emc="cd ~/javatools && open emcit-2.0.jar"
 alias mut="cd ~/javatools && java -jar memberupload-1.0.jar"
 # Group Portal
-alias groupportal="cd ~/mcisemi/group-portal && gpull && nvm use 20.6.0"
+alias groupportal="cd ~/mcisemi/group-portal && gpull && nvm use 18.18.2"
 # Member Lookup
-alias memberlookup="cd ~/mcisemi/memberlookup && gpull && nvm use 20.6.0"
+alias memberlookup="cd ~/mcisemi/memberlookup && gpull && nvm use 18.18.2"
 # Cvent Snippets
-alias css="cd ~/mcisemi/code-snippet-server && gpull && nvm use 20.6.0"
+alias css="cd ~/mcisemi/code-snippet-server && gpull && nvm use 18.18.2"
 alias whippets="cd ~/mcisemi/code-whippets && gpull"
 # Cronies
-alias cronies="cd ~/mcisemi/cloud-cronies && gpull && nvm use 20.6.0"
+alias cronies="cd ~/mcisemi/cloud-cronies && gpull && nvm use 18.18.2"
 alias getcronjobpods="k -n mci-cronies-prod get pods"
 alias getcronjobs="k -n mci-cronies-prod get cronjobs"
 alias deletecronjob="k -n mci-cronies-prod delete cronjob"
