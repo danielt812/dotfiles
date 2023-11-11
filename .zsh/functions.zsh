@@ -99,3 +99,14 @@ af() {
     fi
   fi
 }
+
+# Git Branch FZF
+gbf() {
+  local flag=$1
+  if [[ $flag == -a ]]; then
+    git checkout $(git branch -a | fzf)
+  else
+    git checkout $(git branch | fzf)
+  fi
+}
+
