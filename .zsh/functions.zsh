@@ -74,6 +74,18 @@ summary() {
 
 batdiff() {
   git diff --name-only --relative --diff-filter=d | xargs bat --diff
+# Python Utils
+pyu() {
+  local arg=$1
+  if [[ $arg == 'str' ]]; then
+    py $HOME/PythonUtils/str.py $@
+  elif [[ $arg == 'clean' ]]; then
+    py $HOME/PythonUtils/clean.py $@
+  else
+    echo "Available scripts:"
+    echo "pyu str -h --help"
+    echo "pyu clean -h --help"
+  fi
 }
 
 # Kill Port
