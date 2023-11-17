@@ -112,8 +112,12 @@ pyu() {
   local arg=$1
   if [[ $arg == 'str' ]]; then
     py $HOME/PythonUtils/str.py $@
+  elif [[ $arg == 'clean' ]]; then
+    py $HOME/PythonUtils/clean.py $@
   else
-    echo "Unknown command"
+    echo "Available scripts:"
+    echo "pyu str -h --help"
+    echo "pyu clean -h --help"
   fi
 }
 
