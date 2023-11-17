@@ -55,6 +55,9 @@ alias gstp="gst pop"
 alias gcom="gco master && gpull"
 alias gcos="gco staging && gpull"
 
+# Lazygit
+alias lg="lazygit"
+
 # Tmux
 alias tm="tmux"
 
