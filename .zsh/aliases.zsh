@@ -54,6 +54,21 @@ alias gst="g stash"
 alias gsta="gst apply"
 alias gstp="gst pop"
 
+# Lazygit
+alias lg="lazygit"
+
+# Tmux
+alias tm="tmux"
+
+# Lazygit
+alias lg="lazygit"
+
+# Kubernetes
+alias k="kubectl"
+
+# Docker
+alias d="docker"
+
 # Formulae
 alias rm="trash"
 
