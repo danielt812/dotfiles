@@ -80,7 +80,7 @@ git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=local --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' {{branchName}} --"
   allBranchesLogCmd: "git log --graph --all --color=always --abbrev-commit --decorate --date=local  --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d'"
   overrideGpg: false # prevents lazygit from spawning a separate process when using GPG
-  disableForcePushing: false
+  disableForcePushing: true
   parseEmoji: false
   diffContextSize: 3 # how many lines of context are shown around a change in diffs
 os:
