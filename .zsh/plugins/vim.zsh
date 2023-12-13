@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#!/bin/zsh
 
 bindkey -v
 export KEYTIMEOUT=1

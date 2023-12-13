@@ -1,22 +1,5 @@
-#!/usr/local/bin/zsh
+#!/bin/zsh
 
-<<<<<<< HEAD
-=======
-# Path
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.nvm/versions/node/v18.18.2/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$LOCAL/mysql/bin:$PATH"
-export DYLD_LIBRARY_PATH=$HOME/instantclient_19_8
-export LD_LIBRARY_PATH=${ORACLE_HOME}/lib
-export OCI_DIR=$ORACLE_HOME
-export OCI_INC_DIR=$HOME/instantclient_19_8/sdk/include
-export OCI_LIB_DIR=$HOME/instantclient_19_8
-export ORACLE_HOME=$HOME/instantclient_19_8
-export PYTHON=$LOCAL/bin/python3.11
-export TNS_ADMIN=$ORACLE_HOME/NETWORK/ADMIN
-
->>>>>>> mci
 # Env
 # export TERM="tmux-256color"
 export COLORTERM="truecolor"
@@ -28,7 +11,6 @@ export DOTFILES="$HOME/.dotfiles"
 export PAGER="less -RF"
 export BAT_PAGER="less -RF"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-<<<<<<< HEAD
 export NVM_DIR="$HOME/.nvm"
 
 # Path
@@ -37,19 +19,13 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$LOCAL/usr/local/mysql/bin:$PATH"
 # Check if running on Intel Mac
-if [ "$(uname -m)" == "x86_64" ]; then
+if [ "$(uname -m)" = "x86_64" ]; then
   export PATH="$HOME/.nvm/versions/node/v21.0.0/bin:$PATH"
 fi
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"
 export FZF_DEFAULT_OPTS="--no-height --color=bg+:#1c1d1e,fg+:#ff005f,gutter:-1,pointer:#ff5f00,info:#0dbc79,hl:#0dbc79,hl+:#23d18b,prompt:#ff5f00"
-=======
-
-# Fzf
-export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"
-export FZF_DEFAULT_OPTS="--no-height --color=bg+:#131313,fg+:#ff005f,gutter:-1,pointer:#ff5f00,info:#0dbc79,hl:#0dbc79,hl+:#23d18b,prompt:#ff5f00"
->>>>>>> mci
 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS=" --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"

@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#!/bin/zsh
 
 # vim:ft=zsh:sw=4:sts=4
 

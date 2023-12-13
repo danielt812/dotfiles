@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#!/bin/zsh
 
 __sudo-replace-buffer() {
   local old=$1 new=$2 space=${2:+ }

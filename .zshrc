@@ -1,14 +1,14 @@
-#!/usr/local/bin/zsh
+#!/bin/zsh
 
 # Load Nvm
-# Check if running on Intel Mac
-if [ "$(uname -m)" == "x86_64" ]; then
-  [ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" --no-use
+# Check if running on M1 (Apple Silicon) Mac
+if [ "$(uname -m)" = "arm64" ]; then
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 fi
 
-# Check if running on M1 (Apple Silicon) Mac
-if [ "$(uname -m)" == "arm64" ]; then
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+# # Check if running on Intel Mac
+if [ "$(uname -m)" = "x86_64" ]; then
+  [ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" --no-use
 fi
 
 # Load Fzf
