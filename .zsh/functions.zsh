@@ -1,3 +1,20 @@
+batdiff() {
+  git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+
+coverletter() {
+  cd "$HOME/Documents/resume"
+  sed "s/\[Company Name\]/$*/g" Cover_letter_template.txt | cat
+  sed "s/\[Company Name\]/$*/g" Cover_letter_template.txt | pbcopy
+}
+
+summary() {
+  local text='Full Stack Web Developer with 5+ years of expertise known for driving solutions, proven success, and maximizing your organizational growth. I consistently stay up to date with the latest industry trends and technologies to create engaging and user-friendly experiences. Proficient in the MERN Stack (MongoDB | Express | React | Node). I also possess advanced knowledge of JavaScript and have hands-on virtuosity with various libraries and frameworks. In my spare time, I like surfing, playing guitar, spending time with my cat, and expanding knowledge to be a command line power user'
+  
+  echo "$text" | pbcopy
+  echo "$text" | cat
+}
+
 # Markdown
 md() {
   local arg=$1
@@ -16,7 +33,7 @@ md() {
       echo '-m "continuum.tmux"'
       echo '-y "yank.tmux"'
       echo '-c "copycat.tmux"'
-      echo '-g "conf"'
+      echo '-g "config"'
     elif [[ $flag == '-p' ]]; then
       glow -p $CONFIG/tmux/plugins/tmux-pain-control/README.md
     elif [[ $flag == '-s' ]]; then
@@ -43,37 +60,10 @@ md() {
       bat $HOME/.local/share/lunarvim/lvim/lua/lvim/config/settings.lua
     fi
   else
-    echo 'Command not found try help'
+    echo 'Command not found type md help for usage.'
   fi
 }
 
-summary() {
-  cd $HOME/Documents
-  cat summary_template.txt
-  cat summary_template.txt | pbcopy
-}
-
-li() {
-  cd $HOME/Documents
-  gsed "s/\[NAME\]/$1/g; s/\[POSITION\]/$2/g; s/\[PLATFORM\]/$3/g" linkedin_message_template.txt | cat
-  gsed "s/\[NAME\]/$1/g; s/\[POSITION\]/$2/g; s/\[PLATFORM\]/$3/g" linkedin_message_template.txt | pbcopy
-}
-
-cl() {
-  cd $HOME/Documents
-  gsed "s/\[COMPANY\]/$1/g; s/\[POSITION\]/$2/g" cover_letter_template.txt | cat
-  gsed "s/\[COMPANY\]/$1/g; s/\[POSITION\]/$2/g" cover_letter_template.txt | pbcopy
-}
-
-summary() {
-  local text='Full Stack Web Developer with 5+ years of expertise known for driving solutions, proven success, and maximizing your organizational growth. I consistently stay up to date with the latest industry trends and technologies to create engaging and user-friendly experiences. Proficient in the MERN Stack (MongoDB | Express | React | Node). I also possess advanced knowledge of JavaScript and have hands-on virtuosity with various libraries and frameworks. In my spare time, I like surfing, playing guitar, spending time with my cat, and expanding knowledge to be a command line power user'
-
-  echo "$text" | pbcopy
-  echo "$text" | cat
-}
-
-batdiff() {
-  git diff --name-only --relative --diff-filter=d | xargs bat --diff
 # Python Utils
 pyu() {
   local arg=$1
@@ -121,4 +111,5 @@ gbf() {
     git checkout $(git branch | fzf)
   fi
 }
+
 

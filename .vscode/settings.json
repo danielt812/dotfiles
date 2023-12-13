@@ -42,5 +42,11 @@
 	"[python]": {
 		"editor.defaultFormatter": "ms-python.autopep8"
 	},
-	"python.formatting.provider": "none"
+	"python.formatting.provider": "none",
+	"[shellscript]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
+	"[properties]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	}
 }
