@@ -67,7 +67,10 @@ icons:
 # A list of globs to ignore when listing.
 ignore-globs:
   - .git
+<<<<<<< HEAD:lsd/config.yaml
   - node_modules
+=======
+>>>>>>> mci:.lsd/config.yaml
 
 # == Indicators ==
 # Whether to add indicator characters to certain listed files.
