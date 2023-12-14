@@ -14,7 +14,7 @@ fi
 # Load Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-ZDOTDIR="$HOME/.dotfiles/.zsh"
+ZDOTDIR="$HOME/.dotfiles/zsh"
 
 # Source
 source "$ZDOTDIR/history.zsh"
