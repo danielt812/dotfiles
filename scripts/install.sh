@@ -20,7 +20,7 @@ install_formulae() {
   echo "Installing formulae..."
 
   # Array of formulae to install
-  formulae=("bat" "bottom" "fd" "fzf" "git" "git-delta" "glow" "lazygit" "lsd" "macchina" "neovim" "nvm" "ranger" "ripgrep" "sd" "starship" "speedtest-cli" "tealdeer" "tmux" "trash" "wifi-password" "yarn" "zoxide" "zsh")
+  formulae=("bat" "bottom" "fd" "fzf" "git" "git-delta" "glow" "lazygit" "lsd" "macchina" "neovim" "nvm" "ranger" "rust" "ripgrep" "sass/sass/sass" "sd" "starship" "speedtest-cli" "tealdeer" "tmux" "trash" "wifi-password" "yarn" "zoxide" "zsh")
 
   # Iterate through formulae and install if not already installed
   for formula in "${formulae[@]}"; do
@@ -175,6 +175,13 @@ init_nvm() {
 install_neovim() {
   if [ ! -d "$HOME/.config/nvim" ]; then
     git clone https://github.com/danielt812/nvim-config ~/.config/nvim
+  fi
+}
+
+install_vimplug() {
+  if [ ! -d "$HOME/.vim/autoload" ]; then
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   fi
 }
 
