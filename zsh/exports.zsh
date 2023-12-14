@@ -18,10 +18,6 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$LOCAL/usr/local/mysql/bin:$PATH"
-# Check if running on Intel Mac
-if [ "$(uname -m)" = "x86_64" ]; then
-  export PATH="$HOME/.nvm/versions/node/v21.0.0/bin:$PATH"
-fi
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"

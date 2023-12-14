@@ -3,7 +3,7 @@
 # Load Nvm
 [ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" --no-use
 # Load Fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source "$HOME.fzf.zsh"
 
 ZDOTDIR="$HOME/.dotfiles/.zsh"
 

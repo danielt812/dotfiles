@@ -70,7 +70,7 @@ create_symlinks() {
 
   if [ ! -d "$config_dir" ]; then
     echo "Creating config dir at $config_dir"
-    mkdir $HOME/.config
+    mkdir "$HOME"/.config
   fi
 
   configfiles=("kitty" "ranger" "tmux")
@@ -83,18 +83,31 @@ create_symlinks() {
     target_dir="$HOME/.config/$configfile"
     target_file="$target_dir/$configfile.conf"
     if [ ! -d "$target_dir" ]; then
+
       echo "Creating Dir: $target_dir"
       mkdir "$target_dir"
+
       if [ "$configfile" == "tmux" ]; then
+        ln -sf "$source_dir/tmux.conf" "$target_dir/tmux.conf"
         ln -sf "$source_dir/theme.conf" "$target_dir/theme.conf"
+      elif [ "$configfile" == "ranger" ]; then
+        ln -sf "$source_dir/rc.conf" "$target_dir/rc.conf"
+      else
+        ln -sf "$source_file" "$target_file"
       fi
-      ln -sf "$source_file" "$target_file"
+
       echo "Created symlink: $source_file -> $target_file"
     else
+
       if [ "$configfile" == "tmux" ]; then
+        ln -sf "$source_dir/tmux.conf" "$target_dir/tmux.conf"
         ln -sf "$source_dir/theme.conf" "$target_dir/theme.conf"
+      elif [ "$configfile" == "ranger" ]; then
+        ln -sf "$source_dir/rc.conf" "$target_dir/rc.conf"
+      else
+        ln -sf "$source_file" "$target_file"
       fi
-      ln -sf "$source_file" "$target_file"
+
       echo "Created symlink: $source_file -> $target_file"
     fi
   done
@@ -136,7 +149,7 @@ init_tpm() {
   tmux_plugins_dir="$HOME/.config/tmux/plugins"
 
   # Check if already inside tmux
-  if [ -n "$TMUX" ]; then
+  if [ "$TMUX" != "" ]; then
     echo "Already in tmux. Sourcing tmux.conf..."
     tmux source "$HOME/.config/tmux/tmux.conf"
     return
@@ -181,7 +194,7 @@ install_neovim() {
 install_vimplug() {
   if [ ! -d "$HOME/.vim/autoload" ]; then
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   fi
 }
 
@@ -193,3 +206,4 @@ init_tpm
 install_tmux_plugins
 init_nvm
 install_neovim
+install_vimplug
