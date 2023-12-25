@@ -58,11 +58,11 @@ alias gcos="gco staging && gpull"
 # Lazygit
 alias lg="lazygit"
 
+# Nvim
+alias nv="nvim"
+
 # Tmux
 alias tm="tmux"
-
-# Lazygit
-alias lg="lazygit"
 
 # Kubernetes
 alias k="kubectl"
@@ -85,12 +85,6 @@ alias usezsh="chsh -s $(which zsh)"
 
 # Vim
 alias vimrc="vim $HOME/.vimrc"
-
-# Nvim
-alias nv="nvim"
-
-# Tmux
-alias tm="tmux"
 
 # Zsh
 alias src="source $HOME/.zshrc"
@@ -119,15 +113,16 @@ alias bdg="cd ~/javatools && open badge-utility-1.0.jar"
 alias badge="cd ~/javatools && open badge-utility-1.0.jar"
 alias emc="cd ~/javatools && open emcit-2.0.jar"
 alias mut="cd ~/javatools && java -jar memberupload-1.0.jar"
+
 # Group Portal
-alias groupportal="cd ~/mcisemi/group-portal && nvm use 18.18.2 && gpull"
+alias groupportal="cd ~/mcisemi/group-portal && nvm use 20.10.0 && gpull"
 # Member Lookup
-alias memberlookup="cd ~/mcisemi/memberlookup && nvm use 18.18.2 && gpull"
+alias memberlookup="cd ~/mcisemi/memberlookup && nvm use 20.10.0 && gpull"
 # Cvent Snippets
-alias css="cd ~/mcisemi/code-snippet-server && nvm use 18.18.2 && gpull"
+alias css="cd ~/mcisemi/code-snippet-server && nvm use 20.10.0 && gpull"
 alias whippets="cd ~/mcisemi/code-whippets && gpull"
 # Cronies
-alias cronies="cd ~/mcisemi/cloud-cronies && nvm use 18.18.2 && gpull"
+alias cronies="cd ~/mcisemi/cloud-cronies && nvm use 20.10.0 && gpull"
 alias getcronjobpods="k -n mci-cronies-prod get pods"
 alias getcronjobs="k -n mci-cronies-prod get cronjobs"
 alias deletecronjob="k -n mci-cronies-prod delete cronjob"
