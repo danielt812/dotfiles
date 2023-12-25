@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Env
 # export TERM="tmux-256color"
@@ -14,10 +14,9 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export NVM_DIR="$HOME/.nvm"
 
 # Path
-export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$LOCAL/usr/local/mysql/bin:$PATH"
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+export PATH="$LOCAL/bin:$PATH"
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"

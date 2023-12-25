@@ -1,3 +1,5 @@
+#!/bin/bash
+
 batdiff() {
   git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
@@ -21,19 +23,19 @@ md() {
       echo '-c "copycat.tmux"'
       echo '-g "config"'
     elif [[ $flag == '-p' ]]; then
-      glow -p $CONFIG/tmux/plugins/tmux-pain-control/README.md
+      glow -p "$CONFIG/tmux/plugins/tmux-pain-control/README.md"
     elif [[ $flag == '-s' ]]; then
-      glow -p $CONFIG/tmux/plugins/tmux-sensible/README.md
+      glow -p "$CONFIG/tmux/plugins/tmux-sensible/README.md"
     elif [[ $flag == '-r' ]]; then
-      glow -p $CONFIG/tmux/plugins/tmux-resurrect/README.md
+      glow -p "$CONFIG/tmux/plugins/tmux-resurrect/README.md"
     elif [[ $flag == '-m' ]]; then
-      glow -p $CONFIG/tmux/plugins/tmux-continuum/README.md
+      glow -p "$CONFIG/tmux/plugins/tmux-continuum/README.md"
     elif [[ $flag == '-y' ]]; then
-      glow -p $CONFIG/tmux/plugins/tmux-yank/README.md
+      glow -p "$CONFIG/tmux/plugins/tmux-yank/README.md"
     elif [[ $flag == '-c' ]]; then
-      glow -p $CONFIG/tmux/plugins/tmux-copycat/README.md
+      glow -p "$CONFIG/tmux/plugins/tmux-copycat/README.md"
     elif [[ $flag == '-g' ]]; then
-      bat --style=plain $CONFIG/tmux/tmux.conf
+      bat --style=plain "$CONFIG/tmux/tmux.conf"
     fi
   else
     echo 'Command not found type md help for usage.'
@@ -44,9 +46,9 @@ md() {
 pyu() {
   local arg=$1
   if [[ $arg == 'str' ]]; then
-    py $HOME/PythonUtils/str.py $@
+    py "$HOME/PythonUtils/str.py" "$@"
   elif [[ $arg == 'clean' ]]; then
-    py $HOME/PythonUtils/clean.py $@
+    py "$HOME/PythonUtils/clean.py" "$@"
   else
     echo "Available scripts:"
     echo "pyu str -h --help"
@@ -57,14 +59,15 @@ pyu() {
 # Alias FZF
 af() {
   local flag=$1
+  local selected_alias
   if [[ $flag == -e ]]; then
-    local selected_alias=$(alias | fzf | cut -d '=' -f 1)
+    selected_alias="$(alias | fzf | cut -d '=' -f 1)"
     if [[ -n $selected_alias ]]; then
       eval "$selected_alias"
       print -s !$
     fi
   else
-    local selected_alias=$(alias | fzf | cut -d '=' -f 1 | tr -d '\n')
+    selected_alias="$(alias | fzf | cut -d '=' -f 1 | tr -d '\n')"
     if [[ -n $selected_alias ]]; then
       echo -n "$selected_alias" | pbcopy
     fi
@@ -72,24 +75,25 @@ af() {
 }
 
 alameda_path() {
-  cd $HOME/mcisemi/alameda/www.mcisemi.com
+  local url
+  cd "$HOME/mcisemi/alameda/www.mcisemi.com" || exit
   git checkout master
   git pull
-  cd $1
-  git checkout $1 2> /dev/null
+  cd "$1" || exit
+  git checkout "$1" 2> /dev/null
   git pull
 
-  local url=$(basename $(pwd))
+  url=$(basename "$(pwd)")
   code .
-  open -a $BROWSER "http://mcisemi.alameda.test/$url"
+  open -a "$BROWSER" "http://mcisemi.alameda.test/$url"
 }
 
 delete_cron_job() {
-  kubectl -n mci-cronies-prod delete cronjob $1
+  kubectl -n mci-cronies-prod delete cronjob "$1"
 }
 
 coverletter() {
-  cd "$HOME/Documents/resume"
+  cd "$HOME/Documents/resume" || exit
   sed "s/\[Company Name\]/$*/g" Cover_letter_template.txt | cat
   sed "s/\[Company Name\]/$*/g" Cover_letter_template.txt | pbcopy
 }
@@ -112,14 +116,14 @@ kp() {
 gbf() {
   local flag=$1
   local selected_branch
+  local base_branch
 
   if [[ $flag == -r ]]; then
     selected_branch=$(git branch -r | fzf | tr -d '[:blank:]')
-    local base_branch=$(echo "$selected_branch" | cut -d / -f 2)
+    base_branch=$(echo "$selected_branch" | cut -d / -f 2)
     git checkout -b "$base_branch" "$selected_branch"
   else
     selected_branch=$(git branch | fzf | tr -d '[:blank:]')
     git checkout "$selected_branch"
   fi
 }
-

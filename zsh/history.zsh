@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # man zshoptions /History
 
 # History Location
