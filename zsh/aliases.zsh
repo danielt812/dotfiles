@@ -80,8 +80,8 @@ alias python="python3.11"
 
 # MacOS
 alias sysup="softwareupdate --all --install --force"
-alias usebash="chsh -s \$(which bash)"
-alias usezsh="chsh -s \$(which zsh)"
+alias usebash="chsh -s $(which bash)"
+alias usezsh="chsh -s $(which zsh)"
 
 # Vim
 alias vimrc="vim $HOME/.vimrc"
