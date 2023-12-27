@@ -17,6 +17,7 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="$LOCAL/bin:$PATH"
+export PATH="$HOME/.nvm/versions/node/v20.10.0/bin:$PATH"
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"
