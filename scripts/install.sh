@@ -8,7 +8,7 @@ install_homebrew() {
 
     (
       echo
-      echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+      echo "eval '$(/opt/homebrew/bin/brew shellenv)'"
     ) >>~/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
   else
@@ -20,7 +20,7 @@ install_formulae() {
   echo "Installing formulae..."
 
   # Array of formulae to install
-  formulae=("bat" "bottom" "fd" "fzf" "git" "git-delta" "glow" "lazygit" "lsd" "macchina" "neovim" "nvm" "ranger" "rust" "ripgrep" "sass/sass/sass" "sd" "starship" "speedtest-cli" "tealdeer" "tmux" "trash" "wifi-password" "yarn" "zoxide" "zsh")
+  formulae=("bat" "bottom" "csview" "fd" "fzf" "git" "git-delta" "glow" "lazygit" "lsd" "macchina" "neovim" "nvm" "ranger" "rust" "ripgrep" "sass/sass/sass" "sd" "starship" "speedtest-cli" "tealdeer" "tmux" "trash" "wifi-password" "yarn" "zoxide" "zsh")
 
   # Iterate through formulae and install if not already installed
   for formula in "${formulae[@]}"; do
