@@ -36,7 +36,7 @@ install_casks() {
   echo "Installing casks..."
 
   # Array of casks to install
-  casks=("1password" "alfred" "appcleaner" "bartender" "brave-browser" "dbeaver-community" "discord" "itsycal" "keka" "maccy" "numi" "pika" "postman" "shottr" "spotify" "studio-3t")
+  casks=("1password" "alfred" "appcleaner" "bartender" "brave-browser" "bruno" "dbeaver-community" "discord" "itsycal" "keka" "maccy" "numi" "pika" "shottr" "spotify" "studio-3t")
 
   # Iterate through formulae and install if not already installed
   for cask in "${casks[@]}"; do
