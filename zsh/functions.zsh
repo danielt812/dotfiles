@@ -45,14 +45,18 @@ md() {
 # Python Utils
 pyu() {
   local arg=$1
+  local pythonUtilsDir="$HOME/PythonUtils"
   if [[ $arg == 'str' ]]; then
-    py "$HOME/PythonUtils/str.py" "$@"
+    py "$pythonUtilsDir/str.py" "$@"
   elif [[ $arg == 'clean' ]]; then
-    py "$HOME/PythonUtils/clean.py" "$@"
+    py "$pythonUtilsDir/clean.py" "$@"
+  elif [[ $arg == 'sec' ]]; then
+    py "$pythonUtilsDir/generateSecret.py"
   else
     echo "Available scripts:"
     echo "pyu str -h --help"
     echo "pyu clean -h --help"
+    echo "pyu sec -h --help"
   fi
 }
 
@@ -143,14 +147,34 @@ gbf() {
   local flag=$1
   local selected_branch
   local base_branch
+  local dir
+  local alameda="$HOME/mcisemi/alameda/"
 
   if [[ $flag == -r ]]; then
     selected_branch=$(git branch -r | fzf | tr -d '[:blank:]')
-    base_branch=$(echo "$selected_branch" | cut -d / -f 2)
-    git checkout -b "$base_branch" "$selected_branch"
+    if [[ -n "$selected_branch" ]]; then
+      base_branch=$(echo "$selected_branch" | cut -d / -f 2)
+      git checkout -b "$base_branch" "$selected_branch"
+      if [[ $(pwd) == *alameda* ]]; then
+        cd "$alameda"
+        dir="$(fd -t d "$base_branch")"
+        if [[ -n $dir ]]; then
+          cd "$dir"
+        fi
+      fi
+    fi
   else
-    selected_branch=$(git branch | fzf | tr -d '[:blank:]')
-    git checkout "$selected_branch"
-    git pull
+    selected_branch=$(git branch --format='%(refname:short)' | fzf | tr -d '[:blank:]')
+    if [[ -n "$selected_branch" ]]; then
+      git checkout "$selected_branch"
+      # git pull
+      if [[ $(pwd) == *alameda* ]]; then
+        cd "$alameda"
+        dir="$(fd -t d $selected_branch)"
+        if [[ -n $dir ]]; then
+          cd "$dir"
+        fi
+      fi
+    fi
   fi
 }
