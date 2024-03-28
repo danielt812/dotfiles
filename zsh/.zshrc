@@ -1,11 +1,20 @@
 #!/bin/zsh
 
 # Load Nvm
-[ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" --no-use
-# Load Fzf
-[ -f ~/.fzf.zsh ] && source "$HOME.fzf.zsh"
+# Check if running on M1 (Apple Silicon) Mac
+if [ "$(uname -m)" = "arm64" ]; then
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+fi
 
-ZDOTDIR="$HOME/.dotfiles/.zsh"
+# # Check if running on Intel Mac
+if [ "$(uname -m)" = "x86_64" ]; then
+  [ -f "$HOME/.nvm/nvm.sh" ] && source "$HOME/.nvm/nvm.sh" --no-use
+fi
+
+# Load Fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+ZDOTDIR="$HOME/.dotfiles/zsh"
 
 # Source
 source "$ZDOTDIR/history.zsh"
@@ -21,9 +30,15 @@ source "$ZDOTDIR/plugins/history-substring-search.zsh"
 source "$ZDOTDIR/plugins/fast-syntax-highlighting.zsh"
 source "$ZDOTDIR/plugins/you-should-use.zsh"
 
-eval "$(zoxide init zsh)"
-eval "$(starship init zsh)"
+# Check if zoxide command exists before evaluating its initialization script
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init zsh)"
+fi
 
-# Completions
-# source <(ng completion script) # Load Angular CLI autocompletion.
-source <(kubectl completion zsh) # Load KubeCtl CLI autocompletion.
+# Check if starship command exists before evaluating its initialization script
+if command -v starship &>/dev/null; then
+  eval "$(starship init zsh)"
+fi
+
+autoload -U +X bashcompinit && bashcompinit
+source /opt/homebrew/Cellar/azure-cli/2.58.0/etc/bash_completion.d/az
