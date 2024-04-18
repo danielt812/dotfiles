@@ -129,7 +129,7 @@ coverletter() {
 }
 
 summary() {
-	local text='Full Stack Web Developer with 5+ years of expertise known for driving solutions, proven success, and maximizing your organizational growth. I consistently stay up to date with the latest industry trends and technologies to create engaging and user-friendly experiences. Proficient in the MERN Stack (MongoDB | Express | React | Node). I also possess advanced knowledge of JavaScript and have hands-on virtuosity with various libraries and frameworks. In my spare time, I like surfing, playing guitar, spending time with my cat, and expanding knowledge to be a command line power user'
+	local text='Full Stack Web Developer with 5+ years of expertise known for driving solutions, proven success, and maximizing your organizational growth. I consistently stay up to date with the latest industry trends and technologies to create engaging and user-friendly experiences. Proficient using modern front end frame works such as React and Angularin the MERN Stack (MongoDB | Express | React | Node). I also possess advanced knowledge of JavaScript and have hands-on virtuosity with various libraries and frameworks. In my spare time, I like surfing, playing guitar, spending time with my cat, and expanding knowledge to be a command line power user'
 
 	echo "$text" | pbcopy
 	echo "$text" | cat
@@ -181,10 +181,11 @@ gbf() {
 
 cdf() {
 	local arg="$1"
-	if [[ $arg == "--no-depth" ]]; then
-		cd "$(fd -t d -d . | fzf)"
+	if [[ $arg == "--depth" || $arg == "-d" ]]; then
+		local depth="$2"
+		cd "$(fd -t d . -d "$depth" | fzf)"
 	else
-		cd "$(fd -t d . -d 1 | fzf)"
+		cd "$(fd -t d . | fzf)"
 	fi
 }
 
