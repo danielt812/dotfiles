@@ -19,6 +19,9 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="$LOCAL/bin:$PATH"
 export PATH="$HOME/.nvm/versions/node/v20.10.0/bin:$PATH"
 
+# Docker
+# export DOCKER_DEFAULT_PLATFORM=linux/amd64
+
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"
 export FZF_DEFAULT_OPTS="--no-height --color=bg+:#1c1d1e,fg+:#ff005f,gutter:-1,pointer:#ff5f00,info:#0dbc79,hl:#0dbc79,hl+:#23d18b,prompt:#ff5f00"
