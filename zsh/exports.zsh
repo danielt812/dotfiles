@@ -20,7 +20,7 @@ export PATH="$LOCAL/bin:$PATH"
 export PATH="$HOME/.nvm/versions/node/v20.10.0/bin:$PATH"
 
 # Docker
-# export DOCKER_DEFAULT_PLATFORM=linux/amd64
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"

@@ -21,8 +21,8 @@ alias lsat="ls -A --tree"
 alias cp="cp -iv"
 alias mv="mv -iv"
 
-alias path='echo -e ${PATH//:/\\n}'     # Show path on new line
-alias cpwd="pwd | pbcopy"               # Copy pwd to clipboard
+alias path='echo -e ${PATH//:/\\n}' # Show path on new line
+alias cpwd="pwd | pbcopy"           # Copy pwd to clipboard
 
 # Term mySQL
 alias mysql="mysql -u root -p"
@@ -133,8 +133,8 @@ alias mcievents="cd ~/mcisemi/alameda/www.mcievents.com"
 # Port redirection
 alias mciportredirect="sudo -b socat TCP4-LISTEN:80,reuseaddr,fork,su=nobody TCP4:localhost:8585"
 # Local cfdev environment
-alias cfstart="cd ~/mcisemi/docker-stacks/cfdev && docker-compose down && docker-compose up -d && docker-compose start"
-alias cfstop="cd ~/mcisemi/docker-stacks/cfdev && docker-compose down && docker-compose stop"
+alias cfstart="cd ~/mcisemi/docker-stacks/cfdev && docker compose down && docker compose up -d && docker compose start"
+alias cfstop="cd ~/mcisemi/docker-stacks/cfdev && docker compose down && docker compose stop"
 # Confirmation Tool
 alias ctm="docker run --rm --init -p 3001:3000 -e DB_HOST=10.128.2.5 -e DB_PORT=1521 -e DB_NAME=jade.prod.db.mcisemi.cloud mcisemi001.azurecr.io/confirmation-tool"
 alias cts="docker run --rm --init -p 3001:3000 -e DB_HOST=10.128.2.5 -e DB_PORT=1521 -e DB_NAME=jadestg.stage.db.mcisemi.cloud mcisemi001.azurecr.io/confirmation-tool"

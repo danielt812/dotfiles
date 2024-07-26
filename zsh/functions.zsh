@@ -78,10 +78,25 @@ af() {
 	fi
 }
 
+histf() {
+	local flag=$1
+	if [[ $flag == -e ]]; then
+		selected_command=$(tail -r $HISTFILE | fzf | tr -d '\n')
+		eval "$selected_command"
+	else
+		tail -r $HISTFILE | fzf | tr -d '\n' | pbcopy
+	fi
+}
+
 # Automate git merges/pushes to master and staging branch
 alameda_push() {
 	local branch=$(git branch --show-current 2>/dev/null)
 	local flag=$1
+
+	if [[ ! "$PWD" =~ /alameda(/|$) ]]; then
+		echo "Error: 'alameda' is not in the present working directory"
+		return 1
+	fi
 
 	if [[ $branch =~ ^(master|staging)$ ]]; then
 		echo 'Already on master or staging branch'
@@ -104,20 +119,6 @@ alameda_push() {
 	fi
 }
 
-alameda_path() {
-	local url
-	cd "$HOME/mcisemi/alameda/www.mcisemi.com" || exit
-	git checkout master
-	git pull
-	cd "$1" || exit
-	git checkout "$1" 2>/dev/null
-	git pull
-
-	url=$(basename "$(pwd)")
-	code .
-	open -a "$BROWSER" "http://mcisemi.alameda.test/$url"
-}
-
 delete_cron_job() {
 	kubectl -n mci-cronies-prod delete cronjob "$1"
 }
@@ -133,6 +134,46 @@ summary() {
 
 	echo "$text" | pbcopy
 	echo "$text" | cat
+}
+
+cronjobs() {
+	# Initialize variables
+	local flag=""
+	local arg=""
+	local usage="Usage: cronjobs [-a arg] | [--awk arg]"
+
+	# Parse options using getopts
+	while [[ "$#" -gt 0 ]]; do
+		case "$1" in
+		-a | --awk)
+			flag="--awk"
+			if [[ -n "$2" && "$2" != "-"* ]]; then
+				arg="$2"
+				shift 2
+			else
+				echo "Error: Argument for $flag is required."
+				echo "$usage"
+				return 1
+			fi
+			;;
+		-h | --help)
+			echo "$usage"
+			return 0
+			;;
+		*)
+			echo "Unknown option: $1"
+			echo "$usage"
+			return 1
+			;;
+		esac
+	done
+
+	# Execute the appropriate command based on the flag
+	if [[ "$flag" == "--awk" ]]; then
+		kubectl get cronjob -n mci-cronies-prod | awk "NR==1 || /$arg/"
+	else
+		kubectl get cronjob -n mci-cronies-prod
+	fi
 }
 
 # Kill Port
