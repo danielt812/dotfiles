@@ -79,12 +79,41 @@ af() {
 }
 
 histf() {
-	local flag=$1
-	if [[ $flag == -e ]]; then
+	local selected_command
+	local copy_to_clipboard=false
+
+	# Loop through all arguments
+	for arg in "$@"; do
+		case "$arg" in
+		-e | --execute)
+			# Flag to execute the selected command
+			selected_command=$(tail -r $HISTFILE | fzf | tr -d '\n')
+			eval "$selected_command"
+			return
+			;;
+		-c | --copy)
+			# Flag to copy the selected command to clipboard (Assuming pbcopy is available or xclip for Linux)
+			copy_to_clipboard=true
+			;;
+		*)
+			# Handle unknown options
+			echo "Unknown flag: $arg"
+			return 1
+			;;
+		esac
+	done
+
+	if [[ "$copy_to_clipboard" == true ]]; then
 		selected_command=$(tail -r $HISTFILE | fzf | tr -d '\n')
-		eval "$selected_command"
-	else
-		tail -r $HISTFILE | fzf | tr -d '\n' | pbcopy
+		# Check if running on macOS or Linux and use appropriate clipboard utility
+		if [[ "$(uname)" == "Darwin" ]]; then
+			echo "$selected_command" | pbcopy
+		elif [[ "$(uname)" == "Linux" ]]; then
+			echo "$selected_command" | xclip -selection clipboard
+		else
+			echo "Clipboard functionality not supported on this OS."
+			return 1
+		fi
 	fi
 }
 
@@ -121,19 +150,6 @@ alameda_push() {
 
 delete_cron_job() {
 	kubectl -n mci-cronies-prod delete cronjob "$1"
-}
-
-coverletter() {
-	cd "$HOME/Documents/resume" || exit
-	sed "s/\[Company Name\]/$*/g" Cover_letter_template.txt | cat
-	sed "s/\[Company Name\]/$*/g" Cover_letter_template.txt | pbcopy
-}
-
-summary() {
-	local text='Full Stack Web Developer with 5+ years of expertise known for driving solutions, proven success, and maximizing your organizational growth. I consistently stay up to date with the latest industry trends and technologies to create engaging and user-friendly experiences. Proficient using modern front end frame works such as React and Angularin the MERN Stack (MongoDB | Express | React | Node). I also possess advanced knowledge of JavaScript and have hands-on virtuosity with various libraries and frameworks. In my spare time, I like surfing, playing guitar, spending time with my cat, and expanding knowledge to be a command line power user'
-
-	echo "$text" | pbcopy
-	echo "$text" | cat
 }
 
 cronjobs() {
@@ -252,4 +268,22 @@ toUpper() {
 	else
 		echo "toUpper needs an argument"
 	fi
+}
+
+generateBearer() {
+	local OS=$(uname -s)
+	local copy_command
+
+	case "$OS" in
+	Linux)
+		copy_command="xclip -selection clipboard"
+		;;
+
+	Darwin)
+		copy_command="pbcopy"
+		;;
+	esac
+
+	echo "Bearer $(openssl rand -base64 16)"
+	echo "Bearer $(openssl rand -base64 16)" | "$copy_command"
 }
