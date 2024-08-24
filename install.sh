@@ -186,7 +186,7 @@ install_font() {
 # Main script logic
 OS=$(detect_os)
 PACKAGE_MANAGER=$(get_package_manager)
-PACKAGES="bat bottom fd-find fzf git-delta kitty lazygit lsd neofetch neovim ripgrep sd starship stow tealdeer tmux zoxide zsh"
+PACKAGES="bat bottom fd-find fzf git-delta kitty lazydocker lazygit lsd neofetch neovim ripgrep sd starship stow tealdeer tmux zoxide zsh"
 
 if [ "$OS" == "Linux" ]; then
 	echo "Operating System: Linux"
@@ -195,7 +195,7 @@ if [ "$OS" == "Linux" ]; then
 		echo "Debian Version: $(cat /etc/debian_version)"
 	elif [ -f /etc/redhat-release ]; then
 		echo "RedHat Version: $(cat /etc/redhat-release)"
-		enable_copr_repos "bottom lazygit starship"
+		enable_copr_repos "bottom lazydocker lazygit starship"
 	fi
 elif [ "$OS" == "Darwin" ]; then
 	echo "Operating System: macOS"
