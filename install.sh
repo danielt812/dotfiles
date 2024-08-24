@@ -186,7 +186,7 @@ install_font() {
 # Main script logic
 OS=$(detect_os)
 PACKAGE_MANAGER=$(get_package_manager)
-PACKAGES="bat bottom fd-find fzf git-delta kitty lsd neofetch neovim ripgrep sd starship stow tealdeer tmux zoxide zsh"
+PACKAGES="bat bottom fd-find fzf git-delta kitty lazygit lsd neofetch neovim ripgrep sd starship stow tealdeer tmux zoxide zsh"
 
 if [ "$OS" == "Linux" ]; then
 	echo "Operating System: Linux"
