@@ -1,9 +1,10 @@
-#!/bin/zsh
+#!usr/bin/zsh
 
 # Should be called before compinit
 zmodload zsh/complist
 
-autoload -U compinit; compinit
+autoload -U compinit
+compinit -d ~/.zcompdump
 _comp_options+=(globdots) # With hidden files
 
 # setopt GLOB_COMPLETE      # Show autocompletion menu with globs
