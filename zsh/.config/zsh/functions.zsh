@@ -76,9 +76,22 @@ histf() {
 
 # Kill Port
 kp() {
-	local port=$1
-	echo "Killing port ${port}..."
-	lsof -i :"${port}" | awk '{print $2}' | grep -v PID | xargs kill
+	local selection
+	local pid
+
+	# Find PIDs using lsof -i, then pipe to fzf for selection
+	selection=$(lsof -i -P -n | awk 'NR>1 {print $1, $2}' | sort -u | fzf --prompt="Select process to kill: ")
+
+	# Extract the PID from the selected line
+	pid=$(echo "$selection" | awk '{print $2}')
+
+	# If a PID was selected, kill the process
+	if [[ -n "$pid" ]]; then
+		echo "Killing PID: $pid"
+		kill "$pid"
+	else
+		echo "No process selected."
+	fi
 }
 
 # Git Branch FZF
