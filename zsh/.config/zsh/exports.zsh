@@ -2,6 +2,8 @@
 
 # Env
 export EDITOR="nvim"
+export BROWSER="brave-browser"
+export TERMINAL="kitty"
 export LOCAL="/usr/local"
 export CONFIG="$HOME/.config"
 export DOTFILES="$HOME/.dotfiles"
