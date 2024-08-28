@@ -12,6 +12,9 @@ export BAT_PAGER="less -RF"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export NVM_DIR="$HOME/.nvm"
 
+# Path
+export PATH="$HOME/.cargo/bin:$PATH" # Rust tool chain
+
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"
 export FZF_DEFAULT_OPTS="--no-height --color=bg+:#1c1d1e,fg+:#ff005f,gutter:-1,pointer:#ff5f00,info:#0dbc79,hl:#0dbc79,hl+:#23d18b,prompt:#ff5f00"
