@@ -240,16 +240,6 @@ gbdf() {
 	git branch --format="%(refname:short)" | fzf | xargs git branch -D
 }
 
-cdf() {
-	local arg="$1"
-	if [[ $arg == "--depth" || $arg == "-d" ]]; then
-		local depth="$2"
-		cd "$(fd -t d . -d "$depth" | fzf)"
-	else
-		cd "$(fd -t d . | fzf)"
-	fi
-}
-
 toLower() {
 	local arg="$1"
 	if [[ -n "$arg" ]]; then

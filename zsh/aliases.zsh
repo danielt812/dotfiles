@@ -24,6 +24,9 @@ alias mv="mv -iv"
 alias path='echo -e ${PATH//:/\\n}' # Show path on new line
 alias cpwd="pwd | pbcopy"           # Copy pwd to clipboard
 
+# FZF functions
+alias cdf='cdfzf'
+
 # Term mySQL
 alias mysql="mysql -u root -p"
 

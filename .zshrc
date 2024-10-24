@@ -22,6 +22,9 @@ source "$ZDOTDIR/exports.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/functions.zsh"
 
+# FZF functions
+source "$ZDOTDIR/fzf/cd.zsh"
+
 # Plugins
 source "$ZDOTDIR/plugins/completions.zsh"
 source "$ZDOTDIR/plugins/vim.zsh"
