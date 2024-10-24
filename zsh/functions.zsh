@@ -236,6 +236,10 @@ gbf() {
 	fi
 }
 
+gbdf() {
+	git branch --format="%(refname:short)" | fzf | xargs git branch -D
+}
+
 cdf() {
 	local arg="$1"
 	if [[ $arg == "--depth" || $arg == "-d" ]]; then
