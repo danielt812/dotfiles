@@ -199,47 +199,6 @@ kp() {
 	lsof -i :"${port}" | awk '{print $2}' | grep -v PID | xargs kill
 }
 
-# Git Branch FZF
-gbf() {
-	local flag=$1
-	local selected_branch
-	local base_branch
-	local dir
-	local alameda="$HOME/mcisemi/alameda/"
-
-	if [[ $flag == -r ]]; then
-		selected_branch=$(git branch -r | fzf | tr -d '[:blank:]')
-		if [[ -n "$selected_branch" ]]; then
-			base_branch=$(echo "$selected_branch" | cut -d / -f 2)
-			git checkout -b "$base_branch" "$selected_branch"
-			if [[ $(pwd) == *alameda* ]]; then
-				cd "$alameda"
-				dir="$(fd -t d "$base_branch")"
-				if [[ -n $dir ]]; then
-					cd "$dir"
-				fi
-			fi
-		fi
-	else
-		selected_branch=$(git branch --format='%(refname:short)' | fzf | tr -d '[:blank:]')
-		if [[ -n "$selected_branch" ]]; then
-			git checkout "$selected_branch"
-			# git pull
-			if [[ $(pwd) == *alameda* ]]; then
-				cd "$alameda"
-				dir="$(fd -t d $selected_branch)"
-				if [[ -n $dir ]]; then
-					cd "$dir"
-				fi
-			fi
-		fi
-	fi
-}
-
-gbdf() {
-	git branch --format="%(refname:short)" | fzf | xargs git branch -D
-}
-
 toLower() {
 	local arg="$1"
 	if [[ -n "$arg" ]]; then

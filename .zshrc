@@ -24,6 +24,7 @@ source "$ZDOTDIR/functions.zsh"
 
 # FZF functions
 source "$ZDOTDIR/fzf/cd.zsh"
+source "$ZDOTDIR/fzf/git_branch.zsh"
 
 # Plugins
 source "$ZDOTDIR/plugins/completions.zsh"

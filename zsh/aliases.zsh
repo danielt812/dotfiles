@@ -26,6 +26,7 @@ alias cpwd="pwd | pbcopy"           # Copy pwd to clipboard
 
 # FZF functions
 alias cdf='cdfzf'
+alias gbf='git_branch_fzf'
 
 # Term mySQL
 alias mysql="mysql -u root -p"

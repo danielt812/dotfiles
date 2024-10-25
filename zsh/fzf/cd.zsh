@@ -1,8 +1,28 @@
+#!/bin/bash
+
 cdfzf() {
 	local depth=0
 	local hidden=false
 	local no_ignore=false
 	local preview=false
+
+	# Help menu function
+	show_help() {
+		echo "Usage: cdf [OPTIONS]"
+		echo
+		echo "OPTIONS:"
+		echo "  -d, --depth <N>      Specify the maximum directory depth to search"
+		echo "  -h, --hidden         Include hidden directories in the search"
+		echo "  -i, --no-ignore      Don't respect .gitignore files"
+		echo "  -p, --preview        Show a preview of the selected directory's contents"
+		echo "  --help               Show this help message and exit"
+		echo
+		echo "Examples:"
+		echo "  cdf -d 2             Search directories up to 2 levels deep"
+		echo "  cdf -h               Include hidden directories"
+		echo "  cdf -p               Show a preview of the selected directory's contents"
+		return 0
+	}
 
 	# Check if fd is installed; if not, fall back to find
 	if command -v fd >/dev/null 2>&1; then
@@ -36,6 +56,10 @@ cdfzf() {
 		-p | --preview)
 			preview=true
 			shift
+			;;
+		--help)
+			show_help
+			return 0
 			;;
 		--) # End of flags
 			shift
