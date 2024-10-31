@@ -10,6 +10,9 @@ alias .....="cd ../../../.."
 alias c="clear"
 alias grep="grep --color=auto"
 
+# FZF
+alias cdf="cdfzf"
+
 # Ls Deluxe
 alias ls="lsd"
 alias lsa="ls -A"

@@ -116,35 +116,6 @@ gbf() {
 	fi
 }
 
-cdf() {
-	local depth=""
-	local hidden=""
-
-	# Parse the flags
-	while [[ $# -gt 0 ]]; do
-		case "$1" in
-		-a | --all)
-			hidden="--hidden"
-			shift
-			;;
-		-d | --depth)
-			depth="$2"
-			shift 2
-			;;
-		*)
-			shift
-			;;
-		esac
-	done
-
-	# Run the fd command with the appropriate flags
-	if [[ -n "$depth" ]]; then
-		cd "$(fd -t d $hidden -d "$depth" | fzf)"
-	else
-		cd "$(fd -t d $hidden | fzf)"
-	fi
-}
-
 generateBearer() {
 	local clipboard_utility=$(detect_clipboard_utility)
 

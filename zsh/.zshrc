@@ -24,6 +24,10 @@ source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/options.zsh"
 
+# FZF functions
+source "$ZDOTDIR/fzf/cd.zsh"
+source "$ZDOTDIR/fzf/git_branch.zsh"
+
 # Check if zoxide command exists before evaluating its initialization script
 if command -v zoxide &>/dev/null; then
 	eval "$(zoxide init zsh)"
