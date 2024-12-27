@@ -12,8 +12,14 @@ export BAT_PAGER="less -RF"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export NVM_DIR="$HOME/.nvm"
 
-# Path
-export PATH="$HOME/.cargo/bin:$PATH" # Rust tool chain
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Bun
+export PATH="$HOME/.bun/bin:$PATH"
+
+# Bun Completions
+[ -s "/home/danieltolan/.bun/_bun" ] && source "/home/danieltolan/.bun/_bun"
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"
@@ -28,7 +34,9 @@ export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap -
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+export XDG_DATA_DIRS="$XDG_DATA_DIRS:/opt/yad/share"
 
+# Starship
 export STARSHIP_CONFIG=$CONFIG/starship/starship.toml
 export STARSHIP_CACHE=$CONFIG/starship/cache
 
