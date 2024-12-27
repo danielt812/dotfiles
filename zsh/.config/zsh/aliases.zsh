@@ -13,6 +13,9 @@ alias grep="grep --color=auto"
 # FZF
 alias cdf="cdfzf"
 
+# XDG
+alias open="xdg-open"
+
 # Ls Deluxe
 alias ls="lsd"
 alias lsa="ls -A"
