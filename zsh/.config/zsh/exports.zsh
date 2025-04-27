@@ -40,6 +40,8 @@ export XDG_DATA_DIRS="$XDG_DATA_DIRS:/opt/yad/share"
 export STARSHIP_CONFIG=$CONFIG/starship/starship.toml
 export STARSHIP_CACHE=$CONFIG/starship/cache
 
+export ZSH_HIGHLIGHT_STYLES[path]='fg=magenta,bold'
+
 # https://linuxhint.com/ls_colors_bash/
 # Directory Colors Linux
 LS_COLORS=''
