@@ -1,0 +1,31 @@
+# Background/Foreground
+background = #161616
+foreground = #f2f4f8
+
+# Cursor
+cursor-color = #00ff00
+cursor-text = #00ff00
+
+# Normal
+palette = 0=#000000
+palette = 1=#ff0000
+palette = 2=#00ff00
+palette = 3=#ff5f00
+palette = 4=#1a8fff
+palette = 5=#ff005f
+palette = 6=#00ffff
+palette = 7=#ffffff
+
+# Bright
+palette = 8=#767676
+palette = 9=#ff0000
+palette = 10=#00ff00
+palette = 11=#ffff00
+palette = 12=#1a8fff
+palette = 13=#ff005f
+palette = 14=#00ffff
+palette = 15=#ffffff
+
+# Font
+font-family = DankMono Nerd Font
+font-size = 20
