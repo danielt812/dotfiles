@@ -3,7 +3,6 @@
 # Env
 export EDITOR="nvim"
 export BROWSER="brave-browser"
-export TERMINAL="kitty"
 export LOCAL="/usr/local"
 export CONFIG="$HOME/.config"
 export DOTFILES="$HOME/.dotfiles"
@@ -39,6 +38,9 @@ export XDG_DATA_DIRS="$XDG_DATA_DIRS:/opt/yad/share"
 # Starship
 export STARSHIP_CONFIG=$CONFIG/starship/starship.toml
 export STARSHIP_CACHE=$CONFIG/starship/cache
+
+# Ripgrep
+export RIPGREP_CONFIG_PATH=$CONFIG/ripgrep/.ripgreprc
 
 export ZSH_HIGHLIGHT_STYLES[path]='fg=magenta,bold'
 
