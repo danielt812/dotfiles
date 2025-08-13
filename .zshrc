@@ -1,5 +1,23 @@
 #!/bin/zsh
 
+ZDOTDIR="$HOME/.dotfiles/zsh"
+ZPLUGINDIR="$ZDOTDIR/plugins"
+
+# ZSH Unplugged
+if [[ ! -d $ZPLUGINDIR/zsh_unplugged ]]; then
+  git clone --quiet https://github.com/mattmc3/zsh_unplugged $ZPLUGINDIR/zsh_unplugged
+fi
+
+source "$ZPLUGINDIR/zsh_unplugged/zsh_unplugged.zsh"
+
+REPOS=(
+  zsh-users/zsh-syntax-highlighting
+  zsh-users/zsh-history-substring-search
+  zsh-users/zsh-autosuggestions
+)
+
+plugin-load $REPOS
+
 # Load Nvm
 # Check if running on M1 (Apple Silicon) Mac
 if [ "$(uname -m)" = "arm64" ]; then
@@ -14,8 +32,6 @@ fi
 # Load Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-ZDOTDIR="$HOME/.dotfiles/zsh"
-
 # Source
 source "$ZDOTDIR/history.zsh"
 source "$ZDOTDIR/exports.zsh"
@@ -26,13 +42,7 @@ source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/fzf/cd.zsh"
 source "$ZDOTDIR/fzf/git_branch.zsh"
 
-# Plugins
-source "$ZDOTDIR/plugins/completions.zsh"
-source "$ZDOTDIR/plugins/vim.zsh"
-source "$ZDOTDIR/plugins/autosuggestions.zsh"
-source "$ZDOTDIR/plugins/history-substring-search.zsh"
-source "$ZDOTDIR/plugins/fast-syntax-highlighting.zsh"
-source "$ZDOTDIR/plugins/you-should-use.zsh"
+source "$ZDOTDIR/groupFunctions/groupLog.zsh"
 
 # Check if zoxide command exists before evaluating its initialization script
 if command -v zoxide &>/dev/null; then
