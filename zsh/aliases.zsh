@@ -79,8 +79,8 @@ alias rm="trash"
 
 # Python
 alias pip="pip3"
-alias py="python3.11"
-alias python="python3.11"
+alias py="python3.13"
+alias python="python3.13"
 
 # MacOS
 alias sysup="softwareupdate --all --install --force"
