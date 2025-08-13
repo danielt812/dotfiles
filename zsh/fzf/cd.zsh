@@ -75,9 +75,9 @@ cdfzf() {
 	if [[ $fd_installed == true ]]; then
 		# Use fd
 		if [[ $hidden == true ]]; then
-			fd_command="fd -t d --hidden ."
+			fd_command="fd -t d --hidden . --exclude node_modules"
 		else
-			fd_command="fd -t d ."
+			fd_command="fd -t d . --exclude node_modules"
 		fi
 
 		# Append depth if provided

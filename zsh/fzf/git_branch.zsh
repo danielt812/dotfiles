@@ -1,8 +1,8 @@
 #!/bin/bash
 
 git_branch_fzf() {
-	local action="" # Default action is checkout
-	local flag=""
+	local action="checkout" # Default action is checkout
+	local flag="-p"         # Default flag is pull
 	local selected_branch
 	local base_branch
 	local current_branch=$(git rev-parse --abbrev-ref HEAD)
@@ -167,6 +167,16 @@ git_branch_fzf() {
 					git checkout -b "$new_branch_name"
 				else
 					git checkout "$selected_branch"
+					# Check for "alameda" in PWD and attempt cd
+					if [[ "$(pwd)" == *alameda* ]]; then
+						cd "$HOME/mcisemi/alameda"
+						local target_dir="$(fd -t d $selected_branch)"
+						if [[ -n "$target_dir" ]]; then
+							cd "$target_dir"
+						else
+							echo "No directory found for $selected_branch"
+						fi
+					fi
 				fi
 			fi
 		fi
