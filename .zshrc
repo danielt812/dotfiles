@@ -33,10 +33,12 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Source
+source "$ZDOTDIR/completions.zsh"
 source "$ZDOTDIR/history.zsh"
 source "$ZDOTDIR/exports.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/functions.zsh"
+source "$ZDOTDIR/options.zsh"
 
 # FZF functions
 source "$ZDOTDIR/fzf/cd.zsh"
