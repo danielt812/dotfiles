@@ -48,9 +48,9 @@ gui:
   border: "single" # one of 'single' | 'double' | 'rounded' | 'hidden'
   animateExplosion: true # shows an explosion animation when nuking the working tree
 git:
-  paging:
-    colorArg: always
-    pager: delta --paging=never --diff-so-fancy --line-numbers
+  pagers:
+    - pager: delta --paging=never --diff-so-fancy --line-numbers
+      colorArg: always
   commit:
     signOff: false
   merging:
@@ -165,7 +165,7 @@ keybinding:
     toggleWhitespaceInDiffView: "<c-w>"
     increaseContextInDiffView: "}"
     decreaseContextInDiffView: "{"
-    toggleRangeSelect:  <disabled>
+    toggleRangeSelect: <disabled>
   status:
     checkForUpdate: "u"
     recentRepos: "<enter>"
@@ -182,7 +182,7 @@ keybinding:
     viewResetOptions: "D"
     fetch: "f"
     toggleTreeView: "`"
-    openMergeTool: "M"
+    openMergeOptions: "M"
     openStatusFilter: "<c-b>"
   branches:
     createPullRequest: "o"
