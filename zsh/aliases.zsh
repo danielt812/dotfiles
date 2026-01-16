@@ -18,6 +18,7 @@ alias lsla="ls -lA"
 alias lst="ls --tree"
 alias lsat="ls -A --tree"
 
+# Confirm overwrites
 alias cp="cp -iv"
 alias mv="mv -iv"
 
@@ -61,6 +62,8 @@ alias gcos="gco staging && gpull"
 
 # Lazygit
 alias lg="lazygit"
+# Lazydocker
+alias ld="lazydocker"
 
 # Nvim
 alias nv="nvim"
@@ -75,7 +78,7 @@ alias k="kubectl"
 alias d="docker"
 
 # Formulae
-alias rm="trash"
+# alias rm="trash"
 
 # Python
 alias pip="pip3"
@@ -119,14 +122,14 @@ alias emc="cd ~/javatools && open emcit-2.0.jar"
 alias mut="cd ~/javatools && java -jar memberupload-1.0.jar"
 
 # Group Portal
-alias groupportal="cd ~/mcisemi/group-portal && nvm use 20.10.0 && gpull"
+alias groupportal="cd ~/mcisemi/group-portal && gpull"
 # Member Lookup
-alias memberlookup="cd ~/mcisemi/memberlookup && nvm use 20.10.0 && gpull"
+alias memberlookup="cd ~/mcisemi/memberlookup && gpull"
 # Cvent Snippets
-alias css="cd ~/mcisemi/code-snippet-server && nvm use 20.10.0 && gpull"
+alias css="cd ~/mcisemi/code-snippet-server && gpull"
 alias whippets="cd ~/mcisemi/code-whippets && gpull"
 # Cronies
-alias cronies="cd ~/mcisemi/cloud-cronies && nvm use 20.10.0 && gpull"
+alias cronies="cd ~/mcisemi/cloud-cronies && gpull"
 alias getcronjobpods="k -n mci-cronies-prod get pods"
 alias getcronjobs="k -n mci-cronies-prod get cronjobs"
 alias deletecronjob="k -n mci-cronies-prod delete cronjob"
