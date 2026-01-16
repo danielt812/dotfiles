@@ -17,7 +17,7 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="$LOCAL/bin:$PATH"
-export PATH="$HOME/.nvm/versions/node/v20.10.0/bin:$PATH"
+export PATH="$HOME/.nvm/versions/node/v24.11.0/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Docker
