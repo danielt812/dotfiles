@@ -15,7 +15,7 @@ add_newline = false
 
 [aws]
 format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
-symbol = "☁️  "
+symbol = "☁️ "
 style = "bold yellow"
 disabled = false
 expiration_symbol = "X"
@@ -644,7 +644,7 @@ disabled = false
 heuristic = false
 
 [nodejs]
-format = "[$symbol($version )]($style) "
+format = "[$symbol($version )]($style)"
 version_format = "v${raw}"
 symbol = " "
 style = "fg:40"
