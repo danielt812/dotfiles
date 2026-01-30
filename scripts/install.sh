@@ -20,7 +20,7 @@ install_formulae() {
 	echo "Installing formulae..."
 
 	# Array of formulae to install
-	formulae=("bat" "bottom" "csview" "fd" "fzf" "git" "git-delta" "glow" "lazygit" "lsd" "macchina" "neovim" "nvm" "rust" "ripgrep" "sass/sass/sass" "sd" "starship" "speedtest-cli" "tealdeer" "tmux" "trash" "wifi-password" "yarn" "yazi" "zoxide" "zsh")
+	formulae=("bat" "btop" "csview" "fd" "fzf" "git" "git-delta" "lazygit" "lazydocker" "lsd" "neovim" "nvm" "ripgrep" "sass/sass/sass" "sd" "starship" "speedtest-cli" "tealdeer" "tmux" "trash" "wifi-password" "yarn" "yazi" "zoxide" "zsh")
 
 	# Iterate through formulae and install if not already installed
 	for formula in "${formulae[@]}"; do
