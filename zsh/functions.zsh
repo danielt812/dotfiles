@@ -42,24 +42,6 @@ function md() {
   fi
 }
 
-# Python Utils
-function pyu() {
-  local arg=$1
-  local pythonUtilsDir="$HOME/PythonUtils"
-  if [[ $arg == 'str' ]]; then
-    py "$pythonUtilsDir/str.py" "$@"
-  elif [[ $arg == 'clean' ]]; then
-    py "$pythonUtilsDir/clean.py" "$@"
-  elif [[ $arg == 'sec' ]]; then
-    py "$pythonUtilsDir/generateSecret.py"
-  else
-    echo "Available scripts:"
-    echo "pyu str -h --help"
-    echo "pyu clean -h --help"
-    echo "pyu sec -h --help"
-  fi
-}
-
 # Alias FZF
 function af() {
   local flag=$1
