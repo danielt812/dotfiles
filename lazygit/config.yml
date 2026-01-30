@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+
 gui:
   # stuff relating to the UI
   screenMode: "normal" # one of 'normal' | 'half' | 'full' default is 'normal'
