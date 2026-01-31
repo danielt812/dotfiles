@@ -1,0 +1,98 @@
+#!/bin/bash
+
+# POSIX sh-compatible env file (safe to source from bash/zsh)
+
+# Env
+export COLORTERM="truecolor"
+export EDITOR="nvim"
+export LOCAL="/usr/local"
+export CONFIG="$HOME/.config"
+export DOTFILES="$HOME/.dotfiles"
+export PAGER="less -RF"
+export BAT_PAGER="less -RF"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export NVM_DIR="$HOME/.nvm"
+
+if command -v xdg-open >/dev/null 2>&1; then
+  export BROWSER="xdg-open"
+elif command -v open >/dev/null 2>&1; then
+  export BROWSER="open"
+fi
+
+# Path (quote $PATH)
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
+export PATH="$LOCAL/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# This is machine/version-specific; keep only if you truly want it global:
+export PATH="$HOME/.nvm/versions/node/v24.11.0/bin:$PATH"
+
+# Docker
+export DOCKER_DEFAULT_PLATFORM="linux/amd64"
+
+# Ripgrep
+export RIPGREP_CONFIG_PATH="$CONFIG/ripgrep/.ripgreprc"
+
+# Fzf
+export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"
+export FZF_DEFAULT_OPTS="--no-height --color=bg+:#1c1d1e,fg+:#ff005f,gutter:-1,pointer:#ff5f00,info:#0dbc79,hl:#0dbc79,hl+:#23d18b,prompt:#ff5f00"
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_OPTS=" --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
+# pbcopy is macOS; use xclip if present; otherwise drop the binding
+if command -v pbcopy >/dev/null 2>&1; then
+  _fzf_copy_cmd='pbcopy'
+elif command -v xclip >/dev/null 2>&1; then
+  _fzf_copy_cmd='xclip -selection clipboard'
+else
+  _fzf_copy_cmd=''
+fi
+
+if [ -n "$_fzf_copy_cmd" ]; then
+  export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind \"ctrl-y:execute-silent(echo -n {2..} | $_fzf_copy_cmd)+abort\" --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
+else
+  export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
+fi
+
+unset _fzf_copy_cmd
+
+# XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
+export STARSHIP_CONFIG="$CONFIG/starship/starship.toml"
+export STARSHIP_CACHE="$CONFIG/starship/cache"
+
+# Directory Colors Linux (LS_COLORS)
+LS_COLORS=""
+LS_COLORS="${LS_COLORS}di=1;34:"
+LS_COLORS="${LS_COLORS}ln=1;35:"
+LS_COLORS="${LS_COLORS}so=1;33:"
+LS_COLORS="${LS_COLORS}pi=1;33:"
+LS_COLORS="${LS_COLORS}ex=1;36:"
+LS_COLORS="${LS_COLORS}bd=1;33:"
+LS_COLORS="${LS_COLORS}cd=1;33:"
+LS_COLORS="${LS_COLORS}su=1;33:"
+LS_COLORS="${LS_COLORS}sg=1;33:"
+LS_COLORS="${LS_COLORS}tw=1;33:"
+LS_COLORS="${LS_COLORS}ow=1;33:"
+export LS_COLORS
+
+# Directory Colors macOS (LSCOLORS / CLICOLOR)
+LSCOLORS=""
+LSCOLORS="${LSCOLORS}Ex"
+LSCOLORS="${LSCOLORS}Fx"
+LSCOLORS="${LSCOLORS}Bx"
+LSCOLORS="${LSCOLORS}Dx"
+LSCOLORS="${LSCOLORS}Cx"
+LSCOLORS="${LSCOLORS}eg"
+LSCOLORS="${LSCOLORS}ed"
+LSCOLORS="${LSCOLORS}ab"
+LSCOLORS="${LSCOLORS}ag"
+LSCOLORS="${LSCOLORS}ac"
+LSCOLORS="${LSCOLORS}ad"
+export LSCOLORS
+
+export CLICOLOR=1
