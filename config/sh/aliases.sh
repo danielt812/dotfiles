@@ -1,16 +1,12 @@
 #!/bin/bash
 
-# ----------------------------
-# Navigation
-# ----------------------------
+# Navigation -------------------------------------------------------------------
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-# ----------------------------
-# Unix basics
-# ----------------------------
+# Unix basics ------------------------------------------------------------------
 alias c='clear'
 
 # grep --color=auto
@@ -33,16 +29,14 @@ fi
 # Show PATH one entry per line (bash/zsh)
 alias path='printf "%s\n" "${PATH//:/\n}"'
 
-# ----------------------------
-# ls / lsd / eza
-# ----------------------------
+# ls / lsd / eza ---------------------------------------------------------------
 if command -v lsd >/dev/null 2>&1; then
-  alias ls='lsd'
-  alias lsa='lsd -A'
-  alias lsl='lsd -l'
-  alias lsla='lsd -lA'
-  alias lst='lsd --tree'
-  alias lsat='lsd -A --tree'
+  alias ls='lsd --group-directories-first'
+  alias lsa='lsd -A --group-directories-first'
+  alias lsl='lsd -l --group-directories-first'
+  alias lsla='lsd -lA --group-directories-first'
+  alias lst='lsd --tree --group-directories-first'
+  alias lsat='lsd -A --tree --group-directories-first --depth=2'
 elif command -v eza >/dev/null 2>&1; then
   alias ls='eza'
   alias lsa='eza -a'
@@ -59,24 +53,18 @@ else
 fi
 
 
-# ----------------------------
-# MySQL
-# ----------------------------
+# MySQL ------------------------------------------------------------------------
 if command -v mysql >/dev/null 2>&1; then
   alias mysql='mysql -u root -p'
 fi
 
-# ----------------------------
-# Homebrew
-# ----------------------------
+# Homebrew ---------------------------------------------------------------------
 if command -v brew >/dev/null 2>&1; then
   alias brewup='brew outdated; brew update; brew upgrade; brew cleanup --prune=all; brew doctor'
   alias brewdeps='brew deps --formula --tree --installed'
 fi
 
-# ----------------------------
-# Git
-# ----------------------------
+# Git --------------------------------------------------------------------------
 if command -v git >/dev/null 2>&1; then
   alias g='git'
   alias ga='git add'
@@ -96,20 +84,16 @@ if command -v git >/dev/null 2>&1; then
   alias glog="git log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' --decorate --date=local --abbrev-commit --no-merges"
 fi
 
-# ----------------------------
-# Lazygit / Lazydocker
-# ----------------------------
+# Lazygit / Lazydocker ---------------------------------------------------------
 if command -v lazygit >/dev/null 2>&1; then
-  alias lg='lazygit'
+  alias lzg='lazygit'
 fi
 
 if command -v lazydocker >/dev/null 2>&1; then
-  alias ld='lazydocker'
+  alias lzd='lazydocker'
 fi
 
-# ----------------------------
-# Editors / terminal tools
-# ----------------------------
+# Editors / terminal tools -----------------------------------------------------
 if command -v nvim >/dev/null 2>&1; then
   alias nv='nvim'
 fi
@@ -118,20 +102,16 @@ if command -v tmux >/dev/null 2>&1; then
   alias tm='tmux'
 fi
 
-# ----------------------------
-# Kubernetes / Docker
-# ----------------------------
-if command -v kubectl >/dev/null 2>&1; then
-  alias k='kubectl'
-fi
-
+# Docker / Kubernetes ----------------------------------------------------------
 if command -v docker >/dev/null 2>&1; then
   alias d='docker'
 fi
 
-# ----------------------------
-# Python
-# ----------------------------
+if command -v kubectl >/dev/null 2>&1; then
+  alias k='kubectl'
+fi
+
+# Python -----------------------------------------------------------------------
 if command -v pip3 >/dev/null 2>&1; then
   alias pip='pip3'
 fi
@@ -144,9 +124,7 @@ elif command -v python3 >/dev/null 2>&1; then
   alias python='python3'
 fi
 
-# ----------------------------
-# Login shell switching
-# ----------------------------
+# Login shell switching --------------------------------------------------------
 if command -v chsh >/dev/null 2>&1; then
   if command -v bash >/dev/null 2>&1; then
     alias usebash='chsh -s "$(command -v bash)"'
@@ -156,34 +134,26 @@ if command -v chsh >/dev/null 2>&1; then
   fi
 fi
 
-# ----------------------------
-# Vimrc convenience
-# ----------------------------
+# Vimrc convenience ------------------------------------------------------------
 if command -v vim >/dev/null 2>&1; then
   if [ -e "$HOME/.vimrc" ]; then
     alias vimrc='vim "$HOME/.vimrc"'
   fi
 fi
 
-# ----------------------------
-# Shell reload
-# ----------------------------
+# Shell reload -----------------------------------------------------------------
 if [ -n "${ZSH_VERSION-}" ]; then
   alias src='source "$HOME/.zshrc"'
 elif [ -n "${BASH_VERSION-}" ]; then
   alias src='source "$HOME/.bashrc"'
 fi
 
-# ----------------------------
-# Dotfiles shortcut
-# ----------------------------
+# Dotfiles shortcut ------------------------------------------------------------
 if [ -n "${EDITOR-}" ] && [ -n "${DOTFILES-}" ]; then
   alias dotfiles='"$EDITOR" "$DOTFILES"'
 fi
 
-# ----------------------------
-# Weather
-# ----------------------------
+# Weather ----------------------------------------------------------------------
 if command -v curl >/dev/null 2>&1; then
   alias weather='curl wttr.in'
 fi
