@@ -13,6 +13,8 @@ export BAT_PAGER="less -RF"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export NVM_DIR="$HOME/.nvm"
 
+export TMUX_PLUGIN_MANAGER_PATH="$XDG_CONFIG_HOME/tmux/plugins"
+
 if command -v xdg-open >/dev/null 2>&1; then
   export BROWSER="xdg-open"
 elif command -v open >/dev/null 2>&1; then
@@ -23,9 +25,6 @@ fi
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="$LOCAL/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# This is machine/version-specific; keep only if you truly want it global:
-export PATH="$HOME/.nvm/versions/node/v24.11.0/bin:$PATH"
 
 # Docker
 export DOCKER_DEFAULT_PLATFORM="linux/amd64"
