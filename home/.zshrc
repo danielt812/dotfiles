@@ -23,20 +23,6 @@ REPOS=(
 # plugin-load is provided by zsh_unplugged; only call if it exists
 (( $+functions[plugin-load] )) && plugin-load $REPOS
 
-# NVM (prefer NVM_DIR)
-: ${NVM_DIR:="$HOME/.nvm"}
-
-case "$(uname -s)" in
-  Darwin)
-    # Homebrew nvm (Apple Silicon)
-    [[ -s "/opt/homebrew/opt/nvm/nvm.sh" ]] && source "/opt/homebrew/opt/nvm/nvm.sh"
-    ;;
-  Linux)
-    # Standard nvm install
-    [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-    ;;
-esac
-
 # Fzf (optional)
 [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
 
