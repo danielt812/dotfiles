@@ -15,12 +15,14 @@ if command -v git >/dev/null 2>&1; then
 fi
 
 REPOS=(
-  zsh-users/zsh-syntax-highlighting
-  zsh-users/zsh-history-substring-search
+  zsh-users/zsh-completions
   zsh-users/zsh-autosuggestions
+  zsh-users/zsh-history-substring-search
+  zsh-users/zsh-syntax-highlighting
 )
 
 # plugin-load is provided by zsh_unplugged; only call if it exists
+
 (( $+functions[plugin-load] )) && plugin-load $REPOS
 
 # Fzf (optional)
