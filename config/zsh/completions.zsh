@@ -31,6 +31,8 @@ zstyle ':completion:alias-expension:*' completer _expand_alias
 # Allow you to select in a menu
 zstyle ':completion:*' menu yes select
 
+bindkey '^[[Z' reverse-menu-complete
+
 # Autocomplete options for cd instead of directory stack
 zstyle ':completion:*' complete-options true
 zstyle ':completion:*' file-sort modification
