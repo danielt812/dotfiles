@@ -29,6 +29,7 @@ REPOS=(
 [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
 
 # Zsh-only
+bindkey "^[[3~" delete-char
 source "$ZSH_DIR/completions.zsh"
 source "$ZSH_DIR/history.zsh"
 setopt AUTO_CD GLOB_DOTS NO_BEEP
