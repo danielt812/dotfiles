@@ -5,6 +5,7 @@
 #   make unstow
 #   make restow
 #   make adopt
+#   make tpm
 
 SHELL := /bin/bash
 
@@ -16,6 +17,8 @@ STOW := stow
 STOW_FLAGS := -v
 STOW_DIR_FLAGS := -d "$(DOTFILES_DIR)"
 
+TMUX := tmux
+
 .PHONY: help dry stow unstow restow adopt
 
 help:
@@ -26,6 +29,7 @@ help:
 	"  restow   Restow (unstow then stow) for home + config" \
 	"  unstow   Remove symlinks for home + config" \
 	"  adopt    Adopt existing files into repo, then stow" \
+	"  tpm      Clone tmux plugin manager" \
 	"" \
 	"Vars:" \
 	"  XDG_CONFIG_HOME=$(XDG_CONFIG_HOME)"
@@ -54,3 +58,14 @@ adopt:
 	@cd "$(DOTFILES_DIR)" && \
 	$(STOW) --adopt $(STOW_FLAGS) -t "$(HOME_DIR)" home && \
 	$(STOW) --adopt $(STOW_FLAGS) -t "$(XDG_CONFIG_HOME)" config
+
+tpm:
+	@if [ ! -d "$(XDG_CONFIG_HOME)/tmux/plugins" ]; then \
+		mkdir -p "$(XDG_CONFIG_HOME)/tmux/plugins"; \
+	fi; \
+	if [ -d "$(XDG_CONFIG_HOME)/tmux/plugins/tpm/.git" ]; then \
+		echo "TPM already installed at $(XDG_CONFIG_HOME)/tmux/plugins/tpm"; \
+	else \
+		git clone https://github.com/tmux-plugins/tpm "$(XDG_CONFIG_HOME)/tmux/plugins/tpm"; \
+	fi && \
+	$(TMUX) source-file "$(XDG_CONFIG_HOME)/tmux/tmux.conf"
