@@ -1,4 +1,5 @@
 .DS_Store
 .zcompdump
 .zsh_history
-zsh/plugins
+**/zsh/plugins*
+**/tmux/plugins*
