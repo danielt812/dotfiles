@@ -27,6 +27,6 @@ palette = 14=#00ffff
 palette = 15=#ffffff
 
 # Font
-font-family = DankMono Nerd Font
-font-size = 20
+font-family = CommitMono
+font-size = 18
 
