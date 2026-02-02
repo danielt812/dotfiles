@@ -1,18 +1,10 @@
 # Ensure XDG defaults early
 : ${XDG_CONFIG_HOME:="$HOME/.config"}
 
-ZSH_DIR="$XDG_CONFIG_HOME/zsh"
-ZSH_PLUGIN_DIR="$ZSH_DIR/plugins"
+ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+ZPLUGINDIR="$ZDOTDIR/plugins"
 
 SH_DIR="$XDG_CONFIG_HOME/sh"
-
-# ZSH Unplugged (only if git exists)
-if command -v git >/dev/null 2>&1; then
-  if [[ ! -d "$ZSH_PLUGIN_DIR/zsh_unplugged" ]]; then
-    git clone --quiet --depth 1 https://github.com/mattmc3/zsh_unplugged "$ZSH_PLUGIN_DIR/zsh_unplugged"
-  fi
-  [[ -f "$ZSH_PLUGIN_DIR/zsh_unplugged/zsh_unplugged.zsh" ]] && source "$ZSH_PLUGIN_DIR/zsh_unplugged/zsh_unplugged.zsh"
-fi
 
 REPOS=(
   zsh-users/zsh-completions
@@ -21,17 +13,13 @@ REPOS=(
   zsh-users/zsh-syntax-highlighting
 )
 
-# plugin-load is provided by zsh_unplugged; only call if it exists
-
-(( $+functions[plugin-load] )) && plugin-load $REPOS
-
 # Fzf (optional)
 [[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
 
 # Zsh-only
 bindkey "^[[3~" delete-char
-source "$ZSH_DIR/completions.zsh"
-source "$ZSH_DIR/history.zsh"
+source "$ZDOTDIR/completions.zsh"
+source "$ZDOTDIR/history.zsh"
 setopt AUTO_CD GLOB_DOTS NO_BEEP
 
 # Shared
@@ -42,3 +30,37 @@ source "$SH_DIR/functions.sh"
 # Optional init hooks
 command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
 command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
+
+plug() {
+  local plugin repo commitsha plugdir initfile initfiles=()
+  : ${ZPLUGINDIR:=${ZDOTDIR:-~/.config/zsh}/plugins}
+  for plugin in $@; do
+    repo="$plugin"
+    clone_args=(-q --depth 1 --recursive --shallow-submodules)
+    # Pin repo to a specific commit sha if provided
+    if [[ "$plugin" == *'@'* ]]; then
+      repo="${plugin%@*}"
+      commitsha="${plugin#*@}"
+      clone_args+=(--no-checkout)
+    fi
+    plugdir=$ZPLUGINDIR/${repo:t}
+    initfile=$plugdir/${repo:t}.plugin.zsh
+    if [[ ! -d $plugdir ]]; then
+      echo "Cloning $repo..."
+      git clone "${clone_args[@]}" https://github.com/$repo $plugdir
+      if [[ -n "$commitsha" ]]; then
+        git -C $plugdir fetch -q origin "$commitsha"
+        git -C $plugdir checkout -q "$commitsha"
+      fi
+    fi
+    if [[ ! -e $initfile ]]; then
+      initfiles=($plugdir/*.{plugin.zsh,zsh-theme,zsh,sh}(N))
+      (( $#initfiles )) || { echo >&2 "No init file found '$repo'." && continue }
+      ln -sf $initfiles[1] $initfile
+    fi
+    fpath+=$plugdir
+    (( $+functions[zsh-defer] )) && zsh-defer . $initfile || . $initfile
+  done
+}
+
+plug $REPOS

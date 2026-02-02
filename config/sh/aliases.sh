@@ -15,16 +15,8 @@ if grep --color=auto "" </dev/null >/dev/null 2>&1; then
 fi
 
 # cp/mv interactive
-alias cp='cp -i'
-alias mv='mv -i'
-
-# optionally add -v only where supported
-if cp -v /dev/null /dev/null >/dev/null 2>&1; then
-  alias cp='cp -iv'
-fi
-if mv -v /dev/null /dev/null >/dev/null 2>&1; then
-  alias mv='mv -iv'
-fi
+alias cp='cp -iv'
+alias mv='mv -iv'
 
 # Show PATH one entry per line (bash/zsh)
 alias path='printf "%s\n" "${PATH//:/\n}"'
@@ -51,7 +43,6 @@ else
   alias lsla='ls -lA'
   # No lst/lsat without lsd/eza
 fi
-
 
 # MySQL ------------------------------------------------------------------------
 if command -v mysql >/dev/null 2>&1; then

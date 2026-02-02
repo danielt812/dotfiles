@@ -114,9 +114,7 @@ md() {
   esac
 }
 
-# ----------------------------
-# System update (macOS + Linux)
-# ----------------------------
+# System update (macOS + Linux) ------------------------------------------------
 sysup() {
   if command -v softwareupdate >/dev/null 2>&1; then
     softwareupdate --all --install --force
@@ -132,9 +130,7 @@ sysup() {
   fi
 }
 
-# ----------------------------
-# Alias FZF (copy or execute selected alias)
-# ----------------------------
+# Alias FZF --------------------------------------------------------------------
 af() {
   flag=${1-}
 
@@ -171,9 +167,7 @@ af() {
   esac
 }
 
-# ----------------------------
-# History fzf (execute or copy)
-# ----------------------------
+# History fzf ------------------------------------------------------------------
 histf() {
   if ! command -v fzf >/dev/null 2>&1; then
     echo "fzf not installed"
@@ -224,9 +218,7 @@ histf() {
   fi
 }
 
-# ----------------------------
-# Automate git merges/pushes to master and staging branch
-# ----------------------------
+# Automate git merges/pushes to master and staging branch ----------------------
 alameda_push() {
   flag=${1-}
 
@@ -303,9 +295,7 @@ alameda_push() {
   esac
 }
 
-# ----------------------------
-# Kill Port (macOS/Linux)
-# ----------------------------
+# Kill Port (macOS/Linux) ------------------------------------------------------
 kp() {
   port=${1-}
   if [ -z "$port" ]; then
@@ -329,9 +319,7 @@ kp() {
   kill $pids
 }
 
-# ----------------------------
-# Case conversion (copies result if possible)
-# ----------------------------
+# Case conversion (copies result if possible) ----------------------------------
 toLower() {
   arg=${1-}
   if [ -z "$arg" ]; then
@@ -382,9 +370,7 @@ generateBearer() {
   fi
 }
 
-# ----------------------------
-# cdfzf (macOS/Linux, bash/zsh)
-# ----------------------------
+# cdfzf (macOS/Linux, bash/zsh) ------------------------------------------------
 cdfzf() {
   depth=0
   hidden=false
@@ -496,10 +482,8 @@ cdfzf() {
 
 alias cdf="cdfzf"
 
-# ----------------------------
-# Git branch fzf (local/remote checkout/delete/merge/pull/stash/new/list)
-# ----------------------------
-git_branch_fzf() {
+# Git branch fzf ---------------------------------------------------------------
+gbfzf() {
   if ! command -v git >/dev/null 2>&1; then
     echo "git not installed"
     return 1
