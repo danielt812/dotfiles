@@ -77,11 +77,11 @@ fi
 
 # Lazygit / Lazydocker ---------------------------------------------------------
 if command -v lazygit >/dev/null 2>&1; then
-  alias lzg='lazygit'
+  alias lg='lazygit'
 fi
 
 if command -v lazydocker >/dev/null 2>&1; then
-  alias lzd='lazydocker'
+  alias ld='lazydocker'
 fi
 
 # Editors / terminal tools -----------------------------------------------------
