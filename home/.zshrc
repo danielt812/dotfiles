@@ -27,21 +27,15 @@ source "$SH_DIR/exports.sh"
 source "$SH_DIR/aliases.sh"
 source "$SH_DIR/functions.sh"
 
+if command -v fnm >/dev/null 2>&1; then
+  mkdir -p "$SH_DIR"
+  [[ -f "$SH_DIR/fnm.sh" ]] || fnm env > "$SH_DIR/fnm.sh"
+  source "$SH_DIR/fnm.sh"
+fi
+
 # Optional init hooks
 command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
 command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
-
-# Lazy-load nvm
-lazy-nvm() {
-  unset -f node npm npx nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-}
-
-# Stub commands
-node() { lazy-nvm; node "$@"; }
-npm()  { lazy-nvm; npm  "$@"; }
-npx()  { lazy-nvm; npx  "$@"; }
-nvm()  { lazy-nvm; nvm  "$@"; }
 
 plug() {
   local plugin repo commitsha plugdir initfile initfiles=()

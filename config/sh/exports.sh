@@ -26,9 +26,6 @@ export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="$LOCAL/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# NVM
-export NVIM_DIR="$HOME/.nvm"
-
 # Docker
 export DOCKER_DEFAULT_PLATFORM="linux/amd64"
 

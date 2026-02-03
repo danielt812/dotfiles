@@ -3,3 +3,4 @@
 .zsh_history
 **/zsh/plugins*
 **/tmux/plugins*
+**/fnm.sh
