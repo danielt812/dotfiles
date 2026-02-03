@@ -31,6 +31,18 @@ source "$SH_DIR/functions.sh"
 command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
 command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
 
+# Lazy-load nvm
+lazy-nvm() {
+  unset -f node npm npx nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+}
+
+# Stub commands
+node() { lazy-nvm; node "$@"; }
+npm()  { lazy-nvm; npm  "$@"; }
+npx()  { lazy-nvm; npx  "$@"; }
+nvm()  { lazy-nvm; nvm  "$@"; }
+
 plug() {
   local plugin repo commitsha plugdir initfile initfiles=()
   : ${ZPLUGINDIR:=${ZDOTDIR:-~/.config/zsh}/plugins}
