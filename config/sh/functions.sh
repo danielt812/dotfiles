@@ -43,74 +43,75 @@ reverse_file() {
   fi
 }
 
-# ----------------------------
-# Markdown helper
-# ----------------------------
+# Markdown Helper --------------------------------------------------------------
 md() {
   arg=${1-}
   flag=${2-}
 
   case "$arg" in
-    help|-h|--help|"")
-      echo "Usage:"
-      echo "  md tmux [flag]        View tmux plugin readmes / config"
-      echo
-      echo "Flags:"
-      echo "  -p   pain_control.tmux"
-      echo "  -s   sensible.tmux"
-      echo "  -r   resurrect.tmux"
-      echo "  -m   continuum.tmux"
-      echo "  -y   yank.tmux"
-      echo "  -c   copycat.tmux"
-      echo "  -g   tmux.conf"
-      return 0
-      ;;
-    tmux)
-      if [ -z "$flag" ]; then
-        echo "Use a flag option. Try: md tmux -g"
-        return 1
-      fi
+  help | -h | --help | "")
+    echo "Usage:"
+    echo "  md tmux [flag]        View tmux plugin readmes / config"
+    echo
+    echo "Flags:"
+    echo "  -p   pain_control.tmux"
+    echo "  -s   sensible.tmux"
+    echo "  -r   resurrect.tmux"
+    echo "  -m   continuum.tmux"
+    echo "  -y   yank.tmux"
+    echo "  -c   copycat.tmux"
+    echo "  -g   tmux.conf"
+    return 0
+    ;;
+  tmux)
+    if [ -z "$flag" ]; then
+      echo "Use a flag option. Try: md tmux -g"
+      return 1
+    fi
 
-      # require XDG_CONFIG_HOME
-      if [ -z "${XDG_CONFIG_HOME-}" ]; then
-        echo "XDG_CONFIG_HOME is not set (expected something like \$HOME/.config)."
-        return 1
-      fi
+    # require XDG_CONFIG_HOME
+    if [ -z "${XDG_CONFIG_HOME-}" ]; then
+      echo "XDG_CONFIG_HOME is not set (expected something like \$HOME/.config)."
+      return 1
+    fi
 
-      case "$flag" in
-        -p) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-pain-control/README.md" ;;
-        -s) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-sensible/README.md" ;;
-        -r) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-resurrect/README.md" ;;
-        -m) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-continuum/README.md" ;;
-        -y) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-yank/README.md" ;;
-        -c) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-copycat/README.md" ;;
-        -g) file="$XDG_CONFIG_HOME/tmux/tmux.conf" ;;
-        *)  echo "Unknown flag: $flag"; return 1 ;;
-      esac
-
-      if [ ! -e "$file" ]; then
-        echo "Not found: $file"
-        return 1
-      fi
-
-      if [ "$flag" = "-g" ]; then
-        if command -v bat >/dev/null 2>&1; then
-          bat --style=plain -- "$file"
-        else
-          cat -- "$file"
-        fi
-      else
-        if command -v glow >/dev/null 2>&1; then
-          glow -p -- "$file"
-        else
-          cat -- "$file"
-        fi
-      fi
-      ;;
+    case "$flag" in
+    -p) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-pain-control/README.md" ;;
+    -s) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-sensible/README.md" ;;
+    -r) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-resurrect/README.md" ;;
+    -m) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-continuum/README.md" ;;
+    -y) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-yank/README.md" ;;
+    -c) file="$XDG_CONFIG_HOME/tmux/plugins/tmux-copycat/README.md" ;;
+    -g) file="$XDG_CONFIG_HOME/tmux/tmux.conf" ;;
     *)
-      echo "Command not found. Try: md help"
+      echo "Unknown flag: $flag"
       return 1
       ;;
+    esac
+
+    if [ ! -e "$file" ]; then
+      echo "Not found: $file"
+      return 1
+    fi
+
+    if [ "$flag" = "-g" ]; then
+      if command -v bat >/dev/null 2>&1; then
+        bat --style=plain -- "$file"
+      else
+        cat -- "$file"
+      fi
+    else
+      if command -v glow >/dev/null 2>&1; then
+        glow -p -- "$file"
+      else
+        cat -- "$file"
+      fi
+    fi
+    ;;
+  *)
+    echo "Command not found. Try: md help"
+    return 1
+    ;;
   esac
 }
 
@@ -148,22 +149,22 @@ af() {
   fi
 
   case "$flag" in
-    -e|--execute)
-      # Execute the alias by name
-      eval "$selected_alias"
-      # Store the alias name in history (not the expanded command)
-      add_history "$selected_alias"
-      ;;
-    *)
-      # Copy alias name to clipboard
-      if printf "%s" "$selected_alias" | copy_to_clipboard; then
-        :
-      else
-        echo "$selected_alias"
-        echo "(clipboard utility not found)"
-        return 1
-      fi
-      ;;
+  -e | --execute)
+    # Execute the alias by name
+    eval "$selected_alias"
+    # Store the alias name in history (not the expanded command)
+    add_history "$selected_alias"
+    ;;
+  *)
+    # Copy alias name to clipboard
+    if printf "%s" "$selected_alias" | copy_to_clipboard; then
+      :
+    else
+      echo "$selected_alias"
+      echo "(clipboard utility not found)"
+      return 1
+    fi
+    ;;
   esac
 }
 
@@ -184,16 +185,16 @@ histf() {
   mode="copy" # default
   for arg in "$@"; do
     case "$arg" in
-      -e|--execute) mode="execute" ;;
-      -c|--copy)    mode="copy" ;;
-      -h|--help)
-        echo "Usage: histf [-e|--execute] [-c|--copy]"
-        return 0
-        ;;
-      *)
-        echo "Unknown flag: $arg"
-        return 1
-        ;;
+    -e | --execute) mode="execute" ;;
+    -c | --copy) mode="copy" ;;
+    -h | --help)
+      echo "Usage: histf [-e|--execute] [-c|--copy]"
+      return 0
+      ;;
+    *)
+      echo "Unknown flag: $arg"
+      return 1
+      ;;
     esac
   done
 
@@ -234,31 +235,31 @@ alameda_push() {
   fi
 
   case "$PWD" in
-    */alameda|*/alameda/*) ;;
-    *)
-      echo "Error: 'alameda' is not in the present working directory"
-      return 1
-      ;;
+  */alameda | */alameda/*) ;;
+  *)
+    echo "Error: 'alameda' is not in the present working directory"
+    return 1
+    ;;
   esac
 
   case "$branch" in
-    master|staging)
-      echo "Already on master or staging branch"
-      return 0
-      ;;
+  master | staging)
+    echo "Already on master or staging branch"
+    return 0
+    ;;
   esac
 
   case "$flag" in
-    -h|--help|"")
-      echo "Usage:"
-      echo "  alameda_push -a   Push/Merge to master and staging"
-      echo "  alameda_push -m   Push/Merge to master only"
-      echo "  alameda_push -s   Push/Merge to staging only"
-      echo "  alameda_push -h   Show help"
-      return 0
-      ;;
-    -a)
-      git pull &&
+  -h | --help | "")
+    echo "Usage:"
+    echo "  alameda_push -a   Push/Merge to master and staging"
+    echo "  alameda_push -m   Push/Merge to master only"
+    echo "  alameda_push -s   Push/Merge to staging only"
+    echo "  alameda_push -h   Show help"
+    return 0
+    ;;
+  -a)
+    git pull &&
       git push &&
       git checkout master &&
       git pull &&
@@ -269,29 +270,29 @@ alameda_push() {
       git merge "$branch" --no-edit &&
       git push &&
       git checkout "$branch"
-      ;;
-    -m)
-      git pull &&
+    ;;
+  -m)
+    git pull &&
       git push &&
       git checkout master &&
       git pull &&
       git merge "$branch" --no-edit &&
       git push &&
       git checkout "$branch"
-      ;;
-    -s)
-      git pull &&
+    ;;
+  -s)
+    git pull &&
       git push &&
       git checkout staging &&
       git pull &&
       git merge "$branch" --no-edit &&
       git push &&
       git checkout "$branch"
-      ;;
-    *)
-      echo "Invalid flag provided. Try: alameda_push -h"
-      return 1
-      ;;
+    ;;
+  *)
+    echo "Invalid flag provided. Try: alameda_push -h"
+    return 1
+    ;;
   esac
 }
 
@@ -414,14 +415,36 @@ cdfzf() {
   # Parse flags
   while [ "$#" -gt 0 ]; do
     case "$1" in
-      -d|--depth) depth=${2-0}; shift 2 ;;
-      -h|--hidden) hidden=true; shift ;;
-      -i|--no-ignore) no_ignore=true; shift ;;
-      -p|--preview) preview=true; shift ;;
-      -t|--tree) tree=true; preview=true; shift ;;
-      help|--help) show_help; return 0 ;;
-      --) shift; break ;;
-      *) break ;;
+    -d | --depth)
+      depth=${2-0}
+      shift 2
+      ;;
+    -h | --hidden)
+      hidden=true
+      shift
+      ;;
+    -i | --no-ignore)
+      no_ignore=true
+      shift
+      ;;
+    -p | --preview)
+      preview=true
+      shift
+      ;;
+    -t | --tree)
+      tree=true
+      preview=true
+      shift
+      ;;
+    help | --help)
+      show_help
+      return 0
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *) break ;;
     esac
   done
 
@@ -481,138 +504,3 @@ cdfzf() {
 }
 
 alias cdf="cdfzf"
-
-# Git branch fzf ---------------------------------------------------------------
-gbfzf() {
-  if ! command -v git >/dev/null 2>&1; then
-    echo "git not installed"
-    return 1
-  fi
-  if ! command -v fzf >/dev/null 2>&1; then
-    echo "fzf not installed"
-    return 1
-  fi
-
-  action="checkout"
-  remote=false
-  current_branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-
-  show_help() {
-    echo "Usage: git_branch_fzf [OPTIONS]"
-    echo
-    echo "OPTIONS:"
-    echo "  -c, --checkout      Checkout a branch (default)"
-    echo "  -d, --delete        Delete a branch (confirm)"
-    echo "  -r, --remote        Operate on remote branches"
-    echo "  -m, --merge         Merge selected branch into current"
-    echo "  -p, --pull          Checkout then pull"
-    echo "  -s, --stash         Stash changes before checkout"
-    echo "  -n, --new-branch    Create and checkout a new branch"
-    echo "  -l, --list          Print selected branch"
-    echo "  -h, --help          Show help"
-  }
-
-  while [ "$#" -gt 0 ]; do
-    case "$1" in
-      -c|--checkout) action="checkout"; shift ;;
-      -d|--delete) action="delete"; shift ;;
-      -r|--remote) remote=true; shift ;;
-      -m|--merge) action="merge"; shift ;;
-      -p|--pull) action="pull"; shift ;;
-      -s|--stash) action="stash"; shift ;;
-      -n|--new-branch) action="new-branch"; shift ;;
-      -l|--list) action="list"; shift ;;
-      -h|--help) show_help; return 0 ;;
-      *) break ;;
-    esac
-  done
-
-  confirm() {
-    printf "Are you sure you want to delete '%s'? [y/N] " "$1"
-    IFS= read -r ans
-    case "$ans" in
-      y|Y|yes|YES) return 0 ;;
-      *) echo "Aborted."; return 1 ;;
-    esac
-  }
-
-  protected_branch() {
-    case "$1" in
-      master|main) return 0 ;;
-      *) return 1 ;;
-    esac
-  }
-
-  if [ "$remote" = true ]; then
-    selected=$(git branch -r | sed 's/^[[:space:]]*//' | grep -v '->' | fzf | tr -d '[:blank:]')
-    [ -z "$selected" ] && return 0
-    base=${selected#origin/}
-
-    case "$action" in
-      delete)
-        if protected_branch "$base"; then
-          echo "Cannot delete protected branch '$base'."
-          return 1
-        fi
-        if confirm "$base"; then
-          git push origin --delete "$base"
-        fi
-        ;;
-      list) echo "$selected" ;;
-      merge) git merge "$selected" ;;
-      pull) git checkout "$base" && git pull ;;
-      new-branch)
-        printf "Enter new branch name: "
-        IFS= read -r new_branch_name
-        [ -z "$new_branch_name" ] && return 1
-        git checkout -b "$new_branch_name"
-        ;;
-      *)
-        git checkout -b "$base" "$selected"
-        ;;
-    esac
-  else
-    selected=$(git branch --format='%(refname:short)' | fzf | tr -d '[:blank:]')
-    [ -z "$selected" ] && return 0
-
-    case "$action" in
-      delete)
-        if protected_branch "$selected"; then
-          echo "Cannot delete protected branch '$selected'."
-          return 1
-        fi
-
-        # Switch away if deleting current branch
-        if [ "$current_branch" = "$selected" ]; then
-          if git show-ref --verify --quiet refs/heads/main; then
-            git checkout main
-          elif git show-ref --verify --quiet refs/heads/master; then
-            git checkout master
-          else
-            echo "No main/master branch to switch to."
-            return 1
-          fi
-        fi
-
-        if confirm "$selected"; then
-          git branch -D "$selected"
-        fi
-        ;;
-      list) echo "$selected" ;;
-      merge) git merge "$selected" ;;
-      pull) git checkout "$selected" && git pull ;;
-      stash) git stash && git checkout "$selected" ;;
-      new-branch)
-        printf "Enter new branch name: "
-        IFS= read -r new_branch_name
-        [ -z "$new_branch_name" ] && return 1
-        git checkout -b "$new_branch_name"
-        ;;
-      *)
-        git checkout "$selected"
-        ;;
-    esac
-  fi
-}
-
-alias gbf="gbfzf"
