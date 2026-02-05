@@ -6,7 +6,7 @@ format = "$username$hostname$localip$shlvl$singularity$kubernetes$time$directory
 right_format = ""
 continuation_prompt = "[∙](bright-black) "
 scan_timeout = 30
-command_timeout = 2000
+command_timeout = 5000
 add_newline = false
 
 [palettes]
@@ -237,7 +237,6 @@ use_os_path_sep = true
 
 [docker_context]
 symbol = "󰡨 "
-# symbol = "🐳 "
 style = "blue bold"
 format = "[$symbol$context]($style) "
 only_with_files = true
