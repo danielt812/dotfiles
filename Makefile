@@ -67,5 +67,4 @@ tpm:
 		echo "TPM already installed at $(XDG_CONFIG_HOME)/tmux/plugins/tpm"; \
 	else \
 		git clone https://github.com/tmux-plugins/tpm "$(XDG_CONFIG_HOME)/tmux/plugins/tpm"; \
-	fi && \
-	$(TMUX) source-file "$(XDG_CONFIG_HOME)/tmux/tmux.conf"
+	fi
