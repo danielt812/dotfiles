@@ -202,6 +202,7 @@ keybinding:
     fetchRemote: "f"
   commits:
     squashDown: "s"
+    setFixupMessage: <disabled>
     renameCommit: "r"
     renameCommitWithEditor: "R"
     viewResetOptions: "g"
