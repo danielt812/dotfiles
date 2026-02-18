@@ -9,14 +9,14 @@ alias .....='cd ../../../..'
 # Unix basics ------------------------------------------------------------------
 alias c='clear'
 
-# grep --color=auto
-if grep --color=auto "" </dev/null >/dev/null 2>&1; then
-  alias grep='grep --color=auto'
-fi
-
-# cp/mv interactive
-alias cp='cp -iv'
-alias mv='mv -iv'
+# Unix -------------------------------------------------------------------------
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias mkdir='mkdir -pv'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 # Show PATH one entry per line (bash/zsh)
 alias path='printf "%s\n" "${PATH//:/\n}"'
@@ -30,23 +30,17 @@ if command -v lsd >/dev/null 2>&1; then
   alias lst='lsd --tree --group-directories-first'
   alias lsat='lsd -A --tree --group-directories-first --depth=2'
 elif command -v eza >/dev/null 2>&1; then
-  alias ls='eza'
-  alias lsa='eza -a'
-  alias lsl='eza -l'
-  alias lsla='eza -la'
-  alias lst='eza --tree'
-  alias lsat='eza -a --tree'
+  alias ls='eza --group-directories-first'
+  alias lsa='eza -a --group-directories-first'
+  alias lsl='eza -l --group-directories-first'
+  alias lsla='eza -la --group-directories-first'
+  alias lst='eza --tree --group-directories-first'
+  alias lsat='eza -a --tree --group-directories-first --level=2'
 else
   alias ls='ls'
   alias lsa='ls -A'
   alias lsl='ls -l'
   alias lsla='ls -lA'
-  # No lst/lsat without lsd/eza
-fi
-
-# MySQL ------------------------------------------------------------------------
-if command -v mysql >/dev/null 2>&1; then
-  alias mysql='mysql -u root -p'
 fi
 
 # Homebrew ---------------------------------------------------------------------
@@ -75,37 +69,20 @@ if command -v git >/dev/null 2>&1; then
   alias glog="git log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' --decorate --date=local --abbrev-commit --no-merges"
 fi
 
-# Lazygit / Lazydocker ---------------------------------------------------------
-if command -v lazygit >/dev/null 2>&1; then
-  alias lg='lazygit'
-fi
-
-if command -v lazydocker >/dev/null 2>&1; then
-  alias ld='lazydocker'
-fi
-
-# Editors / terminal tools -----------------------------------------------------
-if command -v nvim >/dev/null 2>&1; then
-  alias nv='nvim'
-fi
-
-if command -v tmux >/dev/null 2>&1; then
-  alias tm='tmux'
-fi
-
-# Docker / Kubernetes ----------------------------------------------------------
-if command -v docker >/dev/null 2>&1; then
-  alias d='docker'
-fi
-
-if command -v kubectl >/dev/null 2>&1; then
-  alias k='kubectl'
-fi
-
+# Lazygit ----------------------------------------------------------------------
+command -v lazygit >/dev/null 2>&1 && alias lg='lazygit'
+# Lazydocker -------------------------------------------------------------------
+command -v lazydocker >/dev/null 2>&1 && alias ld='lazydocker'
+# Neovim -----------------------------------------------------------------------
+command -v nvim >/dev/null 2>&1 && alias nv='nvim'
+# Tmux -------------------------------------------------------------------------
+command -v tmux >/dev/null 2>&1 && alias tm='tmux'
+# Docker -----------------------------------------------------------------------
+command -v docker >/dev/null 2>&1 && alias d='docker'
+# Kubernetes -------------------------------------------------------------------
+command -v kubectl >/dev/null 2>&1 && alias k='kubectl'
 # Python -----------------------------------------------------------------------
-if command -v pip3 >/dev/null 2>&1; then
-  alias pip='pip3'
-fi
+command -v pip3 >/dev/null 2>&1 && alias pip='pip3'
 
 if command -v python3.13 >/dev/null 2>&1; then
   alias py='python3.13'
@@ -122,13 +99,6 @@ if command -v chsh >/dev/null 2>&1; then
   fi
   if command -v zsh >/dev/null 2>&1; then
     alias usezsh='chsh -s "$(command -v zsh)"'
-  fi
-fi
-
-# Vimrc convenience ------------------------------------------------------------
-if command -v vim >/dev/null 2>&1; then
-  if [ -e "$HOME/.vimrc" ]; then
-    alias vimrc='vim "$HOME/.vimrc"'
   fi
 fi
 
