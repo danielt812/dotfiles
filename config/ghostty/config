@@ -4,7 +4,7 @@ foreground = #f2f4f8
 
 # Cursor
 cursor-color = #00ff00
-cursor-text = #00ff00
+cursor-text  = #000000
 
 # Normal
 palette = 0=#000000
