@@ -1,7 +1,6 @@
-ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+ZDOTDIR="$HOME/.config/zsh"
 ZPLUGINDIR="$ZDOTDIR/plugins"
-
-SH_DIR="$XDG_CONFIG_HOME/sh"
+SDOTDIR="$HOME/.config/sh"
 
 if [[ ! -d "$ZPLUGINDIR/zsh_unplugged" ]]; then
   git clone --quiet https://github.com/mattmc3/zsh_unplugged "$ZPLUGINDIR/zsh_unplugged"
@@ -26,9 +25,9 @@ source "$ZDOTDIR/history.zsh"
 setopt AUTO_CD GLOB_DOTS NO_BEEP
 
 # Shared
-source "$SH_DIR/exports.sh"
-source "$SH_DIR/aliases.sh"
-source "$SH_DIR/functions.sh"
+source "$SDOTDIR/exports.sh"
+source "$SDOTDIR/aliases.sh"
+source "$SDOTDIR/functions.sh"
 
 # Optional init hooks
 command -v fnm >/dev/null 2>&1 && eval "$(fnm env --use-on-cd --shell zsh)"
