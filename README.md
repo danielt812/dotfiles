@@ -14,17 +14,14 @@ This repository manages shell and application configuration using GNU Stow, with
 # MacOS
 brew install stow
 
-# Fedora
-sudo dnf update && sudo dnf install stow make
-
 # Debian
 sudo apt update && sudo apt install stow make
 
-# Arch (pacman)
-sudo pacman -Syu stow make
+# Fedora
+sudo dnf update && sudo dnf install stow make
 
-# Nix (NixOS or with nix installed)
-nix-env -iA nixpkgs.stow nixpkgs.gnumake
+# Arch
+sudo pacman -S stow make
 ```
 
 ## Install
@@ -37,8 +34,8 @@ git clone git@github.com:danielt812/dotfiles.git .dotfiles
 Repository layout:
 ```bash
 ~/.dotfiles/
-    config/ # packages meant for ~/.config
-    home/ # packages meant for ~/
+    config/ # packages meant for $XDG_CONFIG_HOME
+    home/ # packages meant for $HOME
 ```
 
 ## Stow via Makefile
