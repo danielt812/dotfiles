@@ -20,7 +20,7 @@ palette = 7=#ffffff
 palette = 8=#767676
 palette = 9=#ff0000
 palette = 10=#00ff00
-palette = 11=#ffff00
+palette = 11=#ff5f00
 palette = 12=#1a8fff
 palette = 13=#ff005f
 palette = 14=#00ffff
@@ -31,3 +31,6 @@ font-family = CommitMono
 font-style-bold = false
 font-style-bold-italic = false
 font-size = 20
+
+# Cosmic-DE
+window-decoration = server
