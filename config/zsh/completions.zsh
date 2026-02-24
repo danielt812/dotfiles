@@ -2,7 +2,7 @@
 # Should be called before compinit
 zmodload zsh/complist
 
-autoload -U compinit
+autoload -Uz compinit
 compinit -d ~/.zcompdump
 _comp_options+=(globdots) # With hidden files
 
