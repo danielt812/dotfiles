@@ -1,9 +1,9 @@
-# ── Completion hooks ──────────────────────────────────────────────────────────
+# Completion hooks -------------------------------------------------------------
 
 # Override directory discovery for ** completions — uses fd when available
 _fzf_compgen_dir() {
   local base_dir="$1"
-  if (( $+commands[fd] )); then
+  if command -v fd >/dev/null 2>&1; then
     fd --type d --hidden --follow --color=always \
       --exclude ".git" \
       --exclude "node_modules" \
@@ -22,7 +22,7 @@ _fzf_compgen_unalias() {
   trap "rm -f '$tmp'" EXIT
   alias > "$tmp"
   local preview_cmd="grep -F --color=always \"{}=\" '$tmp'"
-  if (( $+commands[bat] )); then
+  if command -v bat >/dev/null 2>&1; then
     preview_cmd="$preview_cmd | bat -l zsh --style=plain --color=always"
   fi
   print -l "${(@k)aliases}" | fzf "$@" --preview "$preview_cmd"
@@ -34,16 +34,16 @@ _fzf_comprun() {
   shift
   case "$command" in
     cd|pushd|rmdir)
-      if (( $+commands[eza] )); then
+      if command -v eza >/dev/null 2>&1; then
         fzf "$@" --preview 'eza --tree --level=2 --color=always --group-directories-first {} | head -200'
-      elif (( $+commands[tree] )); then
+      elif command -v tree >/dev/null 2>&1; then
         fzf "$@" --preview 'tree -C {} | head -200'
       else
         fzf "$@" --preview 'ls -1 --color=always {} | head -200'
       fi
       ;;
     vim|nvim|vi|nano|code|cat|bat|less|more)
-      if (( $+commands[bat] )); then
+      if command -v bat >/dev/null 2>&1; then
         fzf "$@" --preview 'bat --style=numbers --color=always --line-range :500 {}' \
           --preview-window 'right:60%:border-left'
       else
@@ -62,7 +62,7 @@ _fzf_comprun() {
         --preview-window="bottom:20%:wrap"
       ;;
     git)
-      if (( $+commands[delta] )); then
+      if command -v delta >/dev/null 2>&1; then
         fzf "$@" --preview 'git diff --color=always {} | delta' --preview-window 'right:60%'
       else
         fzf "$@" --preview 'git diff --color=always {}' --preview-window 'right:60%'
@@ -74,12 +74,12 @@ _fzf_comprun() {
         --preview-window="right:60%:wrap"
       ;;
     *)
-      if (( $+commands[bat] )); then
+      if command -v bat >/dev/null 2>&1; then
         local preview_cmd="if [ -f {} ]; then bat --style=numbers --color=always --line-range :500 {};"
       else
         local preview_cmd="if [ -f {} ]; then cat {};"
       fi
-      if (( $+commands[eza] )); then
+      if command -v eza >/dev/null 2>&1; then
         preview_cmd+=" elif [ -d {} ]; then eza --tree --level=2 --color=always {} | head -200;"
       else
         preview_cmd+=" elif [ -d {} ]; then ls -1 --color=always {};"
@@ -111,9 +111,11 @@ cd_fzf() {
     echo "fzf not installed"; return 1
   fi
 
-  if (( $+commands[eza] )); then
+  if command -v lsd >/dev/null 2>&1; then
+    preview_cmd='lsd --tree --depth 2 --color always --group-directories-first {}'
+  elif command -v eza >/dev/null 2>&1; then
     preview_cmd='eza --tree --level=2 --color=always --group-directories-first --git-ignore {}'
-  elif (( $+commands[tree] )); then
+  elif command -v tree >/dev/null 2>&1; then
     preview_cmd='tree -C -L 2 {} | head -200'
   else
     preview_cmd='ls -la --color=always {}'
@@ -130,8 +132,16 @@ cd_fzf() {
     esac
   done
 
-  if (( $+commands[fd] )); then
-    cmd="fd -t d --exclude .git --exclude node_modules"
+  local _ignore=(
+    .git node_modules vendor
+    __pycache__ .venv venv .mypy_cache
+    target dist build
+    .cache .yarn
+  )
+
+  if command -v fd >/dev/null 2>&1; then
+    cmd="fd -t d"
+    for _dir in "${_ignore[@]}"; do cmd="$cmd --exclude $_dir"; done
     [[ "$hidden" == true ]] && cmd="$cmd --hidden"
     [[ "$depth" -ne 0 ]] 2>/dev/null && cmd="$cmd -d $depth"
     [[ "$no_ignore" == true ]] && cmd="$cmd --no-ignore"
@@ -140,8 +150,10 @@ cd_fzf() {
     local find_args=()
     [[ "$depth" -ne 0 ]] 2>/dev/null && find_args+=(-maxdepth "$depth")
     [[ "$hidden" != true ]] && find_args+=('!' -path '*/.*')
+    for _dir in "${_ignore[@]}"; do find_args+=('!' -path "*/$_dir/*" '!' -name "$_dir"); done
     dir_list=$(find . "${find_args[@]}" -type d 2>/dev/null)
   fi
+  unset _dir _ignore
 
   [ -z "$dir_list" ] && { echo "No directories found."; return 1; }
 
@@ -165,7 +177,7 @@ alias_fzf() {
     echo "fzf not installed"; return 1
   fi
 
-  if (( $+commands[bat] )); then
+  if command -v bat >/dev/null 2>&1; then
     preview_cmd='echo {} | bat -l zsh --style=plain --color=always'
   else
     preview_cmd='echo {}'
@@ -209,7 +221,7 @@ history_fzf() {
     echo "HISTFILE is not set or not found."; return 1
   fi
 
-  if (( $+commands[bat] )); then
+  if command -v bat >/dev/null 2>&1; then
     preview_cmd='echo {} | bat -l zsh --style=plain --color=always'
   else
     preview_cmd='echo {}'
@@ -398,6 +410,101 @@ kill_fzf() {
   kill -"$signal" $pids
 }
 alias kf="kill_fzf"
+
+# Fuzzy remove
+rm_fzf() {
+  local recursive=false force=false include_dirs=false
+  local cmd entries dir_preview file_preview preview_cmd selected entry
+
+  show_help() {
+    echo "Usage: rm_fzf [OPTIONS]"
+    echo
+    echo "OPTIONS:"
+    echo "  -d, --dirs       Include directories"
+    echo "  -r, --recursive  Remove directories recursively (implies -d)"
+    echo "  -f, --force      Skip confirmation prompt"
+    echo "  -h, --help       Show help"
+  }
+
+  if ! command -v fzf >/dev/null 2>&1; then
+    echo "fzf not installed"; return 1
+  fi
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -d|--dirs)      include_dirs=true; shift ;;
+      -r|--recursive) recursive=true; include_dirs=true; shift ;;
+      -f|--force)     force=true; shift ;;
+      -h|--help)      show_help; return 0 ;;
+      *) break ;;
+    esac
+  done
+
+  if command -v fd >/dev/null 2>&1; then
+    cmd="fd --color always --exclude .git"
+    [[ "$include_dirs" == true ]] && cmd="$cmd --type f --type d" || cmd="$cmd --type f"
+    entries=$(eval "$cmd" 2>/dev/null)
+  else
+    if [[ "$include_dirs" == true ]]; then
+      entries=$(find . -mindepth 1 ! -path './.git/*' 2>/dev/null)
+    else
+      entries=$(find . -type f ! -path './.git/*' 2>/dev/null)
+    fi
+  fi
+
+  [ -z "$entries" ] && { echo "No files found."; return 1; }
+
+  if command -v lsd >/dev/null 2>&1; then
+    dir_preview='lsd --tree --depth 2 --color always --group-dirs first {}'
+  elif command -v eza >/dev/null 2>&1; then
+    dir_preview='eza --tree --level=2 --color=always --group-directories-first {}'
+  elif command -v tree >/dev/null 2>&1; then
+    dir_preview='tree -C -L 2 {}'
+  else
+    dir_preview='ls -la --color=always {}'
+  fi
+
+  if command -v bat >/dev/null 2>&1; then
+    file_preview='bat --style=numbers --color=always --line-range :200 {}'
+  else
+    file_preview='cat {}'
+  fi
+
+  preview_cmd="if [ -d {} ]; then $dir_preview; else $file_preview; fi"
+
+  selected=$(
+    printf "%s\n" "$entries" \
+      | fzf --multi \
+            --prompt='Remove: ' \
+            --header='TAB to select multiple' \
+            --preview="$preview_cmd" \
+            --preview-window='right:55%:border-left'
+  )
+
+  [ -z "$selected" ] && return 0
+
+  echo "Selected for removal:"
+  printf "  %s\n" "${(f)selected}"
+  echo
+
+  if [[ "$force" == false ]]; then
+    echo -n "Confirm removal? [y/N] "
+    read -r confirmation
+    case "$confirmation" in
+      [yY][eE][sS]|[yY]) ;;
+      *) echo "Aborted."; return 0 ;;
+    esac
+  fi
+
+  local rm_args=(-i)
+  [[ "$recursive" == true ]] && rm_args=(-r)
+  [[ "$force" == true ]] && rm_args+=(-f)
+
+  while IFS= read -r entry; do
+    rm "${rm_args[@]}" -- "$entry"
+  done <<< "$selected"
+}
+alias rmf="rm_fzf"
 
 # ── Shell integration ─────────────────────────────────────────────────────────
 
