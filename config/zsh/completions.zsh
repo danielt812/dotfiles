@@ -1,4 +1,3 @@
-#!/usr/bin/zsh
 # Should be called before compinit
 zmodload zsh/complist
 

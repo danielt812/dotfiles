@@ -1,35 +1,42 @@
-ZDOTDIR="$HOME/.config/zsh"
-ZPLUGINDIR="$ZDOTDIR/plugins"
-SDOTDIR="$HOME/.config/sh"
+# shellcheck shell=bash disable=SC1090
+# Profiling: run with ZPROF=1 zsh to enable
+# ZPROF=1
+[[ "$ZPROF" == 1 ]] && zmodload zsh/zprof
 
-if [[ ! -d "$ZPLUGINDIR/zsh_unplugged" ]]; then
-  git clone --quiet https://github.com/mattmc3/zsh_unplugged "$ZPLUGINDIR/zsh_unplugged"
-fi
+# XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 
-source "$ZPLUGINDIR/zsh_unplugged/zsh_unplugged.zsh"
+plug() {
+  local repo="$1" name dir init
+  name="${repo##*/}"
+  dir="$XDG_CONFIG_HOME/zsh/plugins/$name"
+  [[ -d "$dir" ]] || git clone --quiet --depth=1 "https://github.com/$repo" "$dir"
+  for init in "$dir/$name.plugin.zsh" "$dir/$name.zsh" "$dir/init.zsh"; do
+    [[ -f "$init" ]] && { source "$init"; return; }
+  done
+}
 
-REPOS=(
-  zsh-users/zsh-completions
-  zsh-users/zsh-autosuggestions
-  zsh-users/zsh-history-substring-search
-  zsh-users/zsh-syntax-highlighting
-)
+plug zsh-users/zsh-completions
+plug zsh-users/zsh-autosuggestions
+plug zsh-users/zsh-history-substring-search
+plug zsh-users/zsh-syntax-highlighting
 
-plugin-load "${REPOS[@]}"
-
-# Zsh-only
-bindkey "^[[3~" delete-char
-source "$ZDOTDIR/completions.zsh"
-source "$ZDOTDIR/history.zsh"
-
-setopt AUTO_CD GLOB_DOTS NO_BEEP
-
-# Shared
-source "$SDOTDIR/exports.sh"
-source "$SDOTDIR/aliases.sh"
-source "$SDOTDIR/functions.sh"
+source "$XDG_CONFIG_HOME/zsh/options.zsh"
+source "$XDG_CONFIG_HOME/zsh/history.zsh"
+source "$XDG_CONFIG_HOME/zsh/completions.zsh"
+source "$XDG_CONFIG_HOME/zsh/keybindings.zsh"
+source "$XDG_CONFIG_HOME/zsh/exports.zsh"
+source "$XDG_CONFIG_HOME/zsh/colors.zsh"
+source "$XDG_CONFIG_HOME/zsh/aliases.zsh"
+source "$XDG_CONFIG_HOME/zsh/functions.zsh"
+source "$XDG_CONFIG_HOME/zsh/fzf.zsh"
 
 # Optional init hooks
 command -v fnm >/dev/null 2>&1 && eval "$(fnm env --use-on-cd --shell zsh)"
 command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
 command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
+
+[[ "$ZPROF" == 1 ]] && zprof

@@ -1,4 +1,3 @@
-#!/usr/bin/zsh
 
 # man zshoptions /History
 

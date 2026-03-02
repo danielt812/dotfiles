@@ -1,7 +1,3 @@
-#!/bin/bash
-
-# POSIX sh-compatible env file (safe to source from bash/zsh)
-
 # Env
 export COLORTERM="truecolor"
 export EDITOR="nvim"
@@ -56,43 +52,5 @@ fi
 
 unset _fzf_copy_cmd
 
-# XDG
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
-
 export STARSHIP_CONFIG="$CONFIG/starship/starship.toml"
 export STARSHIP_CACHE="$CONFIG/starship/cache"
-
-# Directory Colors Linux (LS_COLORS)
-LS_COLORS=""
-LS_COLORS="${LS_COLORS}di=1;34:"
-LS_COLORS="${LS_COLORS}ln=1;35:"
-LS_COLORS="${LS_COLORS}so=1;33:"
-LS_COLORS="${LS_COLORS}pi=1;33:"
-LS_COLORS="${LS_COLORS}ex=1;36:"
-LS_COLORS="${LS_COLORS}bd=1;33:"
-LS_COLORS="${LS_COLORS}cd=1;33:"
-LS_COLORS="${LS_COLORS}su=1;33:"
-LS_COLORS="${LS_COLORS}sg=1;33:"
-LS_COLORS="${LS_COLORS}tw=1;33:"
-LS_COLORS="${LS_COLORS}ow=1;33:"
-export LS_COLORS
-
-# Directory Colors macOS (LSCOLORS / CLICOLOR)
-LSCOLORS=""
-LSCOLORS="${LSCOLORS}Ex"
-LSCOLORS="${LSCOLORS}Fx"
-LSCOLORS="${LSCOLORS}Bx"
-LSCOLORS="${LSCOLORS}Dx"
-LSCOLORS="${LSCOLORS}Cx"
-LSCOLORS="${LSCOLORS}eg"
-LSCOLORS="${LSCOLORS}ed"
-LSCOLORS="${LSCOLORS}ab"
-LSCOLORS="${LSCOLORS}ag"
-LSCOLORS="${LSCOLORS}ac"
-LSCOLORS="${LSCOLORS}ad"
-export LSCOLORS
-
-export CLICOLOR=1
