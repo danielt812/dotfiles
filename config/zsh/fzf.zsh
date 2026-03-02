@@ -92,6 +92,29 @@ _fzf_comprun() {
 
 # Interactive helpers ----------------------------------------------------------
 
+# Add a command to shell history (bash/zsh)
+_add_history() {
+  # Usage: _add_history "some command"
+  if [ -n "${ZSH_VERSION-}" ]; then
+    print -s -- "$1"
+  elif [ -n "${BASH_VERSION-}" ]; then
+    history -s -- "$1"
+  fi
+}
+
+# Reverse a file to stdout (macOS/Linux)
+_reverse_file() {
+  # Usage: _reverse_file "$file"
+  if command -v tac >/dev/null 2>&1; then
+    tac -- "$1"
+  elif tail -r "$1" >/dev/null 2>&1; then
+    tail -r -- "$1"
+  else
+    # Fallback: awk reverse (works but slower)
+    awk '{a[NR]=$0} END {for(i=NR;i>=1;i--) print a[i]}' -- "$1"
+  fi
+}
+
 # Fuzzy cd
 cd_fzf() {
   local depth=0 hidden=false no_ignore=false
@@ -196,7 +219,7 @@ alias_fzf() {
   case "$flag" in
     -e|--execute)
       eval "$selected_alias"
-      add_history "$selected_alias"
+      _add_history "$selected_alias"
       ;;
     *)
       if ! printf "%s" "$selected_alias" | copy; then
@@ -237,7 +260,7 @@ history_fzf() {
   done
 
   selected_command=$(
-    reverse_file "$HISTFILE" \
+    _reverse_file "$HISTFILE" \
       | fzf --prompt='History: ' \
             --preview="$preview_cmd" \
             --preview-window='bottom:3:wrap' \
@@ -529,3 +552,6 @@ if command -v fzf >/dev/null 2>&1; then
     unset _fzf_dir
   fi
 fi
+
+unset _add_history
+unset _reverse_file

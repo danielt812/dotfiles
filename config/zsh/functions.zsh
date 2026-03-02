@@ -13,19 +13,6 @@ copy() {
   fi
 }
 
-# Reverse a file to stdout (macOS/Linux)
-reverse_file() {
-  # Usage: reverse_file "$file"
-  if command -v tac >/dev/null 2>&1; then
-    tac -- "$1"
-  elif tail -r "$1" >/dev/null 2>&1; then
-    tail -r -- "$1"
-  else
-    # Fallback: awk reverse (works but slower)
-    awk '{a[NR]=$0} END {for(i=NR;i>=1;i--) print a[i]}' -- "$1"
-  fi
-}
-
 # Markdown Helper --------------------------------------------------------------
 md() {
   arg=${1-}
@@ -206,7 +193,7 @@ lower() {
   lowercase_arg=$(printf "%s" "$arg" | tr '[:upper:]' '[:lower:]')
   printf "%s" "$lowercase_arg"
 
-  if printf "%s" "$lowercase_arg" | copy_to_clipboard; then
+  if printf "%s" "$lowercase_arg" | copy; then
     echo
     echo "Copied to clipboard"
   else
@@ -224,7 +211,7 @@ upper() {
   uppercase_arg=$(printf "%s" "$arg" | tr '[:lower:]' '[:upper:]')
   printf "%s" "$uppercase_arg"
 
-  if printf "%s" "$uppercase_arg" | copy_to_clipboard; then
+  if printf "%s" "$uppercase_arg" | copy; then
     echo
     echo "Copied to clipboard"
   else
