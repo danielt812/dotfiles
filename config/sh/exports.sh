@@ -60,6 +60,7 @@ unset _fzf_copy_cmd
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 
 export STARSHIP_CONFIG="$CONFIG/starship/starship.toml"
 export STARSHIP_CACHE="$CONFIG/starship/cache"

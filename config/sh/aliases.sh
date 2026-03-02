@@ -11,15 +11,15 @@ alias c='clear'
 
 # Unix -------------------------------------------------------------------------
 alias cp='cp -i'
+alias ln='ln -i'
 alias mv='mv -i'
 alias rm='rm -i'
+
 alias mkdir='mkdir -pv'
+
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-
-# Show PATH one entry per line (bash/zsh)
-alias path='printf "%s\n" "${PATH//:/\n}"'
 
 # ls / lsd / eza ---------------------------------------------------------------
 if command -v lsd >/dev/null 2>&1; then
