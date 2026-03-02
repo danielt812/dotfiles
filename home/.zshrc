@@ -1,7 +1,10 @@
-# shellcheck shell=bash disable=SC1090
 # Profiling: run with ZPROF=1 zsh to enable
 # ZPROF=1
-[[ "$ZPROF" == 1 ]] && zmodload zsh/zprof
+if [[ "$ZPROF" == 1 ]]; then
+  zmodload zsh/zprof
+  zmodload zsh/datetime
+  _zprof_start=$EPOCHREALTIME
+fi
 
 # XDG
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -33,10 +36,15 @@ source "$XDG_CONFIG_HOME/zsh/colors.zsh"
 source "$XDG_CONFIG_HOME/zsh/aliases.zsh"
 source "$XDG_CONFIG_HOME/zsh/functions.zsh"
 source "$XDG_CONFIG_HOME/zsh/fzf.zsh"
+source "$XDG_CONFIG_HOME/zsh/profile.zsh"
 
 # Optional init hooks
 command -v fnm >/dev/null 2>&1 && eval "$(fnm env --use-on-cd --shell zsh)"
 command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
 command -v starship >/dev/null 2>&1 && eval "$(starship init zsh)"
 
-[[ "$ZPROF" == 1 ]] && zprof
+if [[ "$ZPROF" == 1 ]]; then
+  _zprof_report
+  unset ZPROF
+  unset _zprof_report
+fi
