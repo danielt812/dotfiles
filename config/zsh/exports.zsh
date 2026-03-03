@@ -6,7 +6,13 @@ export CONFIG="$HOME/.config"
 export DOTFILES="$HOME/.dotfiles"
 export PAGER="less -RF"
 export BAT_PAGER="less -RF"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+if command -v nvim >/dev/null 2>&1; then
+  export MANPAGER="nvim +Man!"
+elif command -v bat >/dev/null 2>&1; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+else
+  export MANPAGER="less -RF"
+fi
 export NVM_DIR="$HOME/.nvm"
 
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_CONFIG_HOME/tmux/plugins"
