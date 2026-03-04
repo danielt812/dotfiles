@@ -348,7 +348,7 @@ git_fzf() {
 
   if [[ $flag == "-r" ]]; then
     selected_branch=$(
-      git branch -r \
+      git branch -r --format='%(refname:short)' \
         | fzf --prompt='Remote branch: ' \
               --preview="$branch_preview" \
               --preview-window='right:60%:border-left' \
