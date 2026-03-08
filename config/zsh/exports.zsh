@@ -44,21 +44,4 @@ export FZF_DEFAULT_OPTS="--no-height --color=bg+:#1c1d1e,fg+:#ff005f,gutter:-1,p
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS=" --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
-# pbcopy is macOS; use wl-copy (Wayland), xclip (X11), or nothing
-if command -v pbcopy >/dev/null 2>&1; then
-  _fzf_copy_cmd='pbcopy'
-elif command -v wl-copy >/dev/null 2>&1; then
-  _fzf_copy_cmd='wl-copy'
-elif command -v xclip >/dev/null 2>&1; then
-  _fzf_copy_cmd='xclip -selection clipboard'
-else
-  _fzf_copy_cmd=''
-fi
-
-if [ -n "$_fzf_copy_cmd" ]; then
-  export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind \"ctrl-y:execute-silent(echo -n {2..} | $_fzf_copy_cmd)+abort\" --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
-else
-  export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"
-fi
-
-unset _fzf_copy_cmd
+export FZF_CTRL_R_OPTS=" --preview 'echo {}' --preview-window up:3:hidden:wrap --bind 'ctrl-/:toggle-preview' --bind 'ctrl-y:execute-silent(echo -n {2..} | copy)+abort' --color header:italic --header 'Press CTRL-Y to copy command into clipboard'"

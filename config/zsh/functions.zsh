@@ -1,4 +1,4 @@
-# Copy stdin to clipboard (macOS/Linux)
+# Copy stdin to clipboard ------------------------------------------------------
 copy() {
   if command -v pbcopy >/dev/null 2>&1; then
     pbcopy
