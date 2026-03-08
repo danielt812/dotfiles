@@ -2,8 +2,6 @@
 export COLORTERM="truecolor"
 export EDITOR="nvim"
 export LOCAL="/usr/local"
-export CONFIG="$HOME/.config"
-export DOTFILES="$HOME/.dotfiles"
 export PAGER="less -RF"
 export BAT_PAGER="less -RF"
 if command -v nvim >/dev/null 2>&1; then
@@ -15,6 +13,7 @@ else
 fi
 export NVM_DIR="$HOME/.nvm"
 
+# Tpm
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_CONFIG_HOME/tmux/plugins"
 
 if command -v xdg-open >/dev/null 2>&1; then
@@ -32,7 +31,11 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export DOCKER_DEFAULT_PLATFORM="linux/amd64"
 
 # Ripgrep
-export RIPGREP_CONFIG_PATH="$CONFIG/ripgrep/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/.ripgreprc"
+
+# Starship
+export STARSHIP_CONFIG="$XDG_CONFIG_HOME/starship/starship.toml"
+export STARSHIP_CACHE="$XDG_CACHE_HOME/starship/cache"
 
 # Fzf
 export FZF_DEFAULT_COMMAND="fd --type f --color=never --hidden --exclude .git"
@@ -41,9 +44,11 @@ export FZF_DEFAULT_OPTS="--no-height --color=bg+:#1c1d1e,fg+:#ff005f,gutter:-1,p
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS=" --preview 'bat -n --color=always {}' --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
-# pbcopy is macOS; use xclip if present; otherwise drop the binding
+# pbcopy is macOS; use wl-copy (Wayland), xclip (X11), or nothing
 if command -v pbcopy >/dev/null 2>&1; then
   _fzf_copy_cmd='pbcopy'
+elif command -v wl-copy >/dev/null 2>&1; then
+  _fzf_copy_cmd='wl-copy'
 elif command -v xclip >/dev/null 2>&1; then
   _fzf_copy_cmd='xclip -selection clipboard'
 else
@@ -57,6 +62,3 @@ else
 fi
 
 unset _fzf_copy_cmd
-
-export STARSHIP_CONFIG="$CONFIG/starship/starship.toml"
-export STARSHIP_CACHE="$CONFIG/starship/cache"
