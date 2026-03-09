@@ -34,3 +34,6 @@ font-size = 20
 
 # Cosmic-DE
 window-decoration = server
+
+# Keybindings
+keybind = super+t=unbind
