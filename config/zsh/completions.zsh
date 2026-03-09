@@ -2,7 +2,12 @@
 zmodload zsh/complist
 
 autoload -Uz compinit
-compinit -d ~/.zcompdump
+# Only regenerate zcompdump once per day
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit -d ~/.zcompdump
+else
+  compinit -C -d ~/.zcompdump
+fi
 _comp_options+=(globdots) # With hidden files
 
 # setopt GLOB_COMPLETE      # Show autocompletion menu with globs
