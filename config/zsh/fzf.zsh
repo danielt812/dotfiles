@@ -45,7 +45,7 @@ _fzf_comprun() {
     vim|nvim|vi|nano|code|cat|bat|less|more)
       if command -v bat >/dev/null 2>&1; then
         fzf "$@" --preview 'bat --style=numbers --color=always --line-range :500 {}' \
-          --preview-window 'right:60%:border-left'
+          --preview-window 'top:60%:border-bottom'
       else
         fzf "$@" --preview 'cat {}'
       fi
@@ -79,7 +79,11 @@ _fzf_comprun() {
       else
         local preview_cmd="if [ -f {} ]; then cat {};"
       fi
-      if command -v eza >/dev/null 2>&1; then
+      if command -v tree >/dev/null 2>&1; then
+        preview_cmd='tree --dirsfirst --gitignore -C -L 2 {}'
+      elif command -v lsd >/dev/null 2>&1; then
+        preview_cmd+=" elif [ -d {} ]; then lsd --tree --depth 2 --color always {} | head -200;"
+      elif command -v eza >/dev/null 2>&1; then
         preview_cmd+=" elif [ -d {} ]; then eza --tree --level=2 --color=always {} | head -200;"
       else
         preview_cmd+=" elif [ -d {} ]; then ls -1 --color=always {};"
@@ -134,12 +138,12 @@ cd_fzf() {
     echo "fzf not installed"; return 1
   fi
 
-  if command -v lsd >/dev/null 2>&1; then
+  if command -v tree >/dev/null 2>&1; then
+    preview_cmd='tree --dirsfirst --gitignore -C -L 2 {}'
+  elif command -v lsd >/dev/null 2>&1; then
     preview_cmd='lsd --tree --depth 2 --color always --group-directories-first {}'
   elif command -v eza >/dev/null 2>&1; then
     preview_cmd='eza --tree --level=2 --color=always --group-directories-first --git-ignore {}'
-  elif command -v tree >/dev/null 2>&1; then
-    preview_cmd='tree -C -L 2 {} | head -200'
   else
     preview_cmd='ls -la --color=always {}'
   fi
@@ -184,7 +188,7 @@ cd_fzf() {
     printf "%s\n" "$dir_list" \
       | fzf --prompt='cd: ' \
             --preview="$preview_cmd" \
-            --preview-window='right:50%:border-left' \
+            --preview-window='top:80%:border-bottom' \
       | tr -d '\n'
   )
   [ -z "$selected_dir" ] && return 0
@@ -278,7 +282,7 @@ history_fzf() {
 }
 alias histf="history_fzf"
 
-# Fuzzy git branch picker
+# Fuzzy git picker
 git_fzf() {
   local action="checkout" flag="-p" selected_branch base_branch current_branch
   current_branch=$(git rev-parse --abbrev-ref HEAD)
@@ -294,6 +298,8 @@ git_fzf() {
     echo "  -p, --pull          Pull after checkout"
     echo "  -s, --stash         Stash before switching"
     echo "  -n, --new-branch    Create and checkout a new branch"
+    echo "  -D, --diff          Diff selected branch against current"
+    echo "  -S, --show          Show latest commit on selected branch"
     echo "  -l, --list          List branches"
     echo "  -h, --help          Show this help"
   }
@@ -302,12 +308,14 @@ git_fzf() {
     case $1 in
       -c|--checkout)   action="checkout";   shift ;;
       -d|--delete)     action="delete";     shift ;;
+      -D|--diff)       action="diff";       shift ;;
       -l|--list)       action="list";       shift ;;
       -m|--merge)      action="merge";      shift ;;
       -n|--new-branch) action="new-branch"; shift ;;
       -p|--pull)       action="pull";       shift ;;
       -r|--remote)     flag="-r";           shift ;;
       -s|--stash)      action="stash";      shift ;;
+      -S|--show)       action="show";       shift ;;
       -h|--help)       show_help; return 0 ;;
       *) break ;;
     esac
@@ -317,7 +325,7 @@ git_fzf() {
     echo -n "Are you sure you want to delete '$1'? [y/N] "
     read -r confirmation
     case "$confirmation" in
-      [yY][eE][sS]|[yY]) return 0 ;;
+      [yY]) return 0 ;;
       *) echo "Aborted."; return 1 ;;
     esac
   }
@@ -344,41 +352,81 @@ git_fzf() {
     fi
   }
 
-  local branch_preview='git log --oneline --graph --color=always --decorate -15 {}'
+  local branch_preview='git log --oneline --graph --color=always --decorate {}'
+  local fzf_multi=()
+  [[ "$action" == "delete" ]] && fzf_multi=(--multi --header='TAB to select multiple')
 
   if [[ $flag == "-r" ]]; then
     selected_branch=$(
       git branch -r --format='%(refname:short)' \
-        | fzf --prompt='Remote branch: ' \
+        | fzf --prompt='remote branch: ' \
+              "${fzf_multi[@]}" \
               --preview="$branch_preview" \
-              --preview-window='right:60%:border-left' \
-        | tr -d '[:blank:]'
-    )
-    base_branch=${selected_branch#origin/}
-    [[ -z "$selected_branch" ]] && return 0
-    case "$action" in
-      delete)     confirm_deletion "$base_branch" && git push origin --delete "$base_branch" ;;
-      list)       echo "$selected_branch" ;;
-      merge)      git merge "$selected_branch" ;;
-      pull)       git checkout "$base_branch" && git pull ;;
-      new-branch) read -rp "Enter new branch name: " new_branch_name; git checkout -b "$new_branch_name" ;;
-      *)          git checkout -b "$base_branch" "$selected_branch" ;;
-    esac
-  else
-    selected_branch=$(
-      git branch --format='%(refname:short)' \
-        | fzf --prompt='Branch: ' \
-              --preview="$branch_preview" \
-              --preview-window='right:60%:border-left' \
+              --preview-window='top:80%:border-bottom' \
         | tr -d '[:blank:]'
     )
     [[ -z "$selected_branch" ]] && return 0
     case "$action" in
       delete)
-        check_protected_branch_for_delete "$selected_branch" || return 1
-        switch_to_safe_branch "$selected_branch"
-        confirm_deletion "$selected_branch" && git branch -D "$selected_branch"
+        echo "Selected for deletion:"
+        while IFS= read -r b; do
+          printf "  %s\n" "${b#origin/}"
+        done <<< "$selected_branch"
+        echo
+        echo -n "Are you sure? [y/N] "
+        read -r confirmation
+        case "$confirmation" in
+          [yY])
+            while IFS= read -r b; do
+              git push origin --delete "${b#origin/}"
+            done <<< "$selected_branch"
+            ;;
+          *) echo "Aborted."; return 0 ;;
+        esac
         ;;
+      diff)       git diff "$current_branch"..."$selected_branch" ;;
+      show)       git show "$selected_branch" ;;
+      list)       echo "$selected_branch" ;;
+      merge)      git merge "$selected_branch" ;;
+      pull)       base_branch=${selected_branch#origin/}; git checkout "$base_branch" && git pull ;;
+      new-branch) read -rp "enter new branch name: " new_branch_name; git checkout -b "$new_branch_name" ;;
+      *)          base_branch=${selected_branch#origin/}; git checkout -b "$base_branch" "$selected_branch" ;;
+    esac
+  else
+    selected_branch=$(
+      git branch --format='%(refname:short)' \
+        | fzf --prompt='branch: ' \
+              "${fzf_multi[@]}" \
+              --preview="$branch_preview" \
+              --preview-window='top:80%:border-bottom' \
+        | tr -d '[:blank:]'
+    )
+    [[ -z "$selected_branch" ]] && return 0
+    case "$action" in
+      delete)
+        local branches_to_delete=()
+        while IFS= read -r b; do
+          check_protected_branch_for_delete "$b" || continue
+          branches_to_delete+=("$b")
+        done <<< "$selected_branch"
+        [[ ${#branches_to_delete[@]} -eq 0 ]] && return 0
+        echo "Selected for deletion:"
+        printf "  %s\n" "${branches_to_delete[@]}"
+        echo
+        echo -n "Are you sure? [y/N] "
+        read -r confirmation
+        case "$confirmation" in
+          [yY])
+            for b in "${branches_to_delete[@]}"; do
+              switch_to_safe_branch "$b"
+              git branch -D "$b"
+            done
+            ;;
+          *) echo "Aborted."; return 0 ;;
+        esac
+        ;;
+      diff)       git diff "$current_branch"..."$selected_branch" ;;
+      show)       git show "$selected_branch" ;;
       merge)      git merge "$selected_branch" ;;
       list)       echo "$selected_branch" ;;
       pull)       git checkout "$selected_branch" && git pull ;;
@@ -477,12 +525,12 @@ rm_fzf() {
 
   [ -z "$entries" ] && { echo "No files found."; return 1; }
 
-  if command -v lsd >/dev/null 2>&1; then
+  if command -v tree >/dev/null 2>&1; then
+    preview_cmd='tree --dirsfirst --gitignore -C -L 2 {}'
+  elif command -v lsd >/dev/null 2>&1; then
     dir_preview='lsd --tree --depth 2 --color always --group-dirs first {}'
   elif command -v eza >/dev/null 2>&1; then
     dir_preview='eza --tree --level=2 --color=always --group-directories-first {}'
-  elif command -v tree >/dev/null 2>&1; then
-    dir_preview='tree -C -L 2 {}'
   else
     dir_preview='ls -la --color=always {}'
   fi
@@ -501,7 +549,7 @@ rm_fzf() {
             --prompt='Remove: ' \
             --header='TAB to select multiple' \
             --preview="$preview_cmd" \
-            --preview-window='right:55%:border-left'
+            --preview-window='top:80%:border-bottom'
   )
 
   [ -z "$selected" ] && return 0
@@ -514,7 +562,7 @@ rm_fzf() {
     echo -n "Confirm removal? [y/N] "
     read -r confirmation
     case "$confirmation" in
-      [yY][eE][sS]|[yY]) ;;
+      [yY]) ;;
       *) echo "Aborted."; return 0 ;;
     esac
   fi
