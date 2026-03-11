@@ -9,10 +9,10 @@ alias .....='cd ../../../..'
 alias c='clear'
 
 # Unix -------------------------------------------------------------------------
-alias cp='cp -i'
-alias ln='ln -i'
-alias mv='mv -i'
-alias rm='rm -i'
+alias cp='cp -iv'
+alias ln='ln -iv'
+alias mv='mv -iv'
+alias rm='rm -iv'
 
 alias mkdir='mkdir -pv'
 
@@ -104,6 +104,7 @@ fi
 # Shell reload -----------------------------------------------------------------
 if [ -n "${ZSH_VERSION-}" ]; then
   alias src='source "$HOME/.zshrc"'
+  alias zreset='rm -f ~/.zcompdump && echo "zcompdump cleared — restart shell to rebuild"'
 elif [ -n "${BASH_VERSION-}" ]; then
   alias src='source "$HOME/.bashrc"'
 fi
