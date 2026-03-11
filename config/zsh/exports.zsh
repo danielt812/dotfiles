@@ -1,7 +1,6 @@
 # Env
 export COLORTERM="truecolor"
 export EDITOR="nvim"
-export LOCAL="/usr/local"
 export PAGER="less -RF"
 export BAT_PAGER="less -RF"
 if command -v nvim >/dev/null 2>&1; then
@@ -23,8 +22,9 @@ elif command -v open >/dev/null 2>&1; then
 fi
 
 # Path (quote $PATH)
+export PATH="/usr/local/bin:$PATH"
+export PATH="/local/bin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
-export PATH="$LOCAL/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Docker
