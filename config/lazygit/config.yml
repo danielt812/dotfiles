@@ -5,9 +5,16 @@ gui:
   screenMode: "normal" # one of 'normal' | 'half' | 'full' default is 'normal'
   scrollHeight: 2 # how many lines you scroll by
   scrollPastBottom: true # enable scrolling past the bottom
+  scrollOffMargin: 2
+  scrollOffBehavior: "margin"
+  tabWidth: 4
   sidePanelWidth: 0.3333 # number from 0 to 1
   expandFocusedSidePanel: false
+  expandedSidePanelWeight: 2
   mainPanelSplitMode: "flexible" # one of 'horizontal' | 'flexible' | 'vertical'
+  enlargedSideViewLocation: "left"
+  wrapLinesInStagingView: true
+  useHunkModeInStagingView: true
   language: "auto" # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko' | 'ru'
   timeFormat: "02 Jan 06" # https://pkg.go.dev/time#Time.Format
   shortTimeFormat: "3:04PM"
@@ -24,42 +31,72 @@ gui:
       - blue
     selectedLineBgColor:
       - blue # set to `default` to have no background colour
+    inactiveViewSelectedLineBgColor:
+      - bold
     cherryPickedCommitBgColor:
       - cyan
     cherryPickedCommitFgColor:
       - blue
+    markedBaseCommitFgColor:
+      - blue
+    markedBaseCommitBgColor:
+      - yellow
     unstagedChangesColor:
       - red
     defaultFgColor:
       - default
   commitLength:
     show: true
+  spinner:
+    frames: ["|", "/", "-", "\\"]
+    rate: 50
   mouseEvents: true
+  skipAmendWarning: false
   skipDiscardChangeWarning: false
   skipStashWarning: false
+  skipNoStagedFilesWarning: false
+  skipRewordInEditorWarning: false # for skipping the confirmation before launching the reword editor
+  skipSwitchWorktreeOnCheckoutWarning: false
   showFileTree: true # for rendering changes files in a tree format
+  showRootItemInFileTree: true
+  showNumstatInFilesView: false
   showListFooter: true # for seeing the '5 of 20' message in list panels
   showRandomTip: true
   showBranchCommitHash: false # show commit hashes alongside branch names
+  showDivergenceFromBaseBranch: "none"
   showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
+  showPanelJumps: true
   showCommandLog: true
+  showIcons: true
+  showFileIcons: true
   nerdFontsVersion: "3" # nerd fonts version to use ("2" or "3"); empty means don't show nerd font icons
+  commitAuthorShortLength: 2
+  commitAuthorLongLength: 17
+  commitHashLength: 8
   commandLogSize: 8
   splitDiff: "auto" # one of 'auto' | 'always'
-  skipRewordInEditorWarning: false # for skipping the confirmation before launching the reword editor
   border: "single" # one of 'single' | 'double' | 'rounded' | 'hidden'
   animateExplosion: true # shows an explosion animation when nuking the working tree
+  portraitMode: "auto"
+  filterMode: "substring"
+  statusPanelView: "dashboard"
+  switchToFilesAfterStashPop: true
+  switchToFilesAfterStashApply: true
+  switchTabsWithPanelJumpKeys: false
 git:
   pagers:
     - pager: delta --paging=never --diff-so-fancy --line-numbers
       colorArg: always
   commit:
     signOff: false
+    autoWrapCommitMessage: true
+    autoWrapWidth: 72
   merging:
     # only applicable to unix users
     manualCommit: false
     # extra args passed to `git merge`, e.g. --no-ff
     args: ""
+    squashMergeMessage: "Squash merge {{selectedRef}} into {{currentBranch}}"
   log:
     # one of date-order, author-date-order, topo-order or default.
     # topo-order makes it easier to read the git log graph, but commits may not
@@ -76,24 +113,33 @@ git:
   mainBranches: [master, main]
   autoFetch: true
   autoRefresh: true
+  autoForwardBranches: "onlyMainBranches"
   fetchAll: true # Pass --all flag when running git fetch. Set to false to fetch only origin (or the current branch's upstream remote if there is one)
+  autoStageResolvedConflicts: true
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=local --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' {{branchName}} --"
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=local  --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d'
+  ignoreWhitespaceInDiffView: false
+  diffContextSize: 3 # how many lines of context are shown around a change in diffs
+  renameSimilarityThreshold: 50
   overrideGpg: false # prevents lazygit from spawning a separate process when using GPG
   disableForcePushing: false
   parseEmoji: false
-  diffContextSize: 3 # how many lines of context are shown around a change in diffs
-  allBranchesLogCmds:
-    - git log --graph --all --color=always --abbrev-commit --decorate --date=local  --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d'
   localBranchSortOrder: alphabetical
   remoteBranchSortOrder: alphabetical
+  truncateCopiedCommitHashesTo: 12
 os:
   copyToClipboardCmd: "" # See 'Custom Command for Copying to Clipboard' section
+  readFromClipboardCmd: ""
   editPreset: "" # see 'Configuring File Editing' section
   edit: ""
   editAtLine: ""
   editAtLineAndWait: ""
+  editInTerminal: true
+  openDirInEditor: ""
   open: ""
   openLink: ""
+  shellFunctionsFile: ""
 refresher:
   refreshInterval: 10 # File/submodule refresh interval in seconds. Auto-refresh can be disabled via option 'git.autoRefresh'.
   fetchInterval: 60 # Re-fetch interval in seconds. Auto-fetch can be disabled via option 'git.autoFetch'.
@@ -110,6 +156,7 @@ keybinding:
   universal:
     quit: "q"
     quit-alt1: "<c-c>" # alternative/alias of quit
+    suspendApp: "<c-z>"
     return: "<esc>" # return to previous menu, will quit if there's nowhere to return
     quitWithoutChangingDirectory: "Q"
     togglePanel: "<tab>" # goto the next panel
@@ -121,21 +168,34 @@ keybinding:
     nextPage: "." # go to previous page in list
     gotoTop: "<" # go to top of list
     gotoBottom: ">" # go to bottom of list
+    gotoTop-alt: "<home>"
+    gotoBottom-alt: "<end>"
     scrollLeft: "H" # scroll left within list view
     scrollRight: "L" # scroll right within list view
+    toggleRangeSelect: <disabled>
+    rangeSelectDown: "<s-down>"
+    rangeSelectUp: "<s-up>"
     prevBlock: "<left>" # goto the previous block / panel
     nextBlock: "<right>" # goto the next block / panel
     prevBlock-alt: "h" # goto the previous block / panel
     nextBlock-alt: "l" # goto the next block / panel
+    nextBlock-alt2: "<tab>"
+    prevBlock-alt2: "<backtab>"
     jumpToBlock: ["1", "2", "3", "4", "5"] # goto the Nth block / panel
+    focusMainView: "0"
     nextMatch: "n"
     prevMatch: "N"
+    startSearch: "/"
     optionMenu: <disabled> # show help menu
     optionMenu-alt1: "?" # show help menu
     select: "<space>"
     goInto: "<enter>"
     openRecentRepos: "<c-r>"
     confirm: "<enter>"
+    confirmMenu: "<enter>"
+    confirmSuggestion: "<enter>"
+    confirmInEditor: "<a-enter>"
+    confirmInEditor-alt: "<c-s>"
     remove: "d"
     new: "n"
     edit: "e"
@@ -156,6 +216,7 @@ keybinding:
     prevTab: "["
     nextScreenMode: "+"
     prevScreenMode: "_"
+    cyclePagers: "|"
     undo: "z"
     redo: "<c-z>"
     filteringMenu: "<c-s>"
@@ -167,15 +228,21 @@ keybinding:
     toggleWhitespaceInDiffView: "<c-w>"
     increaseContextInDiffView: "}"
     decreaseContextInDiffView: "{"
-    toggleRangeSelect: <disabled>
+    increaseRenameSimilarityThreshold: ")"
+    decreaseRenameSimilarityThreshold: "("
+    openDiffTool: "<c-t>"
   status:
     checkForUpdate: "u"
     recentRepos: "<enter>"
+    allBranchesLogGraph: "a"
+    allBranchesLogGraphReverse: "A"
   files:
     commitChanges: "c"
     commitChangesWithoutHook: "w" # commit changes without pre-commit hook
     amendLastCommit: "A"
     commitChangesWithEditor: "C"
+    findBaseCommitForFixup: "<c-f>"
+    confirmDiscard: "x"
     ignoreFile: "i"
     refreshFiles: "r"
     stashAllChanges: "s"
@@ -186,20 +253,28 @@ keybinding:
     toggleTreeView: "`"
     openMergeOptions: "M"
     openStatusFilter: "<c-b>"
+    copyFileInfoToClipboard: "y"
+    collapseAll: "-"
+    expandAll: "="
   branches:
     createPullRequest: "o"
     viewPullRequestOptions: "O"
+    copyPullRequestURL: "<c-y>"
     checkoutBranchByName: "c"
     forceCheckoutBranch: "F"
+    checkoutPreviousBranch: "-"
     rebaseBranch: "r"
     renameBranch: "R"
     mergeIntoCurrentBranch: "M"
+    moveCommitsToNewBranch: "N"
     viewGitFlowOptions: "i"
     fastForward: "f" # fast-forward this branch from its upstream
     createTag: "T"
     pushTag: "P"
     setUpstream: "u" # set as upstream of checked-out branch
     fetchRemote: "f"
+    addForkRemote: "F"
+    sortOrder: "s"
   commits:
     squashDown: "s"
     setFixupMessage: <disabled>
@@ -212,15 +287,23 @@ keybinding:
     moveDownCommit: "<c-j>" # move commit down one
     moveUpCommit: "<c-k>" # move commit up one
     amendToCommit: "A"
+    resetCommitAuthor: "a"
     pickCommit: "p" # pick commit (when mid-rebase)
     revertCommit: "t"
     cherryPickCopy: "c"
     pasteCommits: "v"
+    markCommitAsBaseForRebase: "B"
     tagCommit: "T"
     checkoutCommit: "<space>"
     resetCherryPick: "<c-R>"
+    copyCommitAttributeToClipboard: "y"
     openLogMenu: "<c-l>"
+    openInBrowser: "o"
     viewBisectOptions: "b"
+    startInteractiveRebase: "i"
+    selectCommitsOfCurrentBranch: "*"
+  worktrees:
+    viewWorktreeOptions: "w"
   stash:
     popStash: "g"
     renameStash: "r"
@@ -229,7 +312,14 @@ keybinding:
   main:
     toggleSelectHunk: "a"
     pickBothHunks: "b"
+    editSelectHunk: "E"
   submodules:
     init: "i"
     update: "u"
     bulkMenu: "b"
+  amendAttribute:
+    resetAuthor: "a"
+    setAuthor: "A"
+    addCoAuthor: "c"
+  commitMessage:
+    commitMenu: "<c-o>"
