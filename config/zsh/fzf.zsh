@@ -284,7 +284,7 @@ alias histf="history_fzf"
 
 # Fuzzy git picker
 git_fzf() {
-  local action="checkout" flag="-p" selected_branch base_branch current_branch
+  local action="checkout" flag="-p" graph=false selected_branch base_branch current_branch
   current_branch=$(git rev-parse --abbrev-ref HEAD)
 
   show_help() {
@@ -298,6 +298,7 @@ git_fzf() {
     echo "  -p, --pull          Pull after checkout"
     echo "  -s, --stash         Stash before switching"
     echo "  -n, --new-branch    Create and checkout a new branch"
+    echo "  -g, --graph         Show graph in branch preview"
     echo "  -D, --diff          Diff selected branch against current"
     echo "  -S, --show          Show latest commit on selected branch"
     echo "  -l, --list          List branches"
@@ -313,6 +314,7 @@ git_fzf() {
       -m|--merge)      action="merge";      shift ;;
       -n|--new-branch) action="new-branch"; shift ;;
       -p|--pull)       action="pull";       shift ;;
+      -g|--graph)      graph=true;          shift ;;
       -r|--remote)     flag="-r";           shift ;;
       -s|--stash)      action="stash";      shift ;;
       -S|--show)       action="show";       shift ;;
@@ -352,7 +354,9 @@ git_fzf() {
     fi
   }
 
-  local branch_preview='git log --oneline --graph --color=always --decorate {}'
+  local branch_preview="git log --color=always --date=format:'%Y-%m-%d %H:%M' --format='%C(green)%h%C(reset) - %C(blue)%ad %C(magenta)%an %C(reset)%s%C(yellow)%d'"
+  [[ "$graph" == true ]] && branch_preview+=" --graph"
+  branch_preview+=" {}"
   local fzf_multi=()
   [[ "$action" == "delete" ]] && fzf_multi=(--multi --header='TAB to select multiple')
 

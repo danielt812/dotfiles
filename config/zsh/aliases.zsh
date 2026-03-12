@@ -65,7 +65,7 @@ if command -v git >/dev/null 2>&1; then
   alias gst='git stash'
   alias gsta='git stash apply'
   alias gstp='git stash pop'
-  alias glog="git log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(reset)%s%C(magenta) <%an>%C(yellow)%d' --decorate --date=local --abbrev-commit --no-merges"
+  alias glog="git log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(magenta)%an %C(reset)%s%C(yellow)%d' --decorate --date=format:'%Y-%m-%d %H:%M' --abbrev-commit --no-merges"
 fi
 
 # Lazygit ----------------------------------------------------------------------
