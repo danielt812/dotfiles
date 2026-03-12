@@ -12,7 +12,6 @@ setopt NULL_GLOB            # Delete a glob pattern if no matches are found, ins
 
 # Interactive ------------------------------------------------------------------
 setopt INTERACTIVE_COMMENTS # Allow comments in interactive shells using #
-setopt CORRECT              # Offer to correct the spelling of mistyped commands
 setopt RC_QUOTES            # Allow '' inside single-quoted strings to represent a literal single quote
 
 # Jobs -------------------------------------------------------------------------
