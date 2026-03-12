@@ -67,7 +67,6 @@ gui:
   showBottomLine: true # for hiding the bottom information line (unless it has important information to tell you)
   showPanelJumps: true
   showCommandLog: true
-  showIcons: true
   showFileIcons: true
   nerdFontsVersion: "3" # nerd fonts version to use ("2" or "3"); empty means don't show nerd font icons
   commitAuthorShortLength: 2
