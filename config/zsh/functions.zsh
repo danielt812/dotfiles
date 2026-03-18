@@ -143,3 +143,43 @@ upper() {
   fi
 }
 
+# Convert timestamp to local time -----------------------------------------------
+ltime() {
+  ts=${1-}
+  if [ -z "$ts" ]; then
+    echo "Usage: tz <timestamp>"
+    echo "  Accepts: ISO 8601, epoch seconds/ms, or date strings"
+    echo "  Example: tz 2026-03-18T14:30:00Z"
+    echo "  Example: tz 1742310600"
+    return 1
+  fi
+
+  # epoch milliseconds → seconds
+  if printf "%s" "$ts" | grep -qE '^[0-9]{13}$'; then
+    ts=$(( ts / 1000 ))
+  fi
+
+  # epoch seconds
+  if printf "%s" "$ts" | grep -qE '^[0-9]{9,10}$'; then
+    if date -r "$ts" '+%A %d %b %Y  %I:%M:%S %p %Z' 2>/dev/null; then
+      return 0
+    elif date -d "@$ts" '+%A %d %b %Y  %I:%M:%S %p %Z' 2>/dev/null; then
+      return 0
+    fi
+    echo "Failed to convert epoch: $ts"
+    return 1
+  fi
+
+  # date/ISO string
+  if date -jf '%Y-%m-%dT%H:%M:%S%z' "$ts" '+%A %d %b %Y  %I:%M:%S %p %Z' 2>/dev/null; then
+    return 0
+  elif date -jf '%Y-%m-%dT%H:%M:%SZ' "$ts" '+%A %d %b %Y  %I:%M:%S %p %Z' 2>/dev/null; then
+    return 0
+  elif date -d "$ts" '+%A %d %b %Y  %I:%M:%S %p %Z' 2>/dev/null; then
+    return 0
+  fi
+
+  echo "Could not parse: $ts"
+  return 1
+}
+
