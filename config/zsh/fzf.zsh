@@ -362,11 +362,11 @@ git_fzf() {
 
   if [[ $flag == "-r" ]]; then
     selected_branch=$(
-      git branch -r --format='%(refname:short)' \
+      git branch -r --sort=-committerdate --format='%(refname:short)' \
         | fzf --prompt='remote branch: ' \
               "${fzf_multi[@]}" \
               --preview="$branch_preview" \
-              --preview-window='top:80%:border-bottom' \
+              --preview-window='top:70%:border-bottom' \
         | tr -d '[:blank:]'
     )
     [[ -z "$selected_branch" ]] && return 0
@@ -398,7 +398,7 @@ git_fzf() {
     esac
   else
     selected_branch=$(
-      git branch --format='%(refname:short)' \
+      git branch --sort=-committerdate --format='%(refname:short)' \
         | fzf --prompt='branch: ' \
               "${fzf_multi[@]}" \
               --preview="$branch_preview" \
