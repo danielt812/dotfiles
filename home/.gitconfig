@@ -7,7 +7,7 @@
 [core]
   editor = nvim
   mergeoptions = --no-edit
-  pager = delta --diff-so-fancy --side-by-side --line-numbers
+  pager = delta --diff-so-fancy --line-numbers
 [init]
   defaultBranch = main
 [delta]
@@ -15,7 +15,7 @@
 [interactive]
   diffFilter = delta --diff-so-fancy --color-only
 [merge]
-	conflictstyle = zdiff3
+	conflictstyle = diff3
 [push]
   default = upstream
   autoSetupRemote = true
