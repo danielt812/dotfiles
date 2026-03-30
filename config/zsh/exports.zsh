@@ -3,6 +3,11 @@ export COLORTERM="truecolor"
 export EDITOR="nvim"
 export PAGER="less -RF"
 export BAT_PAGER="less -RF"
+export BAT_THEME="Everforest Dark"
+if command -v bat >/dev/null 2>&1; then
+  export LESSOPEN="| bat --color=always --style=numbers %s"
+  export LESS="-R"
+fi
 if command -v nvim >/dev/null 2>&1; then
   export MANPAGER="nvim +Man!"
 elif command -v bat >/dev/null 2>&1; then
