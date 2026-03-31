@@ -14,6 +14,8 @@
   syntax-theme = Monokai Extended
 [interactive]
   diffFilter = delta --diff-so-fancy --color-only
+[diff]
+  tool = nvimdiff
 [merge]
 	conflictstyle = diff3
 [push]
