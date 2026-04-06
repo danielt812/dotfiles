@@ -114,6 +114,12 @@ if [ -n "${EDITOR-}" ] && [ -n "${DOTFILES-}" ]; then
   alias dotfiles='"$EDITOR" "$DOTFILES"'
 fi
 
+# System -----------------------------------------------------------------------
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias shutdown='sudo shutdown -h now'
+  alias reboot='sudo shutdown -r now'
+fi
+
 # Weather ----------------------------------------------------------------------
 if command -v curl >/dev/null 2>&1; then
   alias weather='curl wttr.in'
