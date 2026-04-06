@@ -609,7 +609,7 @@ disabled = false
 [nim]
 format = "[$symbol($version )]($style)"
 version_format = "v${raw}"
-symbol = "👑 "
+symbol = " "
 style = "yellow bold"
 disabled = false
 detect_extensions = [
@@ -622,7 +622,7 @@ detect_folders = []
 
 [nix_shell]
 format = '[$symbol$state( \($name\))]($style) '
-symbol = "❄️  "
+symbol = "  "
 style = "bold blue"
 impure_msg = "impure"
 pure_msg = "pure"
@@ -633,7 +633,7 @@ heuristic = false
 [nodejs]
 format = "[$symbol($version )]($style)"
 version_format = "v${raw}"
-symbol = " "
+symbol = "󰎙 "
 style = "fg:40"
 disabled = false
 not_capable_style = "bold red"
