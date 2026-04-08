@@ -1,5 +1,8 @@
 # Env
 export COLORTERM="truecolor"
+if [[ "$OSTYPE" == linux* ]]; then
+  export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-1}"
+fi
 export EDITOR="nvim"
 export PAGER="less -RF"
 export BAT_PAGER="less -RF"

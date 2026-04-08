@@ -68,6 +68,7 @@ if command -v git >/dev/null 2>&1; then
   alias glog="git log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(magenta)%an %C(reset)%s%C(yellow)%d' --decorate --date=format:'%Y-%m-%d %H:%M' --abbrev-commit --no-merges"
 fi
 
+
 # Lazygit ----------------------------------------------------------------------
 command -v lazygit >/dev/null 2>&1 && alias lg='lazygit'
 # Lazydocker -------------------------------------------------------------------

@@ -1,3 +1,9 @@
+# open (macOS-style) -----------------------------------------------------------
+if [[ "$OSTYPE" == linux* ]] && command -v xdg-open >/dev/null 2>&1; then
+  unalias open 2>/dev/null
+  open() { (xdg-open "$@" &>/dev/null &) }
+fi
+
 # Copy stdin to clipboard ------------------------------------------------------
 copy() {
   if command -v pbcopy >/dev/null 2>&1; then

@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/danielt812/calcpad/main/config.schema.json
+# calcpad configuration
+# color reference: https://hexdocs.pm/color_palette/color_table.html#content
+
+colors:
+  normal:       "15"   # white  — regular text
+  operators:    "14"   # cyan   — + - * / % ^
+  parens:       "214"  # orange — ( )
+  aggregates:   "141"  # purple — SUM AVG MIN MAX etc.
+  constants:    "220"  # yellow — PI E TAU PHI
+  functions:    "213"  # pink   — sqrt
+  line_numbers: "240"  # grey   — line numbers
+  results:      "84"   # green  — evaluated results
+
+precision:    2      # decimal places to round to (-1 = full precision)
+auto_format:  true  # format lines as you type
+
+keys:
+  quit:   "ctrl+c"
+  reset:  "ctrl+r"
+  format: "ctrl+f"
+  help:   "ctrl+h"
