@@ -34,6 +34,7 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/local/bin:$PATH"
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 # Docker
 export DOCKER_DEFAULT_PLATFORM="linux/amd64"

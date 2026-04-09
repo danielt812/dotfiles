@@ -28,7 +28,7 @@ force_display = false
 format = "[$symbol($subscription)]($style) "
 symbol = " "
 style = "blue bold"
-disabled = false
+disabled = true
 
 [azure.subscription_aliases]
 
