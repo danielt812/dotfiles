@@ -1,23 +1,53 @@
-# Simple search:
-fd <search query>
+# Recursively find files matching a specific pattern in the current directory:
+fd "string|regex"
 
-# Specifying the root directory for the search:
-fd <search query> <directory>
+# Find files that begin with a specific string:
+fd "^string"
 
-# Searching for a particular file extension:
-fd -e <file extension> <search query>
+# Find files in a specific directory:
+fd "string|regex" "/foo/bar"
 
-# Searching for a particular file name:
-fd -g <file name>.<file extension>
+# Treat the pattern as a literal string instead of regex:
+fd [-F|--fixed-strings] "string"
 
-# Search for hidden and ignored files:
-fd -H <search query>
+# Perform a glob-based search instead of regex:
+fd [-g|--glob] "*.py"
 
-# Excluding specific files or directories:
-fd -E <file or directories which should be excluded> <search query>
+# Find files with a specific extension:
+fd [-e|--extension] "txt"
 
-# Filtering by type (f=file, d=directory, l=symlink, x=executable):
-fd -t <type> <search query>
+# Include hidden files in the search:
+fd [-H|--hidden] "string|regex"
 
-# Show absolute paths:
-fd -a <search query>
+# Include ignored files (.gitignore, .fdignore, etc.):
+fd [-I|--no-ignore] "string|regex"
+
+# Include both ignored and hidden files (unrestricted search):
+fd [-u|--unrestricted] "string|regex"
+
+# Case-sensitive search (default is smart case):
+fd [-s|--case-sensitive] "string|regex"
+
+# Case-insensitive search:
+fd [-i|--ignore-case] "string|regex"
+
+# Filter by type (f=file, d=dir, l=symlink, x=executable, e=empty, b=block, c=char, s=socket, p=pipe):
+fd [-t|--type] <type> "string|regex"
+
+# Show absolute paths instead of relative:
+fd [-a|--absolute-path] "string|regex"
+
+# Detailed listing format (like ls -l):
+fd [-l|--list-details] "string|regex"
+
+# Follow symbolic links:
+fd [-L|--follow] "string|regex"
+
+# Match against the full path instead of just the filename:
+fd [-p|--full-path] "string|regex"
+
+# Limit directory traversal depth:
+fd [-d|--max-depth] <depth> "string|regex"
+
+# Exclude files/directories matching a glob pattern:
+fd [-E|--exclude] "*.pyc" "string|regex"
