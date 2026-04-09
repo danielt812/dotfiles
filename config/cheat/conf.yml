@@ -2,7 +2,7 @@ editor: nvim
 
 colorize: true
 
-style: monokai
+style: github-dark
 
 formatter: terminal16m
 

@@ -1,0 +1,23 @@
+# Simple search:
+find . -name "<search query>"
+
+# Specifying the root directory for the search:
+find <directory> -name "<search query>"
+
+# Searching for a particular file extension:
+find . -name "*.<file extension>"
+
+# Searching for a particular file name:
+find . -name "<file name>.<file extension>"
+
+# Search for hidden and ignored files:
+find . -name ".*"
+
+# Excluding specific files or directories:
+find . -path "<file or directories which should be excluded>" -prune -o -name "<search query>" -print
+
+# Filtering by type (f=file, d=directory, l=symlink):
+find . -type <type> -name "<search query>"
+
+# Show absolute paths:
+find "$(pwd)" -name "<search query>"

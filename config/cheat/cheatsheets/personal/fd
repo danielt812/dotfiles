@@ -18,3 +18,6 @@ fd -E <file or directories which should be excluded> <search query>
 
 # Filtering by type (f=file, d=directory, l=symlink, x=executable):
 fd -t <type> <search query>
+
+# Show absolute paths:
+fd -a <search query>
