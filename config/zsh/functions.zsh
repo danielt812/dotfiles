@@ -1,3 +1,7 @@
+# Force Bar Cursor Before Each Prompt (Ghostty + Nvim Cursor-Shape Fix) --------
+_restore_bar_cursor() { printf '\e[6 q' }
+precmd_functions+=(_restore_bar_cursor)
+
 # open (macOS-style) -----------------------------------------------------------
 if [[ "$OSTYPE" == linux* ]] && command -v xdg-open >/dev/null 2>&1; then
   unalias open 2>/dev/null
