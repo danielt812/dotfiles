@@ -1,0 +1,17 @@
+theme: everforest
+layout: vertical
+animation: none
+spacing: compact
+
+heading:
+  show_version: false
+
+response:
+  prettify_json: true
+  show_size_and_time: true
+
+focus:
+  on_startup: url
+
+text_input:
+  blinking_cursor: true
