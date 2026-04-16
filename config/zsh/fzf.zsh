@@ -51,15 +51,15 @@ _fzf_comprun() {
       fi
       ;;
     export|unset|printenv)
-      fzf "$@" --preview "printenv {}" --preview-window="bottom:3:wrap"
+      fzf "$@" --preview "printenv {}" --preview-window="top:3:wrap"
       ;;
     kill|pkill)
       fzf "$@" --preview 'ps -fp {1} 2>/dev/null || print "Process not found"' \
-        --preview-window="bottom:20%:wrap"
+        --preview-window="top:20%:wrap"
       ;;
     ssh|telnet)
       fzf "$@" --preview 'cat ~/.ssh/config 2>/dev/null | grep -A 4 "Host {}" || print "System Host: {}"' \
-        --preview-window="bottom:20%:wrap"
+        --preview-window="top:20%:wrap"
       ;;
     git)
       if command -v delta >/dev/null 2>&1; then
@@ -214,7 +214,7 @@ alias_fzf() {
     alias \
       | fzf --prompt='Alias: ' \
             --preview="$preview_cmd" \
-            --preview-window='bottom:3:wrap' \
+            --preview-window='top:3:wrap' \
       | sed -E 's/=.*$//' \
       | tr -d '\n'
   )
@@ -258,16 +258,55 @@ history_fzf() {
     case "$arg" in
       -e|--execute) mode="execute" ;;
       -c|--copy)    mode="copy" ;;
-      -h|--help)    echo "Usage: histf [-e|--execute] [-c|--copy]"; return 0 ;;
+      -d|--delete)  mode="delete" ;;
+      -h|--help)    echo "Usage: histf [-e|--execute] [-c|--copy] [-d|--delete]"; return 0 ;;
       *)            echo "Unknown flag: $arg"; return 1 ;;
     esac
   done
+
+  if [ "$mode" = "delete" ]; then
+    local selected line
+    local -a all_lines kept_lines
+    local -A drop
+
+    selected=$(
+      _reverse_file "$HISTFILE" \
+        | fzf --multi \
+              --prompt='Delete (Tab to mark): ' \
+              --preview="$preview_cmd" \
+              --preview-window='top:3:wrap'
+    )
+    [ -z "$selected" ] && return 0
+
+    local -a removed_lines
+    all_lines=( "${(@f)$(<$HISTFILE)}" )
+    while IFS= read -r line; do
+      drop[$line]=1
+    done <<< "$selected"
+    for line in "${all_lines[@]}"; do
+      if [[ -n ${drop[$line]} ]]; then
+        removed_lines+=( "$line" )
+      else
+        kept_lines+=( "$line" )
+      fi
+    done
+
+    print -rl -- "${kept_lines[@]}" > "$HISTFILE"
+    chmod 600 "$HISTFILE"
+    fc -p "$HISTFILE"
+    if (( ${#removed_lines} == 1 )); then
+      echo "removed: ${removed_lines[1]}"
+    else
+      echo "removed ${#removed_lines} lines"
+    fi
+    return 0
+  fi
 
   selected_command=$(
     _reverse_file "$HISTFILE" \
       | fzf --prompt='History: ' \
             --preview="$preview_cmd" \
-            --preview-window='bottom:3:wrap' \
+            --preview-window='top:3:wrap' \
       | tr -d '\n'
   )
   [ -z "$selected_command" ] && return 0
@@ -474,7 +513,7 @@ kill_fzf() {
             --prompt='Kill process: ' \
             --header='TAB to select multiple' \
             --preview='ps -fp {1} 2>/dev/null' \
-            --preview-window='bottom:4:wrap'
+            --preview-window='top:4:wrap'
   )
 
   [ -z "$selected" ] && return 0
