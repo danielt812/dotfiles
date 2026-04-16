@@ -238,7 +238,7 @@ alias af="alias_fzf"
 
 # Fuzzy history picker — copy or execute
 history_fzf() {
-  local mode="copy" arg selected_command preview_cmd
+  local mode="print" arg selected_command preview_cmd
 
   if ! command -v fzf >/dev/null 2>&1; then
     echo "fzf not installed"; return 1
@@ -259,7 +259,8 @@ history_fzf() {
       -e|--execute) mode="execute" ;;
       -c|--copy)    mode="copy" ;;
       -d|--delete)  mode="delete" ;;
-      -h|--help)    echo "Usage: histf [-e|--execute] [-c|--copy] [-d|--delete]"; return 0 ;;
+      -p|--print)   mode="print" ;;
+      -h|--help)    echo "Usage: histf [-p|--print] [-e|--execute] [-c|--copy] [-d|--delete]"; return 0 ;;
       *)            echo "Unknown flag: $arg"; return 1 ;;
     esac
   done
@@ -313,10 +314,14 @@ history_fzf() {
 
   if [ "$mode" = "execute" ]; then
     eval "$selected_command"
-  elif ! printf "%s" "$selected_command" | copy; then
-    echo "$selected_command"
-    echo "(clipboard utility not found)"
-    return 1
+  elif [ "$mode" = "copy" ]; then
+    if ! printf "%s" "$selected_command" | copy; then
+      echo "$selected_command"
+      echo "(clipboard utility not found)"
+      return 1
+    fi
+  else
+    print -r -- "$selected_command"
   fi
 }
 alias histf="history_fzf"
