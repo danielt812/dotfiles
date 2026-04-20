@@ -12,7 +12,7 @@ if command -v bat >/dev/null 2>&1; then
   export LESS="-R"
 fi
 if command -v nvim >/dev/null 2>&1; then
-  export MANPAGER="nvim +Man!"
+  export MANPAGER="nvim --cmd 'let g:manpager=1' +Man!"
 elif command -v bat >/dev/null 2>&1; then
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 else
