@@ -402,12 +402,14 @@ git_fzf() {
   [[ "$graph" == true ]] && branch_preview+=" --graph"
   branch_preview+=" {}"
   local fzf_multi=()
-  [[ "$action" == "delete" ]] && fzf_multi=(--multi --header='TAB to select multiple')
+  if [[ "$action" == "delete" ]] || [[ "$action" == "checkout" && "$flag" == "-r" ]]; then
+    fzf_multi=(--multi --header='TAB to select multiple')
+  fi
 
   if [[ $flag == "-r" ]]; then
     selected_branch=$(
       git branch -r --sort=-committerdate --format='%(refname:short)' \
-        | fzf --prompt='remote branch: ' \
+        | fzf --prompt='branch (remote): ' \
               "${fzf_multi[@]}" \
               --preview="$branch_preview" \
               --preview-window='top:70%:border-bottom' \
@@ -438,12 +440,21 @@ git_fzf() {
       merge)      git merge "$selected_branch" ;;
       pull)       base_branch=${selected_branch#origin/}; git checkout "$base_branch" && git pull ;;
       new-branch) read -rp "enter new branch name: " new_branch_name; git checkout -b "$new_branch_name" ;;
-      *)          base_branch=${selected_branch#origin/}; git checkout -b "$base_branch" "$selected_branch" ;;
+      *)
+        while IFS= read -r b; do
+          base_branch=${b#origin/}
+          if git show-ref --verify --quiet "refs/heads/$base_branch"; then
+            git checkout "$base_branch"
+          else
+            git checkout -b "$base_branch" "$b"
+          fi
+        done <<< "$selected_branch"
+        ;;
     esac
   else
     selected_branch=$(
       git branch --sort=-committerdate --format='%(refname:short)' \
-        | fzf --prompt='branch: ' \
+        | fzf --prompt='branch (local): ' \
               "${fzf_multi[@]}" \
               --preview="$branch_preview" \
               --preview-window='top:80%:border-bottom' \
