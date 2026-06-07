@@ -193,3 +193,12 @@ ltime() {
   return 1
 }
 
+flatten() {
+  if command -v fd &>/dev/null; then
+    fd --type f --min-depth 2 --exec mv {} . \;
+    fd --type d --min-depth 1 --exec rmdir {} \; 2>/dev/null
+  else
+    find . -mindepth 2 -type f -exec mv {} . \;
+    find . -mindepth 1 -type d -empty -delete
+  fi
+}
