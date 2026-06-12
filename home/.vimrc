@@ -1,135 +1,82 @@
-" Helps force plugins to load correctly when it is turned back on below
-filetype on
-
-call plug#begin()
-" tpope essentials
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-abolish'         " :S substitutions, case coercions (crs, crm, crc, cru)
-Plug 'tpope/vim-eunuch'          " :Rename, :Move, :Delete, :SudoWrite, etc.
-Plug 'tpope/vim-vinegar'         " Enhanced netrw (- to open, I for help)
-Plug 'tpope/vim-obsession'       " Session management that plays nice with tmux
-Plug 'tpope/vim-speeddating'     " C-a/C-x on dates, times, ordinals
-Plug 'tpope/vim-rsi'             " Readline bindings in insert/command mode
-Plug 'tpope/vim-dispatch'        " Async :Make and :Dispatch
-Plug 'tpope/vim-projectionist'   " Project-aware alternate files and navigation
-" git
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'         " GitHub handler for fugitive (:GBrowse)
-Plug 'mhinz/vim-signify'
-" ui
-Plug 'itchyny/lightline.vim'
-Plug 'mhinz/vim-startify'
-Plug 'sainnhe/gruvbox-material'
-call plug#end()
-
-" Turn on syntax highlighting
+set nocompatible
 syntax on
-
-" For plugins to load correctly
 filetype plugin indent on
 
-" Don't try to be vi compatible
-set nocompatible
+" --- Essentials ---
+set undofile
+set confirm
+set autoread
+set ttimeout ttimeoutlen=100
+set noswapfile
 
-let mapleader = " "
-
-" Security
-set modelines=0
-
-" Show line numbers
-set number
-set relativenumber
-
-" Blink cursor on error instead of beeping
-set visualbell
-
-" Encoding
-set encoding=utf-8
-
-" Use sys clipboard
-set clipboard=unnamedplus
-
-" Whitespace
-set textwidth=80
-set formatoptions=tcqrn1
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set noshiftround
-
-" Cursor motion
-set scrolloff=3
+" --- Editing ---
+set tabstop=2 shiftwidth=2 expandtab
+set autoindent
 set backspace=indent,eol,start
-set matchpairs+=<:>
-runtime! macros/matchit.vim
+set list listchars=tab:▸\ ,trail:·
 
-" Move up/down editor lines
+" --- Search ---
+set ignorecase smartcase
+set incsearch hlsearch
+
+" --- UI ---
+set number
+set scrolloff=5
+set laststatus=2
+set wildmenu
+set mouse=a
+let &fillchars = "eob: "
+colorscheme habamax
+
+" --- Folds ---
+set foldmethod=indent foldlevelstart=99
+
+" --- Navigation ---
+set splitbelow splitright
+
+" --- Cursor ---
+let &t_EI = "\e[2 q"
+let &t_SI = "\e[6 q"
+let &t_SR = "\e[4 q"
+
+" --- Keymaps ---
+" Shift lines (single key; visual keeps selection)
+nnoremap > >>
+nnoremap < <<
+xnoremap > >gv
+xnoremap < <gv
+
+" Move by display lines
 nnoremap j gj
 nnoremap k gk
 
-" Allow hidden buffers
-set hidden
+" Blank line below / above, cursor stays put
+nnoremap <silent> go :<C-u>call append(line('.'),   repeat([''], v:count1))<CR>
+nnoremap <silent> gO :<C-u>call append(line('.')-1, repeat([''], v:count1))<CR>
 
-" Allow mouse scrolling
-set mouse=a
+" Esc clears search highlight
+nnoremap <silent> <Esc> :nohlsearch<CR>
 
-" Rendering
-set ttyfast
+" Alt-hjkl: move lines / indent
+if !has('gui_running')
+  execute "set <M-h>=\eh"
+  execute "set <M-j>=\ej"
+  execute "set <M-k>=\ek"
+  execute "set <M-l>=\el"
+endif
+nnoremap <silent> <M-j> :m .+1<CR>==
+nnoremap <silent> <M-k> :m .-2<CR>==
+nnoremap <silent> <M-h> <<
+nnoremap <silent> <M-l> >>
+xnoremap <silent> <M-j> :m '>+1<CR>gv=gv
+xnoremap <silent> <M-k> :m '<-2<CR>gv=gv
+xnoremap <silent> <M-h> <gv
+xnoremap <silent> <M-l> >gv
 
-" Status bar
-set laststatus=2
-
-" Last line
-set showmode
-set showcmd
-
-" Searching
-nnoremap / /\v
-vnoremap / /\v
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-set showmatch
-map <leader><space> :let @/=''<cr>
-
-" Remap help key
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
-
-" Formatting
-map <leader>q gqip
-
-" Visualize tabs and newlines
-set listchars=tab:▸\ ,eol:¬
-map <leader>l :set list!<CR>
-
-" Fugitive
-nnoremap <leader>gs :Git<CR>
-nnoremap <leader>gb :Git blame<CR>
-nnoremap <leader>gd :Gdiffsplit<CR>
-nnoremap <leader>gl :Git log --oneline<CR>
-
-" Dispatch
-nnoremap <leader>m :Make<CR>
-nnoremap <leader>d :Dispatch<CR>
-
-" Color scheme
-set t_Co=256
-set background=dark
-set termguicolors
-set t_ut=
-let g:gruvbox_material_background = 'medium'
-let g:gruvbox_material_better_performance = 1
-let g:gruvbox_material_enable_italic = 1
-colorscheme gruvbox-material
-
-" Lightline uses gruvbox-material
-let g:lightline = {'colorscheme': 'gruvbox_material'}
+" --- Autocmds ---
+augroup vimrc
+  autocmd!
+  autocmd VimEnter * silent execute "!printf '\e[2 q'"
+  autocmd VimLeave * silent execute "!printf '\e[5 q'"
+  autocmd FileType * setlocal formatoptions-=r formatoptions-=o
+augroup END
