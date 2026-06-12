@@ -40,6 +40,9 @@ let &t_SI = "\e[6 q"
 let &t_SR = "\e[4 q"
 
 " --- Keymaps ---
+" Redo
+nnoremap U <C-r>
+
 " Shift lines (single key; visual keeps selection)
 nnoremap > >>
 nnoremap < <<
