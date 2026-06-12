@@ -9,10 +9,10 @@ alias .....='cd ../../../..'
 alias c='clear'
 
 # Unix -------------------------------------------------------------------------
-alias cp='cp -iv'
-alias ln='ln -iv'
-alias mv='mv -iv'
-alias rm='rm -iv'
+# alias cp='cp -iv'
+# alias ln='ln -iv'
+# alias mv='mv -iv'
+# alias rm='rm -iv'
 
 alias mkdir='mkdir -pv'
 
