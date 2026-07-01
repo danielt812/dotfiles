@@ -1,4 +1,3 @@
-
 # Navigation -------------------------------------------------------------------
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -47,27 +46,6 @@ if command -v brew >/dev/null 2>&1; then
   alias brewup='brew outdated; brew update; brew upgrade; brew cleanup --prune=all; brew doctor'
   alias brewdeps='brew deps --formula --tree --installed'
 fi
-
-# Git --------------------------------------------------------------------------
-if command -v git >/dev/null 2>&1; then
-  alias g='git'
-  alias ga='git add'
-  alias gaa='git add .'
-  alias gb='git branch'
-  alias gc='git commit'
-  alias gco='git checkout'
-  alias gd='git diff'
-  alias gm='git merge'
-  alias gpull='git pull'
-  alias gpush='git push'
-  alias gr='git restore'
-  alias gs='git status'
-  alias gst='git stash'
-  alias gsta='git stash apply'
-  alias gstp='git stash pop'
-  alias glog="git log --pretty=format:'%C(green)%h%C(reset) - %C(blue)%ad %C(magenta)%an %C(reset)%s%C(yellow)%d' --decorate --date=format:'%Y-%m-%d %H:%M' --abbrev-commit --no-merges"
-fi
-
 
 # Lazygit ----------------------------------------------------------------------
 command -v lazygit >/dev/null 2>&1 && alias lg='lazygit'

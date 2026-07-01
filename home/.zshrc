@@ -15,6 +15,14 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# Homebrew's `brew shellenv` exports FPATH, which freezes a snapshot of fpath
+# into the environment. After `brew upgrade zsh` the Cellar/zsh/<version> path
+# in that snapshot goes stale, so nested shells inherit a dead directory and
+# lose autoloaded functions (add-zsh-hook, is-at-least, compinit...). Prepend
+# the version-independent symlink dir so they always resolve to the live zsh.
+fpath=(/opt/homebrew/share/zsh/functions /opt/homebrew/share/zsh/site-functions "$fpath")
+typeset -U fpath
+
 plug() {
   local repo="$1" name dir init
   name="${repo##*/}"
@@ -40,6 +48,10 @@ source "$XDG_CONFIG_HOME/zsh/aliases.zsh"
 source "$XDG_CONFIG_HOME/zsh/functions.zsh"
 source "$XDG_CONFIG_HOME/zsh/fzf.zsh"
 source "$XDG_CONFIG_HOME/zsh/profile.zsh"
+
+# Optional helpers
+command -v git >/dev/null 2>&1 && source "$XDG_CONFIG_HOME/zsh/git.zsh"
+command -v docker >/dev/null 2>&1 && source "$XDG_CONFIG_HOME/zsh/docker.zsh"
 
 # Optional init hooks
 command -v fnm >/dev/null 2>&1 && eval "$(fnm env --use-on-cd --shell zsh)"
