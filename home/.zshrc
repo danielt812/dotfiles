@@ -20,7 +20,8 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # in that snapshot goes stale, so nested shells inherit a dead directory and
 # lose autoloaded functions (add-zsh-hook, is-at-least, compinit...). Prepend
 # the version-independent symlink dir so they always resolve to the live zsh.
-fpath=(/opt/homebrew/share/zsh/functions /opt/homebrew/share/zsh/site-functions "$fpath")
+# (N-/) drops entries that don't exist, so this is a no-op on Linux.
+fpath=(/opt/homebrew/share/zsh/{functions,site-functions}(N-/) $fpath)
 typeset -U fpath
 
 plug() {
