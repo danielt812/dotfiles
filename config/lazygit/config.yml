@@ -13,8 +13,8 @@ gui:
   expandedSidePanelWeight: 2
   mainPanelSplitMode: "flexible" # one of 'horizontal' | 'flexible' | 'vertical'
   enlargedSideViewLocation: "left"
-  wrapLinesInStagingView: true
-  useHunkModeInStagingView: true
+  wrapLinesInDiffView: true
+  useHunkModeInDiffView: true
   language: "auto" # one of 'auto' | 'en' | 'zh' | 'pl' | 'nl' | 'ja' | 'ko' | 'ru'
   timeFormat: "02 Jan 06" # https://pkg.go.dev/time#Time.Format
   shortTimeFormat: "3:04PM"
@@ -83,8 +83,8 @@ gui:
   switchToFilesAfterStashApply: true
   switchTabsWithPanelJumpKeys: false
 git:
-  pagers:
-    - pager: delta --paging=never --diff-so-fancy --line-numbers
+  diffRenderers:
+    - command: delta --paging=never --diff-so-fancy --line-numbers
       colorArg: always
   commit:
     signOff: false
@@ -214,7 +214,7 @@ keybinding:
     prevTab: "["
     nextScreenMode: "+"
     prevScreenMode: "_"
-    cyclePagers: "|"
+    cycleDiffRenderers: "|"
     undo: "z"
     redo: "<c-z>"
     filteringMenu: "<c-s>"
@@ -229,6 +229,7 @@ keybinding:
     increaseRenameSimilarityThreshold: ")"
     decreaseRenameSimilarityThreshold: "("
     openDiffTool: "<c-t>"
+    newWorktree: "w"
   status:
     checkForUpdate: "u"
     recentRepos: "<enter>"
@@ -300,8 +301,6 @@ keybinding:
     viewBisectOptions: "b"
     startInteractiveRebase: "i"
     selectCommitsOfCurrentBranch: "*"
-  worktrees:
-    viewWorktreeOptions: "w"
   stash:
     popStash: "g"
     renameStash: "r"
