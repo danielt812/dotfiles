@@ -82,40 +82,6 @@ Backup and remove the conflicting files, then re-run `make stow`, or
 
 Use `make adopt` to move the existing files into this repo and replace them with symlinks.
 
-## Shell setup (`bash` and `zsh`)
----
-This repo expects shared shell config to live under:
-
-- ~/.config/sh/exports.sh
-- ~/.config/sh/aliases.sh
-- ~/.config/sh/functions.sh
-
-After stowing config, add the following to the end of your shell rc file.
-
-## Bash
----
-```bash
-# Source shared shell config
-: "${XDG_CONFIG_HOME:="$HOME/.config"}"
-SH_DIR="$XDG_CONFIG_HOME/sh"
-
-[ -f "$SH_DIR/exports.sh" ] && . "$SH_DIR/exports.sh"
-[ -f "$SH_DIR/aliases.sh" ] && . "$SH_DIR/aliases.sh"
-[ -f "$SH_DIR/functions.sh" ] && . "$SH_DIR/functions.sh"
-```
-
-## Zsh
----
-```zsh
-# Source shared shell config
-: ${XDG_CONFIG_HOME:="$HOME/.config"}
-SH_DIR="$XDG_CONFIG_HOME/sh"
-
-[[ -f "$SH_DIR/exports.sh" ]] && source "$SH_DIR/exports.sh"
-[[ -f "$SH_DIR/aliases.sh" ]] && source "$SH_DIR/aliases.sh"
-[[ -f "$SH_DIR/functions.sh" ]] && source "$SH_DIR/functions.sh"
-```
-
 ## Uninstall
 ---
 ```bash
