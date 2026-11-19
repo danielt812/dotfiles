@@ -377,8 +377,8 @@ disabled = false
 format = '([\[$all_status$ahead_behind\]]($style) )'
 style = "red bold"
 stashed = '\$'
-ahead = "⇡"
-behind = "⇣"
+ahead = "↑"
+behind = "↓"
 up_to_date = ""
 diverged = "⇕"
 conflicted = "="
